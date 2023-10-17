@@ -11,4 +11,17 @@ export default async function handler(request, response) {
       return response.status(400).json({ message: error });
     }
   }
+
+  if (request.method === "POST") {
+    try {
+      const expenseData = request.body;
+      await Expense.create(expenseData);
+      response.status(201).json({ message: "Expense created." });
+    } catch (error) {
+      console.error(error);
+      response
+        .status(405)
+        .json({ message: "Method not allowed", error: error });
+    }
+  }
 }
