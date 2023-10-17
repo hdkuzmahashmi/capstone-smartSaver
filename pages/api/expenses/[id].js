@@ -17,11 +17,11 @@ export default async function handler(request, response) {
     try {
       const expenseData = request.body;
       await Expense.findByIdAndUpdate(id, expenseData);
-      response.status(201).json({ message: "Expense updated." });
+      response.status(200).json({ message: "Expense updated." });
     } catch (error) {
       console.error(error);
       response
-        .status(401)
+        .status(405)
         .json({ message: "Method not allowed.", error: error });
     }
   }
@@ -29,12 +29,12 @@ export default async function handler(request, response) {
   if (request.method === "DELETE") {
     try {
       await Expense.findByIdAndDelete(id);
-      response.status(201).json({ message: "Expense deleted." });
+      response.status(200).json({ message: "Expense deleted." });
       Expense.find;
     } catch (error) {
       console.error(error);
       response
-        .status(401)
+        .status(405)
         .json({ message: "Method not allowed", error: error });
     }
   }
