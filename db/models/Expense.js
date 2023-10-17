@@ -8,8 +8,8 @@ const expenseSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
   amount: { type: Number, required: true },
-  categoryid: { type: [Schema.Types.ObjectId], ref: Category },
-  currencyid: { type: [Schema.Types.ObjectId], ref: Currency },
+  categoryId: { type: [Schema.Types.ObjectId], ref: Category },
+  currencyId: { type: [Schema.Types.ObjectId], ref: Currency },
 });
 
 const Expense =
