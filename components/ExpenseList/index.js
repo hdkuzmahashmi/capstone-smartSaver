@@ -26,7 +26,21 @@ const Td = styled.td`
   text-align: left;
 `;
 
+const SummaryBox = styled.div`
+  border: 1px solid #000;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #f7f7f7;
+  text-align: center;
+`;
+
+const SummaryText = styled.h4`
+  margin: 0;
+  color: #333;
+`;
+
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
 function ExpenseList() {
   const { data, error } = useSWR(`/api/expenses`, fetcher);
 
@@ -34,13 +48,18 @@ function ExpenseList() {
     return <h1>Loading...</h1>;
   }
 
-  // if (error) {
-  //   return <h1>Error: {error.message}</h1>;
-  // }
+  if (error) {
+    return <h1>Error: {error.message}</h1>;
+  }
+
+  const totalExpense = data.reduce((total, expense) => total + expense.amount, 0);
 
   return (
     <div>
       <h3>Expense List</h3>
+      <SummaryBox>
+        <SummaryText>Total Expense: {totalExpense} €</SummaryText>
+      </SummaryBox>
       <ExpenseTable>
         <thead>
           <tr>
@@ -49,10 +68,9 @@ function ExpenseList() {
             <Th>Amount</Th>
           </tr>
         </thead>
-
         <tbody>
-          {data.map((expense) => (
-            <Tr key={expense.name}>
+          {data.map((expense, index) => (
+            <Tr key={expense.name} even={index % 2 === 0}>
               <ExpenseListDetail
                 name={expense.name}
                 description={expense.description}
