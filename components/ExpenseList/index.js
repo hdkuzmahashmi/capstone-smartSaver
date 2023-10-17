@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import styled from "styled-components";
+import ExpenseListDetail from "../ExpenseListDetail";
 
 const ExpenseTable = styled.table`
   border-collapse: collapse;
@@ -39,7 +40,7 @@ function ExpenseList() {
 
   return (
     <div>
-      <h2>Expense List</h2>
+      <h3>Expense List</h3>
       <ExpenseTable>
         <thead>
           <tr>
@@ -48,12 +49,15 @@ function ExpenseList() {
             <Th>Amount</Th>
           </tr>
         </thead>
+
         <tbody>
           {data.map((expense) => (
             <Tr key={expense.name}>
-              <Td>{expense.name}</Td>
-              <Td>{expense.description}</Td>
-              <Td>{expense.amount} $</Td>
+              <ExpenseListDetail
+                name={expense.name}
+                description={expense.description}
+                amount={expense.amount}
+              />
             </Tr>
           ))}
         </tbody>
