@@ -118,10 +118,17 @@ function ExpenseForm() {
       <FormTitle>Add Expense</FormTitle>
       <form onSubmit={handleSubmit}>
         <FormGroup>
-          <StyledInput id="name" name="name" type="text" placeholder="Title" />
+          <StyledInput
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Title"
+            maxLength={100}
+            required
+          />
         </FormGroup>
         <FormGroup>
-          <StyledSelect id="categoryId" name="categoryId">
+          <StyledSelect id="categoryId" name="categoryId" required>
             <option value="0"> Select Category</option>
             {data.map((category, index) => (
               <option key={index} value={category._id}>
@@ -136,14 +143,18 @@ function ExpenseForm() {
             name="description"
             placeholder="Description"
             rows="4"
+            maxLength={500}
+            required
           />
         </FormGroup>
         <FormGroup>
           <StyledInput
+            type="number"
             id="amount"
             name="amount"
-            type="text"
             placeholder="Amount"
+            min={0}
+            required
           />
         </FormGroup>
 
