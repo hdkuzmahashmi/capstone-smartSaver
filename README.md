@@ -1,37 +1,35 @@
-# New Next Project
+# 💰 Smart Saver App 
 
-This project was created from the neue fische `next` template.
+**Capstone Project for Web Development Bootcamp**
 
-You can [🔗 **use this template on CodeSandbox**](https://codesandbox.io/p/sandbox/github/neuefische/web-exercises/tree/main/templates/next?file=/README.md) or locally by running this command in your Terminal:
+## Team
+- Feli - [GitHub Profile](https://github.com/FeliKroder)
+- Mary - [GitHub Profile](https://github.com/maryhbb)
+- Uzma - [GitHub Profile](https://github.com/hdkuzmahashmi)
+- Willy - [GitHub Profile](https://github.com/willywdev)
 
-```bash
-npx -y ghcd@latest neuefische/web-exercises/tree/main/templates/next my-app -i
-```
+## Project Overview
+Smart Saver App is an expense tracker web application developed during our web development bootcamp capstone phase. It helps you keep track of your expenses and save money efficiently.
 
-## Development
+## Technology Stack
+- Next.js
+- MongoDB
 
-### Local Development
+## Key Features
+- Expense tracking
+- Budgeting
+- Savings goals
+- User-friendly interface
+- Secure data storage
 
-To work locally, please install the dependencies using `npm i` first.
+## How to Use
+1. Clone the repository.
+2. Set up a MongoDB database.
+3. Configure environment variables.
+4. Install dependencies with `npm install`.
+5. Run the app locally with `npm run dev`.
 
-Run `npm run dev` to start a development server and open the displayed URL in a browser.
+## Contributions
+We welcome contributions and feedback. Feel free to fork the repo, create a new branch, make your changes, and submit a pull request.
 
-Use `npm run test` to run the tests.
-
-### CodeSandbox Cloud
-
-Select the "Preview: 3000" tab to view this project.
-
-Select the "Tests: logs" tab to view the tests.
-
-> The `npm run dev` and `npm run test` scripts run automatically.
-
-### Scripts
-
-You can use the following commands:
-
-- `npm run dev` to start a development server
-- `npm run build` to build the project
-- `npm run start` to start a production server
-- `npm run test` to run the tests
-- `npm run lint` to run the linter
+Happy budgeting! 💰
