@@ -49,10 +49,8 @@ const SummaryText = styled.h4`
   color: #333;
 `;
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
 function ExpenseList() {
-  const { data, error } = useSWR(`/api/expenses`, fetcher);
+  const { data, error } = useSWR(`/api/expenses`);
 
   if (!data) {
     return <h1>Loading...</h1>;
