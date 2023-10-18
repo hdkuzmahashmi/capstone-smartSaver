@@ -38,10 +38,8 @@ const ExpenseRow = styled.div`
   border-radius: 8px;
 `;
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
 function ExpenseList() {
-  const { data, error } = useSWR(`/api/expenses`, fetcher);
+  const { data, error } = useSWR(`/api/expenses`);
 
   if (!data) {
     return <h1>Loading...</h1>;

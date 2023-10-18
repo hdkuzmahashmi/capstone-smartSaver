@@ -21,7 +21,7 @@ export default async function handler(request, response) {
       await Expense.findByIdAndUpdate(id, expenseData);
       response.status(200).json({ message: "Expense updated." });
     } catch (error) {
-      response
+      return response
         .status(400)
         .json({ message: "Something went wrong", error: error });
     }
@@ -33,10 +33,9 @@ export default async function handler(request, response) {
       response.status(200).json({ message: "Expense deleted." });
       Expense.find;
     } catch (error) {
-      response
+      return response
         .status(400)
         .json({ message: "Something went wrong", error: error });
     }
-    response.status(405).json({ message: "Method not allowed" });
   }
 }

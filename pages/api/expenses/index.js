@@ -18,8 +18,7 @@ export default async function handler(request, response) {
       await Expense.create(expenseData);
       response.status(201).json({ message: "Expense created." });
     } catch (error) {
-      return console.error(error);
+      return response.json({ message: "Something went wrong", error: error });
     }
-    response.status(400).json({ message: "Something went wrong" });
   }
 }
