@@ -2,51 +2,40 @@ import useSWR from "swr";
 import styled from "styled-components";
 import ExpenseListDetail from "../ExpenseListDetail";
 
-const ExpenseTable = styled.table`
-  border-collapse: collapse;
-  width: 100%;
+const ExpenseContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
-const Th = styled.th`
-  border: 1px solid #000;
-  padding: 8px;
-  text-align: left;
-  background-color: #444;
-  color: white;
+const ExpenseHeader = styled.h3`
   text-align: center;
-`;
-
-const Tr = styled.tr`
-  background-color: ${(props) => (props.even ? "#ddd" : "#f2f2f2")};
-`;
-
-const Td = styled.td`
-  border: 1px solid #000;
-  padding: 8px;
-  text-align: left;
-`;
-
-const EmptyTr = styled.tr`
-  background-color: transparent;
-`;
-
-const EmptyTd = styled.td`
-  border: none;
-  padding: 0;
-  height: 2px;
 `;
 
 const SummaryBox = styled.div`
-  border: 1px solid #000;
+  box-shadow: 2px 2px 5px #888888;
+  border: none;
   padding: 16px;
   margin-bottom: 16px;
-  background-color: #f7f7f7;
+  background-color: #333;
   text-align: center;
+  border-radius: 8px;
 `;
 
 const SummaryText = styled.h4`
   margin: 0;
-  color: #333;
+  color: #f7f7f7;
+`;
+
+const ExpenseRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 2px 2px 5px #888888;
+  border: none;
+  padding: 10px;
+  margin-bottom: 6px;
+  background-color: #f7f7f7;
+  text-align: center;
+  border-radius: 8px;
 `;
 
 function ExpenseList() {
@@ -66,37 +55,23 @@ function ExpenseList() {
   );
 
   return (
-    <div>
-      <h3>Expense List</h3>
+    <ExpenseContainer>
+      <ExpenseHeader>Expense List</ExpenseHeader>
       <SummaryBox>
         <SummaryText>Total Expense: {totalExpense} €</SummaryText>
       </SummaryBox>
-      <ExpenseTable>
-        <thead>
-          <tr>
-            <Th>Name</Th>
-            <Th>Description</Th>
-            <Th>Amount</Th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((expense, index) => (
-            <>
-              <Tr key={index} even={index % 2 === 0}>
-                <ExpenseListDetail
-                  name={expense.name}
-                  description={expense.description}
-                  amount={expense.amount}
-                />
-              </Tr>
-              <EmptyTr key={index}>
-                <EmptyTd colSpan="3">&nbsp;</EmptyTd>
-              </EmptyTr>
-            </>
-          ))}
-        </tbody>
-      </ExpenseTable>
-    </div>
+      {data.map((expense, index) => (
+        <div key={index}>
+          <ExpenseRow>
+            <ExpenseListDetail
+              name={expense.name}
+              description={expense.description}
+              amount={expense.amount}
+            />
+          </ExpenseRow>
+        </div>
+      ))}
+    </ExpenseContainer>
   );
 }
 

@@ -1,19 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 
-function ExpenseListDetail({ name, description, amount }) {
-  const Td = styled.td`
-    border: 1px solid #000;
-    padding: 8px;
-    text-align: left;
-  `;
+const ExpenseDetailContainer = styled.div`
+  display: flex;
+  width: 100%;
+`;
 
+const ExpenseDetailItem = styled.div`
+  flex: 1;
+  padding: 8px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+`;
+
+function ExpenseListDetail({ name, description, amount }) {
   return (
-    <>
-      <Td>{name}</Td>
-      <Td>{description}</Td>
-      <Td>{amount} €</Td>
-    </>
+    <ExpenseDetailContainer>
+      <ExpenseDetailItem>{name}</ExpenseDetailItem>
+      <ExpenseDetailItem>{description}</ExpenseDetailItem>
+      <ExpenseDetailItem>{amount} €</ExpenseDetailItem>
+    </ExpenseDetailContainer>
   );
 }
 
