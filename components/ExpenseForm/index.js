@@ -82,47 +82,11 @@ const StyledLink = styled(Link)`
   padding: 0.8rem;
 `;
 
-function ExpenseForm() {
-  const { data, error, mutate } = useSWR(`/api/categories`);
-
-  if (!data) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <h1> Error:{error.message} </h1>;
-  }
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    // Handle form submission logic here
-    const formdata = new FormData(event.target);
-    const expData = Object.fromEntries(formdata);
-
-    const response = await fetch("/api/expenses", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(expData),
-    });
-
-    if (!response.ok) {
-      console.error(response.status);
-      return;
-    }
-
-    mutate();
-    event.target.reset();
-
-    Router.push("/");
-  };
-
+function ExpenseForm({ onSubmit, isEditMode, category = [] }) {
   return (
     <FormContainer>
-      <FormTitle>Add Expense</FormTitle>
-      <form onSubmit={handleSubmit}>
+      <FormTitle>{isEditMode ? "Edit Expense" : "Add Expense"}</FormTitle>
+      <form onSubmit={onSubmit}>
         <FormGroup>
           <StyledInput
             id="name"
@@ -136,7 +100,7 @@ function ExpenseForm() {
         <FormGroup>
           <StyledSelect id="categoryId" name="categoryId" required>
             <option value="0"> Select Category</option>
-            {data.map((category, index) => (
+            {category.map((category, index) => (
               <option key={index} value={category._id}>
                 {category.name}
               </option>
