@@ -1,23 +1,20 @@
 import ExpenseForm from "@/components/ExpenseForm";
 import Router from "next/router";
 import React from "react";
-import styled from "styled-components";
 import useSWR from "swr";
-import Link from "next/link";
 
 function Form() {
-  const { data, error, mutate } = useSWR(`/api/categories`);
-  const category = data;
+  // const { data, error, mutate } = useSWR(`/api/categories`);
 
-  if (!data) {
-    return <div>Loading...</div>;
-  }
+  // if (!data) {
+  //   return <div>Loading...</div>;
+  // }
 
-  if (error) {
-    return <h1> Error:{error.message} </h1>;
-  }
+  // if (error) {
+  //   return <h1> Error:{error.message} </h1>;
+  // }
 
-  const handleSubmit = async (event) => {
+  const handleAdd = async (event) => {
     event.preventDefault();
 
     const formdata = new FormData(event.target);
@@ -36,19 +33,13 @@ function Form() {
       return;
     }
 
-    mutate();
+    //mutate();
     event.target.reset();
 
     Router.push("/");
   };
 
-  return (
-    <ExpenseForm
-      onSubmit={handleSubmit}
-      isEditMode={true}
-      category={category}
-    />
-  );
+  return <ExpenseForm onSubmit={handleAdd} isEditMode={false} />;
 }
 
 export default Form;

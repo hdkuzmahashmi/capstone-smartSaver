@@ -13,7 +13,6 @@ import {
 } from "./ExpenseList.styled";
 
 function ExpenseList() {
-  // const [isEditMode, setIsEditMode] = useState(false);
   const router = useRouter();
   const { id } = router.query;
 

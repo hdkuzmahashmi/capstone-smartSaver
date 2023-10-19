@@ -6,7 +6,7 @@ export const ExpenseContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 40vh;
+  width: 70vh;
 `;
 
 export const SummaryBox = styled.div`
