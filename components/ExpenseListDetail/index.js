@@ -16,6 +16,12 @@ const ExpenseDetailItem = styled.div`
   align-items: center;
 `;
 
+import {
+  ExpenseDetailContainer,
+  ExpenseDetailItem,
+} from "./ExpenseListDetail.styled";
+
+
 function ExpenseListDetail({ name, description, amount, id, handleDelete }) {
   return (
     <ExpenseDetailContainer>

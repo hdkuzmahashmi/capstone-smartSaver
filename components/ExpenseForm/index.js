@@ -1,86 +1,15 @@
-import Router from "next/router";
 import React from "react";
-import styled from "styled-components";
-import useSWR from "swr";
-import Link from "next/link";
-
-const FormContainer = styled.div`
-  max-width: 20rem;
-  margin: 0 auto;
-  width: 24rem;
-`;
-
-const FormTitle = styled.h1`
-  font-weight: bold;
-  padding-bottom: 1rem;
-  font-size: 1.5rem;
-`;
-
-const FormGroup = styled.div`
-  margin-top: 1rem;
-`;
-
-const StyledInput = styled.input`
-  margin-top: 0.25rem;
-  display: block;
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  background-color: #fff;
-  border: none;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  border-radius: 0.375rem;
-  outline: none;
-  font-size: 1rem;
-`;
-
-const StyledTextarea = styled.textarea`
-  margin-top: 0.25rem;
-  display: block;
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  background-color: #fff;
-  border: none;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  border-radius: 0.375rem;
-  outline: none;
-  font-size: 1rem;
-`;
-
-const StyledSelect = styled.select`
-  margin-top: 0.25rem;
-  display: block;
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  background-color: #fff;
-  border: none;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  border-radius: 0.375rem;
-  outline: none;
-  font-size: 1rem;
-`;
-
-const ButtonGroup = styled.div`
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-`;
-
-const StyledButton = styled.button`
-  border: 0.1rem outset black;
-  color: gray;
-  background-color: white;
-  border-radius: 0.5rem;
-  padding: 0.9rem;
-  margin-right: 0.5rem;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: gray;
-  border: 0.1rem outset black;
-  border-radius: 0.5rem;
-  padding: 0.8rem;
-`;
+import {
+  FormContainer,
+  FormTitle,
+  FormGroup,
+  StyledInput,
+  StyledTextarea,
+  StyledSelect,
+  ButtonGroup,
+  StyledButton,
+  StyledLink,
+} from "./ExpenseForm.styled";
 
 function ExpenseForm({ onSubmit, isEditMode, category = [] }) {
   return (
