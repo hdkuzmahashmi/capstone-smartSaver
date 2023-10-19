@@ -14,7 +14,7 @@ import {
 function ExpenseForm({ onSubmit, isEditMode, category = [] }) {
   return (
     <FormContainer>
-      <FormTitle>{isEditMode ? "Edit Expense" : "Add Expense"}</FormTitle>
+      <FormTitle>{isEditMode ? "Add Expense" : "Edit Expense"}</FormTitle>
       <form onSubmit={onSubmit}>
         <FormGroup>
           <StyledInput
@@ -57,7 +57,9 @@ function ExpenseForm({ onSubmit, isEditMode, category = [] }) {
         </FormGroup>
 
         <ButtonGroup>
-          <StyledButton type="submit">Submit</StyledButton>
+          <StyledButton type="submit">
+            {isEditMode ? "Add" : "Update"}
+          </StyledButton>
           <StyledLink href="/">Back</StyledLink>
         </ButtonGroup>
       </form>

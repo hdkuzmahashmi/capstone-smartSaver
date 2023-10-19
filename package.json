@@ -21,6 +21,7 @@
     "swr": "^2.2.4"
   },
   "devDependencies": {
+    "@iconify/react": "^4.1.1",
     "@svgr/webpack": "^8.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
