@@ -2,6 +2,7 @@ import Router from "next/router";
 import React from "react";
 import styled from "styled-components";
 import useSWR from "swr";
+import Link from "next/link";
 
 const FormContainer = styled.div`
   max-width: 20rem;
@@ -58,28 +59,36 @@ const StyledSelect = styled.select`
   font-size: 1rem;
 `;
 
-const StyledButton = styled.button`
-  /* margin-top: 1rem;
-  border: none;
-  padding: 0.5rem 1rem;
-  background-color: #667eea;
-  color: #fff;
-  width: 100%;
-  cursor: pointer;
-  border-radius: 0.375rem; */
+const ButtonGroup = styled.div`
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+`;
 
+const StyledButton = styled.button`
   border: 0.1rem outset black;
   color: gray;
   background-color: white;
   border-radius: 0.5rem;
   padding: 0.9rem;
-  width: 50%;
+  margin-right: 0.5rem;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: gray;
+  border: 0.1rem outset black;
+  border-radius: 0.5rem;
+  padding: 0.8rem;
 `;
 
 function ExpenseForm() {
   const { data, error, mutate } = useSWR(`/api/categories`);
 
-  if (!data) return;
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
   if (error) {
     return <h1> Error:{error.message} </h1>;
   }
@@ -109,9 +118,6 @@ function ExpenseForm() {
 
     Router.push("/");
   };
-  function handleback() {
-    Router.push("/");
-  }
 
   return (
     <FormContainer>
@@ -144,7 +150,6 @@ function ExpenseForm() {
             placeholder="Description"
             rows="4"
             maxLength={500}
-            required
           />
         </FormGroup>
         <FormGroup>
@@ -158,10 +163,10 @@ function ExpenseForm() {
           />
         </FormGroup>
 
-        <FormGroup>
+        <ButtonGroup>
           <StyledButton type="submit">Submit</StyledButton>
-          <StyledButton onClick={handleback}>Back</StyledButton>
-        </FormGroup>
+          <StyledLink href="/">Back</StyledLink>
+        </ButtonGroup>
       </form>
     </FormContainer>
   );
