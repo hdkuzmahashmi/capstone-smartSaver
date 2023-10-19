@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 import DeleteButton from "../DeleteButton";
@@ -22,6 +23,7 @@ function ExpenseListDetail({ name, description, amount, id, handleDelete }) {
       <ExpenseDetailItem>{description}</ExpenseDetailItem>
       <ExpenseDetailItem>{amount} €</ExpenseDetailItem>
       <DeleteButton expenseId={id} handleDelete={handleDelete}></DeleteButton>
+      <Link href={`./form/${id}`}>Edit</Link>
     </ExpenseDetailContainer>
   );
 }
