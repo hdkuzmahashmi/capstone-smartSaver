@@ -2,6 +2,7 @@ import useSWR from "swr";
 import styled from "styled-components";
 import ExpenseListDetail from "../ExpenseListDetail";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const ExpenseContainer = styled.div`
   display: flex;
@@ -58,6 +59,10 @@ const Header = styled.div`
 `;
 
 function ExpenseList() {
+  // const [isEditMode, setIsEditMode] = useState(false);
+  const router = useRouter();
+  const { id } = router.query;
+
   const { data, error } = useSWR(`/api/expenses`);
 
   if (!data) {
@@ -86,6 +91,7 @@ function ExpenseList() {
         <div key={index}>
           <ExpenseRow>
             <ExpenseListDetail
+              id={expense._id}
               name={expense.name}
               description={expense.description}
               amount={expense.amount}
