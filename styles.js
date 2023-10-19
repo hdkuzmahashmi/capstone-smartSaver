@@ -11,5 +11,6 @@ export default createGlobalStyle`
     margin: 0;
     font-family: system-ui;
     padding: 20px;
+    background-color: #f5f5f5;
   }
 `;
