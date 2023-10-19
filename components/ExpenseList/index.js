@@ -1,14 +1,17 @@
 import useSWR from "swr";
 import styled from "styled-components";
 import ExpenseListDetail from "../ExpenseListDetail";
+import Link from "next/link";
 
 const ExpenseContainer = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
 `;
 
 const ExpenseHeader = styled.h3`
-  text-align: center;
+  text-align: left;
+  flex-grow: 3;
 `;
 
 const SummaryBox = styled.div`
@@ -38,6 +41,21 @@ const ExpenseRow = styled.div`
   border-radius: 8px;
 `;
 
+// styled the add expense link and title header
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: gray;
+  border: 0.1rem solid black;
+  padding: 0.9rem;
+  border-radius: 0.5rem;
+  height: 90%;
+`;
+const Header = styled.div`
+  display: flex;
+  gap: 1rem;
+  bottom: 2rem;
+`;
+
 function ExpenseList() {
   const { data, error } = useSWR(`/api/expenses`);
 
@@ -56,7 +74,10 @@ function ExpenseList() {
 
   return (
     <ExpenseContainer>
-      <ExpenseHeader>Expense List</ExpenseHeader>
+      <Header>
+        <ExpenseHeader>Expense List</ExpenseHeader>
+        <StyledLink href="/form">Add Expense</StyledLink>
+      </Header>
       <SummaryBox>
         <SummaryText>Total Expense: {totalExpense} €</SummaryText>
       </SummaryBox>
