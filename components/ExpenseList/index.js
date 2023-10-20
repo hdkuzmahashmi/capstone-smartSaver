@@ -7,6 +7,7 @@ const ExpenseContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 70vh;
 `;
 
 const ExpenseHeader = styled.h3`
@@ -88,6 +89,7 @@ function ExpenseList() {
               name={expense.name}
               description={expense.description}
               amount={expense.amount}
+              id={expense._id}
             />
           </ExpenseRow>
         </div>
