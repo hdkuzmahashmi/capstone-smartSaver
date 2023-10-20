@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import css from "styled-components";
 
 export const Backdrop = styled.div`
   height: 100dvh;
@@ -31,30 +32,44 @@ export const Modal = styled.article`
   }
 `;
 
-export const ConfirmButton = styled.button`
-  padding: 6px;
-  background-color: #d2042d;
-  color: whitesmoke;
-  border: none;
-  border-radius: 7px;
-  &:hover {
-    background-color: white;
-    color: black;
-    outline: 2px solid #d2042d;
-  }
-`;
+// export const ConfirmButton = styled.button`
 
-export const CancelButton = styled.button`
+//   background-color: #d2042d;
+//   color: whitesmoke;
+//   border: none;
+//   border-radius: 7px;
+//   &:hover {
+//     background-color: white;
+//     color: black;
+//     outline: 2px solid #d2042d;
+// //   }
+// `;
+
+// // export const CancelButton = styled.button`;
+//   padding: 6px;
+//   background-color: none;
+//   color: black;
+//   border: none;
+//   border-radius: 7px;
+//   &:hover {
+//     background-color: white;
+//     color: black;
+//     outline: 2px solid darkgrey;
+//   }
+// `;
+
+export const ModalButton = styled.button`
   padding: 6px;
-  background-color: none;
-  color: black;
   border: none;
   border-radius: 7px;
   &:hover {
     background-color: white;
     color: black;
-    outline: 2px solid darkgrey;
   }
+  ${({ $isConfirm }) =>
+    $isConfirm
+      ? `background-color: #d2042d; color: whitesmoke; &:hover{outline: 2px solid #d2042d;}`
+      : `background-color: none; color: black; &:hover{outline: 2px solid darkgrey}`}
 `;
 
 export const FlexDiv = styled.div`

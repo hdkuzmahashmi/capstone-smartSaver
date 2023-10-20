@@ -5,6 +5,7 @@ import { Modal } from "./DeleteButton.styled";
 import { ConfirmButton } from "./DeleteButton.styled";
 import { CancelButton } from "./DeleteButton.styled";
 import { FlexDiv } from "./DeleteButton.styled";
+import { ModalButton } from "./DeleteButton.styled";
 
 export default function DeleteButton({ expenseId }) {
   const [showModal, setShowModal] = useState(false);
@@ -39,15 +40,16 @@ export default function DeleteButton({ expenseId }) {
           <Modal>
             <p>Are you sure?</p>
             <FlexDiv>
-              <ConfirmButton
+              <ModalButton
                 type="button"
                 onClick={() => handleDelete(expenseId)}
+                $isConfirm
               >
                 Delete
-              </ConfirmButton>
-              <CancelButton type="button" onClick={hideModal}>
+              </ModalButton>
+              <ModalButton type="button" onClick={hideModal}>
                 Cancel
-              </CancelButton>
+              </ModalButton>
             </FlexDiv>
           </Modal>
         </Backdrop>
