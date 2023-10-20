@@ -32,11 +32,7 @@ function FormPage() {
       Router.push("/");
     }
   }
-  return (
-    <>
-      <ExpenseForm onSubmit={handleEdit} isEditMode={true} expense={data} />
-    </>
-  );
+  return <ExpenseForm onSubmit={handleEdit} isEditMode={true} expense={data} />;
 }
 
 export default FormPage;

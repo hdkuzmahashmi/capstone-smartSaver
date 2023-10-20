@@ -5,7 +5,7 @@ export default createGlobalStyle`
   *::before,
   *::after {
     box-sizing: border-box;
-    font-family: Arial !important ;
+    font-family: Arial;
   }
 
   body {

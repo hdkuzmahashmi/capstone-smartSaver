@@ -17,7 +17,7 @@ function ExpenseListDetail({ name, description, amount, id, handleDelete }) {
       <ExpenseDetailItem>{amount} €</ExpenseDetailItem>
       <DeleteButton expenseId={id} handleDelete={handleDelete}></DeleteButton>
 
-      <CustomLink href={`./form/${id}`}>
+      <CustomLink href={`form/${id}`}>
         <Icon icon="bx:edit" width="24" height="24" />
       </CustomLink>
     </ExpenseDetailContainer>
