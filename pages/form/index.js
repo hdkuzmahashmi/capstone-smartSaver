@@ -1,6 +1,7 @@
 import ExpenseForm from "@/components/ExpenseForm";
 import Router from "next/router";
 import React from "react";
+import { mutate } from "swr";
 
 function Form() {
   const handleAdd = async (event) => {
@@ -23,7 +24,7 @@ function Form() {
     }
 
     event.target.reset();
-
+    mutate("/api/expenses");
     Router.push("/");
   };
 

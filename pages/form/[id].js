@@ -1,7 +1,7 @@
 import ExpenseForm from "@/components/ExpenseForm";
 import { useRouter } from "next/router";
 import Router from "next/router";
-
+import { mutate } from "swr";
 import useSWR from "swr";
 
 function FormPage() {
@@ -29,6 +29,7 @@ function FormPage() {
       body: JSON.stringify(expData),
     });
     if (response.ok) {
+      mutate(`/api/expenses/${id}`);
       Router.push("/");
     }
   }
