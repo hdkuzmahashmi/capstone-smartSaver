@@ -2,13 +2,20 @@ import { useState } from "react";
 import { mutate } from "swr";
 import { Backdrop } from "./DeleteButton.styled";
 import { Modal } from "./DeleteButton.styled";
-import { ConfirmButton } from "./DeleteButton.styled";
-import { CancelButton } from "./DeleteButton.styled";
 import { FlexDiv } from "./DeleteButton.styled";
 import { ModalButton } from "./DeleteButton.styled";
+import { useRef } from "react";
 
 export default function DeleteButton({ expenseId }) {
   const [showModal, setShowModal] = useState(false);
+  const modalRef = useRef(null);
+
+  function handleOuterClick(event) {
+    if (event.target === modalRef.current) {
+      return;
+    }
+    hideModal();
+  }
 
   function handleModal() {
     setShowModal(!showModal);
@@ -36,8 +43,8 @@ export default function DeleteButton({ expenseId }) {
         X
       </button>
       {showModal && (
-        <Backdrop>
-          <Modal>
+        <Backdrop onClick={handleOuterClick}>
+          <Modal ref={modalRef}>
             <p>Are you sure?</p>
             <FlexDiv>
               <ModalButton
