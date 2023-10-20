@@ -1,4 +1,3 @@
-import ExpenseForm from "@/components/ExpenseForm";
 import ExpenseList from "@/components/ExpenseList";
 import styled from "styled-components";
 

@@ -1,7 +1,7 @@
 import ExpenseForm from "@/components/ExpenseForm";
 import { useRouter } from "next/router";
 import Router from "next/router";
-import Expense from "@/components/Expense";
+
 import useSWR from "swr";
 
 function FormPage() {
@@ -29,14 +29,12 @@ function FormPage() {
       body: JSON.stringify(expData),
     });
     if (response.ok) {
-      //mutate();
       Router.push("/");
     }
   }
   return (
     <>
       <ExpenseForm onSubmit={handleEdit} isEditMode={true} expense={data} />
-      <Expense expense={data} />
     </>
   );
 }

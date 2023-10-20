@@ -1,19 +1,8 @@
 import ExpenseForm from "@/components/ExpenseForm";
 import Router from "next/router";
 import React from "react";
-import useSWR from "swr";
 
 function Form() {
-  // const { data, error, mutate } = useSWR(`/api/categories`);
-
-  // if (!data) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (error) {
-  //   return <h1> Error:{error.message} </h1>;
-  // }
-
   const handleAdd = async (event) => {
     event.preventDefault();
 
@@ -33,7 +22,6 @@ function Form() {
       return;
     }
 
-    //mutate();
     event.target.reset();
 
     Router.push("/");

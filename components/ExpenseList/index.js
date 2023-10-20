@@ -1,6 +1,5 @@
 import useSWR from "swr";
 import ExpenseListDetail from "../ExpenseListDetail";
-import { useRouter } from "next/router";
 
 import {
   ExpenseContainer,
@@ -13,9 +12,6 @@ import {
 } from "./ExpenseList.styled";
 
 function ExpenseList() {
-  const router = useRouter();
-  const { id } = router.query;
-
   const { data, error } = useSWR(`/api/expenses`);
 
   if (!data) {
