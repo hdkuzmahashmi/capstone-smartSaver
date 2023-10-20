@@ -2,8 +2,6 @@
     <img src="./assets/smartsaver-banner.png" width="auto" height="150px" alt="SmartSaver App"/>
 <br>
 
-**Capstone Project for Web Development Bootcamp**
-
 </div>
 
 ## Team 👥
