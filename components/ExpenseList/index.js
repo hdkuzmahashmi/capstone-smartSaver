@@ -2,12 +2,12 @@ import useSWR from "swr";
 import styled from "styled-components";
 import ExpenseListDetail from "../ExpenseListDetail";
 import Link from "next/link";
-import { mutate } from "swr";
 
 const ExpenseContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 70vh;
 `;
 
 const ExpenseHeader = styled.h3`
@@ -68,15 +68,6 @@ function ExpenseList() {
     return <h1>Error: {error.message}</h1>;
   }
 
-  async function handleDelete(expenseId) {
-    const response = await fetch(`/api/expenses/${expenseId}`, {
-      method: "DELETE",
-    });
-    if (response.ok) {
-      mutate(`/api/expenses`);
-    }
-  }
-
   const totalExpense = data.reduce(
     (total, expense) => total + expense.amount,
     0
@@ -99,7 +90,6 @@ function ExpenseList() {
               description={expense.description}
               amount={expense.amount}
               id={expense._id}
-              handleDelete={handleDelete}
             />
           </ExpenseRow>
         </div>
