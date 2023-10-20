@@ -1,5 +1,5 @@
 <div align="center" id="top">
-    <img src="./assets/smartsaver-banner.png" width="auto" height="100px" alt="SmartSaver App"/>
+    <img src="./assets/smartsaver-banner.png" width="auto" height="150px" alt="SmartSaver App"/>
 <br>
 
 **Capstone Project for Web Development Bootcamp**
@@ -8,28 +8,13 @@
 
 ## Team 👥
 
-<div style="display: flex; flex-direction: row;">
-    <div style="flex: 1; text-align: center;">
-        <img src="link_to_avatar1" alt="FeliKroder Avatar" style="border-radius: 50%; max-width: 100px;"/>
-        <br>
-        <a href="https://github.com/FeliKroder">Feli</a>
-    </div>
-    <div style="flex: 1; text-align: center;">
-        <img src="https://avatars.githubusercontent.com/u/76174247?v=4" alt="MaryHbb Avatar" style="border-radius: 50%; max-width: 100px;"/>
-        <br>
-        <a href="https://github.com/maryhbb">Mary</a>
-    </div>
-    <div style="flex: 1; text-align: center;">
-        <img src="https://avatars.githubusercontent.com/u/39566862?v=4" alt="Avatar 3" style="border-radius: 50%; max-width: 100px;"/>
-        <br>
-        <a href="https://github.com/hdkuzmahashmi">Uzma</a>
-    </div>
-    <div style="flex: 1; text-align: center;">
-        <img src="https://avatars.githubusercontent.com/u/132385633?v=4" alt="Avatar 3" style="border-radius: 50%; max-width: 100px;"/>
-        <br>
-        <a href="https://github.com/willywdev">Willy</a>
-    </div>
-</div>
+<img src="link_to_avatar1" alt="FeliKroder Avatar" width="50" height="50" style="border-radius: 50%;"> [FeliKroder](https://github.com/FeliKroder)
+
+<img src="https://avatars.githubusercontent.com/u/76174247?v=4" alt="MaryHbb Avatar" width="50" height="50" style="border-radius: 50%;"> [MaryHbb](https://github.com/maryhbb)
+
+<img src="https://avatars.githubusercontent.com/u/39566862?v=4" alt="Uzma Avatar" width="50" height="50" style="border-radius: 50%;"> [Uzma](https://github.com/hdkuzmahashmi)
+
+<img src="https://avatars.githubusercontent.com/u/132385633?v=4" alt="Willy Avatar" width="50" height="50" style="border-radius: 50%;"> [Willy](https://github.com/willywdev)
 
 ## Project Overview 🌐
 
