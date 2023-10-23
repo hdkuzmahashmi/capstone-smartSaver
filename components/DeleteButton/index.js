@@ -5,6 +5,7 @@ import { Modal } from "./DeleteButton.styled";
 import { FlexDiv } from "./DeleteButton.styled";
 import { ModalButton } from "./DeleteButton.styled";
 import { useRef } from "react";
+import { Icon } from "@iconify/react";
 
 export default function DeleteButton({ expenseId }) {
   const [showModal, setShowModal] = useState(false);
@@ -39,9 +40,14 @@ export default function DeleteButton({ expenseId }) {
 
   return (
     <>
-      <button type="button" onClick={handleModal}>
-        X
-      </button>
+      <Icon
+        type="button"
+        onClick={handleModal}
+        icon="mi:delete"
+        color="red"
+        width="26"
+        height="26"
+      />
       {showModal && (
         <Backdrop onClick={handleOuterClick}>
           <Modal ref={modalRef}>

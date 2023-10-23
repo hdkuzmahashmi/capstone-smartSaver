@@ -4,9 +4,14 @@ import Expense from "@/db/models/Expense";
 export default async function handler(request, response) {
   await dbConnect();
   const { id } = request.query;
+
   if (request.method === "GET") {
     try {
-      const expense = await Expense.findById(id);
+      const expense = await Expense.findById(id).populate("categoryId");
+
+      if (!expense) {
+        return response.status(404).json({ status: "Not Found" });
+      }
       response.status(200).json(expense);
     } catch (error) {
       return response
