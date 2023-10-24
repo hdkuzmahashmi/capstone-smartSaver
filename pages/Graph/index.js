@@ -1,5 +1,9 @@
+import Graph from "@/components/Graph";
+
 function GraphPage() {
-    return (  <div></div>);
+  return <div>
+    <Graph/>
+  </div>;
 }
 
 export default GraphPage;
