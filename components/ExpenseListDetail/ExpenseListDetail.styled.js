@@ -22,3 +22,12 @@ export const CustomLink = styled(Link)`
   display: flex;
   align-items: center;
 `;
+
+export const TitleLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+  &:hover {
+    color: coral;
+    transform: translateY(-2px);
+  }
+`;

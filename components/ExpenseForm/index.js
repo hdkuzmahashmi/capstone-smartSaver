@@ -57,6 +57,7 @@ function ExpenseForm({ onSubmit, expense = [], isEditMode }) {
             placeholder="Description"
             rows="4"
             maxLength={500}
+            required
             defaultValue={isEditMode ? expense.description : ""}
           />
           <StyledInput
