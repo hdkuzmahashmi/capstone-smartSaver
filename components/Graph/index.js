@@ -94,10 +94,34 @@ function Graph() {
     ],
   };
 
+  const config = {
+    type: "doughnut",
+    data: chartData,
+    options: {
+      // cutout: 115,
+      plugins: {
+        // legend: {
+        //   display: false,
+        // },
+        tooltip: {
+          callbacks: {
+            title: function (context) {
+              return labels[context[0].dataIndex];
+            },
+            label: function (context) {
+              const value = context.parsed;
+              return `Amount: ${value} €`;
+            },
+          },
+        },
+      },
+    },
+  };
+
   return (
     <GraphContainer>
       <div style={{ position: "relative" }}>
-        <Doughnut data={chartData}></Doughnut>
+        <Doughnut {...config}></Doughnut>
         <TotalContainer>
           <div>Total</div>
           <div>{totalAmount} €</div>
