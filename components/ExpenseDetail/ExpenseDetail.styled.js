@@ -1,15 +1,29 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  max-width: 20rem;
-  width: 24rem;
-  border-radius: 0.3rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+export const StyledMain = styled.div`
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 0.9rem;
+  padding-left: 5%;
+  padding-top: 5%;
 `;
 
-export const Span = styled.span`
-  grid-row: span 2;
+export const StyledContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+`;
+
+export const StyledDiv = styled.div`
+  padding: 10px;
+  margin: 10px 0;
+`;
+
+export const StyledHeading = styled.span`
+  font-weight: bold;
+`;
+
+export const StyledData = styled.span`
+  grid-row: span 1;
 `;
 
 // need to move in seperate file
@@ -17,6 +31,9 @@ export const ButtonGroup = styled.div`
   margin-top: 1rem;
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
 `;
 
 export const StyledButton = styled.button`

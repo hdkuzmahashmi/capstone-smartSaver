@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import ExpenseDetail from "@/components/ExpenseDetail";
-
+import Loading from "@/components/Loading";
 function DetailPage() {
   const router = useRouter();
   const { id } = router.query;
@@ -9,7 +9,7 @@ function DetailPage() {
   const { data, isLoading } = useSWR(`/api/expenses/${id}`);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
   if (!data) {
