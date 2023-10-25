@@ -9,12 +9,13 @@ import {
   ButtonGroup,
   StyledButton,
 } from "./ExpenseForm.styled";
+import Loading from "../Loading";
 
-function ExpenseForm({ onSubmit, isEditMode, expense = [] }) {
+function ExpenseForm({ onSubmit, expense = [], isEditMode }) {
   const { data, error } = useSWR(`/api/categories`);
 
   if (!data) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (error) {

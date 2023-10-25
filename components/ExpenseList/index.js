@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import ExpenseListDetail from "../ExpenseListDetail";
+import Loading from "../Loading";
 
 import {
   ExpenseContainer,
@@ -15,7 +16,7 @@ function ExpenseList() {
   const { data, error } = useSWR(`/api/expenses`);
 
   if (!data) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
   if (error) {
@@ -29,10 +30,6 @@ function ExpenseList() {
 
   return (
     <ExpenseContainer>
-      <Header>
-        <ExpenseHeader>Expense List</ExpenseHeader>
-        <StyledLink href="/form">Add Expense</StyledLink>
-      </Header>
       <SummaryBox>
         <SummaryText>Total Expense: {totalExpense} €</SummaryText>
       </SummaryBox>
@@ -44,7 +41,6 @@ function ExpenseList() {
               name={expense.name}
               description={expense.description}
               amount={expense.amount}
-          
             />
           </ExpenseRow>
         </div>

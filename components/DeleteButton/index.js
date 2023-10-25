@@ -44,9 +44,8 @@ export default function DeleteButton({ expenseId }) {
         type="button"
         onClick={handleModal}
         icon="mi:delete"
-        color="red"
-        width="26"
-        height="26"
+        width="24"
+        height="24"
       />
       {showModal && (
         <Backdrop onClick={handleOuterClick}>
