@@ -75,9 +75,6 @@ function ExpenseForm({ onSubmit, expense = [], isEditMode }) {
           <StyledButton type="submit">
             {isEditMode ? "Update" : "Add"}
           </StyledButton>
-          <StyledButton as={Link} href="/" $link>
-            Back
-          </StyledButton>
         </ButtonGroup>
       </form>
     </FormContainer>
