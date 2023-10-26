@@ -1,10 +1,14 @@
-import ActionButton from "../ActionButton";
+import { useRouter } from "next/router";
 import { StyledFooter } from "./Footer.styled";
+import CreateButton from "../CreateButton";
+import GoBackButton from "../GoBackButton";
 
 function Footer() {
+  const { route } = useRouter();
+
   return (
     <StyledFooter>
-      <ActionButton />
+      {route === "/" ? <CreateButton /> : <GoBackButton />}
     </StyledFooter>
   );
 }

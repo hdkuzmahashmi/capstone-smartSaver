@@ -24,7 +24,7 @@ function ExpenseDetail({ expense = [], handleDelete }) {
         <StyledData> {expense.amount} €</StyledData>
       </StyledContainer>
       <ButtonGroup>
-        <CustomLink href={`../form/${expense._id}`}>
+        <CustomLink href={`/form/${expense._id}`}>
           <StyledButton>Edit</StyledButton>
         </CustomLink>
         <DeleteButton
