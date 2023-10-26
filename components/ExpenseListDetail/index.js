@@ -14,6 +14,7 @@ function ExpenseListDetail({ name, description, amount, id, handleDelete }) {
       <TitleLink href={`expensedetail/${id}`}>
         <ExpenseDetailItem>{name}</ExpenseDetailItem>
       </TitleLink>
+
       <ExpenseDetailItem>{description}</ExpenseDetailItem>
       <ExpenseDetailItem>
         <ExpenseNumber>{amount} €</ExpenseNumber>

@@ -18,8 +18,7 @@ export default createGlobalStyle`
     margin: 0;
     padding-top: 5%;
     font-weight: 400;
-    background-color: #f5f5f5;
-    padding-bottom: 10%;
+    padding-bottom: 30%;
 
     @media (min-width: 768px) {
       padding-left: 10%;
@@ -27,4 +26,8 @@ export default createGlobalStyle`
       padding-top: 5%;
     }
   }
+
+  main {
+    padding: 5px;
+  } 
 `;

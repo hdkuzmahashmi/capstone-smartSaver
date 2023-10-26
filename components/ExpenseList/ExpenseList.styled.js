@@ -7,6 +7,8 @@ export const ExpenseContainer = styled.div`
   height: 100%;
   width: 100%;
   margin-top: 1rem;
+  gap: 0.3rem;
+  color: #202020;
 `;
 
 export const SummaryBox = styled.div`
@@ -21,6 +23,7 @@ export const SummaryBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 20px;
 `;
 
 export const SummaryText = styled.h4`
@@ -35,14 +38,17 @@ export const SummaryNumber = styled.span`
 `;
 
 export const ExpenseRow = styled.div`
-  box-shadow: rgba(32, 32, 32, 0.04) 0px 30px 60px -12px inset;
   display: flex;
   justify-content: space-evenly;
-  border-bottom: 1px solid rgba(32, 32, 32, 0.5);
   padding: 1rem;
 
   background-color: #f7f7f7;
   text-align: center;
+  box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
+    inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 1px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
 `;
 
 export const StyledLink = styled(Link)`

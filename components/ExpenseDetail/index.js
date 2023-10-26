@@ -9,6 +9,7 @@ import {
 } from "./ExpenseDetail.styled";
 
 import { CustomLink } from "../ExpenseListDetail/ExpenseListDetail.styled";
+import { Icon } from "@iconify/react";
 
 function ExpenseDetail({ expense = [], handleDelete }) {
   return (
@@ -25,7 +26,9 @@ function ExpenseDetail({ expense = [], handleDelete }) {
       </StyledContainer>
       <ButtonGroup>
         <CustomLink href={`/form/${expense._id}`}>
-          <StyledButton>Edit</StyledButton>
+          <StyledButton>
+            <Icon icon="icon-park-outline:edit" width="24" />
+          </StyledButton>
         </CustomLink>
         <DeleteButton
           expenseId={expense._id}

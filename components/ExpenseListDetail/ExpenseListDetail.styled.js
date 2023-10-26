@@ -14,6 +14,10 @@ export const ExpenseDetailItem = styled.div`
   align-items: center;
   font-size: 1.05rem;
   height: 2.2rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 220px;
 `;
 
 export const CustomLink = styled(Link)`
@@ -34,6 +38,5 @@ export const TitleLink = styled(Link)`
 
 export const ExpenseNumber = styled.span`
   margin-left: auto;
-  font-size: 1.5rem;
-  color: #202020;
+  font-weight: 500;
 `;
