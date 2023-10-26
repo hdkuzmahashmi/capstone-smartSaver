@@ -35,7 +35,7 @@ export const SummaryNumber = styled.span`
 `;
 
 export const ExpenseRow = styled.div`
-  box-shadow: rgba(32, 32, 32, 0.1) 0px 30px 60px -12px inset;
+  box-shadow: rgba(32, 32, 32, 0.04) 0px 30px 60px -12px inset;
   display: flex;
   justify-content: space-evenly;
   border-bottom: 1px solid rgba(32, 32, 32, 0.5);

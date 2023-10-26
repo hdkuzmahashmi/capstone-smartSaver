@@ -7,7 +7,8 @@ function Loading() {
 const LoadingAnimation = styled.div`
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%);
+  left: 50%;
   border: 16px solid #f3f3f3;
   border-radius: 50%;
   border-top: 10px solid #56a2e8;

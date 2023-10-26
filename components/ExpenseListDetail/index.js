@@ -1,7 +1,4 @@
 import React from "react";
-import { Icon } from "@iconify/react";
-import DeleteButton from "../DeleteButton";
-import { StyledIcon } from "./ExpenseListDetail.styled";
 import { ExpenseNumber } from "./ExpenseListDetail.styled";
 
 import {
