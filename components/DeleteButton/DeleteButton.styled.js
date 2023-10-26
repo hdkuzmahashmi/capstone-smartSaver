@@ -49,3 +49,29 @@ export const FlexDiv = styled.div`
   display: flex;
   gap: 0.4rem;
 `;
+
+// needs to move in global file
+export const StyledButton = styled.button`
+  padding: 0.5rem 0.75rem;
+  background-color: #fff;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0.375rem;
+  outline: none;
+  font-size: 1rem;
+  color: gray;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: ${(props) => (props.$link ? "none" : null)};
+
+  &:hover {
+    transform: translate(0, 2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: translate(0, 0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+`;

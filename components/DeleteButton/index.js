@@ -6,8 +6,10 @@ import { FlexDiv } from "./DeleteButton.styled";
 import { ModalButton } from "./DeleteButton.styled";
 import { useRef } from "react";
 import { Icon } from "@iconify/react";
+import Router from "next/router";
+import { StyledButton } from "./DeleteButton.styled";
 
-export default function DeleteButton({ expenseId }) {
+export default function DeleteButton({ expenseId, showList }) {
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef(null);
 
@@ -36,18 +38,22 @@ export default function DeleteButton({ expenseId }) {
       mutate(`/api/expenses`);
     }
     hideModal();
+    if (showList) Router.push("/");
   }
 
   return (
     <>
-      <Icon
-        type="button"
-        onClick={handleModal}
-        icon="mi:delete"
-        color="red"
-        width="26"
-        height="26"
-      />
+      {showList ? (
+        <StyledButton onClick={handleModal}> Delete</StyledButton>
+      ) : (
+        <Icon
+          type="button"
+          onClick={handleModal}
+          icon="mi:delete"
+          width="24"
+          height="24"
+        />
+      )}
       {showModal && (
         <Backdrop onClick={handleOuterClick}>
           <Modal ref={modalRef}>

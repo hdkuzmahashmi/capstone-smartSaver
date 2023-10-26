@@ -9,12 +9,13 @@ import {
   ButtonGroup,
   StyledButton,
 } from "./ExpenseForm.styled";
+import Loading from "../Loading";
 
-function ExpenseForm({ onSubmit, isEditMode, expense = [] }) {
+function ExpenseForm({ onSubmit, expense = [], isEditMode }) {
   const { data, error } = useSWR(`/api/categories`);
 
   if (!data) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (error) {
@@ -56,6 +57,7 @@ function ExpenseForm({ onSubmit, isEditMode, expense = [] }) {
             placeholder="Description"
             rows="4"
             maxLength={500}
+            required
             defaultValue={isEditMode ? expense.description : ""}
           />
           <StyledInput
@@ -72,9 +74,6 @@ function ExpenseForm({ onSubmit, isEditMode, expense = [] }) {
         <ButtonGroup>
           <StyledButton type="submit">
             {isEditMode ? "Update" : "Add"}
-          </StyledButton>
-          <StyledButton as={Link} href="/" $link>
-            Back
           </StyledButton>
         </ButtonGroup>
       </form>

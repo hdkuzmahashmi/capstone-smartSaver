@@ -14,6 +14,7 @@ export default async function handler(request, response) {
       }
       response.status(200).json(expense);
     } catch (error) {
+      console.log("error from espense", error);
       return response
         .status(400)
         .json({ message: "Something went wrong", error: error });
