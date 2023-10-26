@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { Doughnut } from "react-chartjs-2";
-import { Chart, ArcElement } from "chart.js";
+import { Chart, ArcElement, Tooltip } from "chart.js";
 import useSWR from "swr";
 
-Chart.register(ArcElement);
+Chart.register(ArcElement, [Tooltip]);
 
 const GraphContainer = styled.div`
   display: flex;
@@ -134,30 +134,30 @@ function DoughnutGraph() {
     ],
   };
 
-  // const config = {
-  //   type: "doughnut",
-  //   data: chartData,
-  //   options: {
-  //     plugins: {
-  //       tooltip: {
-  //         callbacks: {
-  //           title: function (context) {
-  //             return labels[context[0].dataIndex];
-  //           },
-  //           label: function (context) {
-  //             const value = context.parsed;
-  //             return `Amount: ${value} €`;
-  //           },
-  //         },
-  //       },
-  //     },
-  //   },
-  // };
+  const config = {
+    type: "doughnut",
+    data: chartData,
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            title: function (context) {
+              return labels[context[0].dataIndex];
+            },
+            label: function (context) {
+              const value = context.parsed;
+              return `Amount: ${value} €`;
+            },
+          },
+        },
+      },
+    },
+  };
 
   return (
     <GraphContainer>
       <div style={{ position: "relative" }}>
-        <Doughnut data={chartData}></Doughnut>
+        <Doughnut {...config}></Doughnut>
         <TotalContainer>
           <div>Total</div>
           <div>{totalAmount} €</div>
