@@ -7,7 +7,7 @@ Chart.register(ArcElement);
 
 const GraphContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -21,15 +21,55 @@ const TotalContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: bold;
+
   color: #333;
 
   div:nth-child(2) {
     font-size: 24px;
-    font-weight: bold;
     margin-top: 8px;
     color: #ff6600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   }
+`;
+
+const ListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const ListItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px;
+  width: 100%;
+  gap: 0.3rem;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 2px;
+  font-size: 13px;
+`;
+
+const ColorBox = styled.div`
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 10px;
+`;
+
+const ItemName = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+`;
+
+const Amount = styled.div`
+  white-space: nowrap;
+  margin-right: 5px;
 `;
 
 function DoughnutGraph() {
@@ -81,7 +121,7 @@ function DoughnutGraph() {
           "rgb(255, 205, 86)",
           "rgb(224, 176, 255)",
           "rgb(75, 192, 192)",
-          "rgb(247, 128, 63)",
+          "rgb(255, 180, 135)",
           "rgb(51, 133, 255)",
           "rgb(255, 78, 80)",
           "rgb(140, 201, 82)",
@@ -94,40 +134,48 @@ function DoughnutGraph() {
     ],
   };
 
-  const config = {
-    type: "doughnut",
-    data: chartData,
-    options: {
-      // cutout: 115,
-      plugins: {
-        // legend: {
-        //   display: false,
-        // },
-        tooltip: {
-          callbacks: {
-            title: function (context) {
-              return labels[context[0].dataIndex];
-            },
-            label: function (context) {
-              const value = context.parsed;
-              return `Amount: ${value} €`;
-            },
-          },
-        },
-      },
-    },
-  };
+  // const config = {
+  //   type: "doughnut",
+  //   data: chartData,
+  //   options: {
+  //     plugins: {
+  //       tooltip: {
+  //         callbacks: {
+  //           title: function (context) {
+  //             return labels[context[0].dataIndex];
+  //           },
+  //           label: function (context) {
+  //             const value = context.parsed;
+  //             return `Amount: ${value} €`;
+  //           },
+  //         },
+  //       },
+  //     },
+  //   },
+  // };
 
   return (
     <GraphContainer>
       <div style={{ position: "relative" }}>
-        <Doughnut {...config}></Doughnut>
+        <Doughnut data={chartData}></Doughnut>
         <TotalContainer>
           <div>Total</div>
           <div>{totalAmount} €</div>
         </TotalContainer>
       </div>
-      <div>List</div>
+      <ListContainer>
+        {Object.keys(categoryTotals).map((categoryId, index) => (
+          <ListItem key={index}>
+            <ColorBox
+              style={{
+                backgroundColor: chartData.datasets[0].backgroundColor[index],
+              }}
+            ></ColorBox>
+            <ItemName>{labels[index]}</ItemName>
+            <Amount>{categoryTotals[categoryId]} €</Amount>
+          </ListItem>
+        ))}
+      </ListContainer>
     </GraphContainer>
   );
 }
