@@ -1,8 +1,8 @@
-import Graph from "@/components/Graph";
+import DoughnutGraph from "@/components/DoughnutGraph";
 
 function GraphPage() {
   return <div>
-    <Graph/>
+    <DoughnutGraph/>
   </div>;
 }
 

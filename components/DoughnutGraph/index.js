@@ -32,7 +32,7 @@ const TotalContainer = styled.div`
   }
 `;
 
-function Graph() {
+function DoughnutGraph() {
   const { data, error } = useSWR("/api/expenses");
 
   if (!data) {
@@ -132,4 +132,4 @@ function Graph() {
   );
 }
 
-export default Graph;
+export default DoughnutGraph;
