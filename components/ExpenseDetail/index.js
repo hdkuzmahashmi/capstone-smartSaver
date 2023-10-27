@@ -5,7 +5,7 @@ import {
   StyledButton,
   StyledHeading,
   StyledData,
-  StyledMain,
+  StyledDetailContainer,
 } from "./ExpenseDetail.styled";
 
 import { CustomLink } from "../ExpenseListDetail/ExpenseListDetail.styled";
@@ -13,7 +13,7 @@ import { Icon } from "@iconify/react";
 
 function ExpenseDetail({ expense = [], handleDelete }) {
   return (
-    <StyledMain>
+    <StyledDetailContainer>
       <StyledContainer>
         <StyledHeading>Name</StyledHeading>{" "}
         <StyledData>{expense.name}</StyledData>
@@ -36,7 +36,7 @@ function ExpenseDetail({ expense = [], handleDelete }) {
           showList={true}
         ></DeleteButton>
       </ButtonGroup>
-    </StyledMain>
+    </StyledDetailContainer>
   );
 }
 

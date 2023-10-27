@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const ExpenseDetailContainer = styled.div`
   display: flex;
-  width: 100vw;
+  width: 100%;
   align-items: center;
   position: relative;
 `;
@@ -17,7 +17,6 @@ export const ExpenseDetailItem = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  max-width: 220px;
 `;
 
 export const CustomLink = styled(Link)`
@@ -30,6 +29,7 @@ export const CustomLink = styled(Link)`
 export const TitleLink = styled(Link)`
   color: inherit;
   text-decoration: none;
+  max-width: 220px;
   &:hover {
     color: coral;
     transform: translateY(-2px);

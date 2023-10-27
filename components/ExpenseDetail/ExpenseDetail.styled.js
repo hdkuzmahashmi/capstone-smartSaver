@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledMain = styled.div`
+export const StyledDetailContainer = styled.div`
   background-color: #fff;
   box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
     inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
@@ -36,8 +36,7 @@ export const ButtonGroup = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-bottom: 1rem;
-  padding-bottom: 2rem;
+  padding-bottom: 3rem;
 `;
 
 export const StyledButton = styled.button`
@@ -49,7 +48,7 @@ export const StyledButton = styled.button`
   color: #202020;
   transition: all 0.3s ease;
   text-decoration: ${(props) => (props.$link ? "none" : null)};
-  margin-bottom: -1.8rem;
+  margin-bottom: -4rem;
 
   &:hover {
     transform: translate(0, 2px);
