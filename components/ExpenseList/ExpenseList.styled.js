@@ -29,12 +29,13 @@ export const SummaryBox = styled.div`
 export const SummaryText = styled.h4`
   margin: 0;
   font-weight: normal;
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 20px;
 `;
 
 export const SummaryNumber = styled.span`
   font-weight: 500;
-  font-size: 3rem;
+  font-size: 2.5rem;
 `;
 
 export const ExpenseRow = styled.div`

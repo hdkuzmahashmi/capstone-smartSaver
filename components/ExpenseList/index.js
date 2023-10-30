@@ -29,7 +29,7 @@ function ExpenseList() {
   return (
     <ExpenseContainer>
       <SummaryBox>
-        <SummaryText>Total:</SummaryText>
+        <SummaryText>Total</SummaryText>
         <SummaryNumber>{totalExpense}€</SummaryNumber>
       </SummaryBox>
       {data.map((expense, index) => (
