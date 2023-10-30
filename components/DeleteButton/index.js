@@ -44,7 +44,9 @@ export default function DeleteButton({ expenseId, showList }) {
   return (
     <>
       {showList ? (
-        <StyledButton onClick={handleModal}> Delete</StyledButton>
+        <StyledButton onClick={handleModal}>
+          <Icon icon="icon-park-outline:delete" width="24" />
+        </StyledButton>
       ) : (
         <Icon
           type="button"

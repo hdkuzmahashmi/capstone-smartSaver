@@ -1,5 +1,5 @@
 import Footer from "@/components/Footer";
-import GlobalStyle from "../styles";
+import GlobalStyle from "../design-system/styles";
 import Header from "@/components/Header";
 
 function Layout({ children }) {

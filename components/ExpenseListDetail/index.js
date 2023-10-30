@@ -1,6 +1,5 @@
 import React from "react";
-import { Icon } from "@iconify/react";
-import DeleteButton from "../DeleteButton";
+import { ExpenseNumber } from "./ExpenseListDetail.styled";
 
 import {
   ExpenseDetailContainer,
@@ -15,16 +14,11 @@ function ExpenseListDetail({ name, description, amount, id, handleDelete }) {
       <TitleLink href={`expensedetail/${id}`}>
         <ExpenseDetailItem>{name}</ExpenseDetailItem>
       </TitleLink>
+
       <ExpenseDetailItem>{description}</ExpenseDetailItem>
-      <ExpenseDetailItem>{amount} €</ExpenseDetailItem>
-      <CustomLink href={`form/${id}`}>
-        <Icon icon="bx:edit" width="24" height="24" />
-      </CustomLink>
-      <DeleteButton
-        expenseId={id}
-        handleDelete={handleDelete}
-        showList={false}
-      ></DeleteButton>{" "}
+      <ExpenseDetailItem>
+        <ExpenseNumber>{amount} €</ExpenseNumber>
+      </ExpenseDetailItem>
     </ExpenseDetailContainer>
   );
 }

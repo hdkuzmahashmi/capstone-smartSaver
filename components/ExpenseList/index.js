@@ -1,15 +1,13 @@
 import useSWR from "swr";
 import ExpenseListDetail from "../ExpenseListDetail";
 import Loading from "../Loading";
+import { SummaryNumber } from "./ExpenseList.styled";
 
 import {
   ExpenseContainer,
   SummaryBox,
   SummaryText,
   ExpenseRow,
-  StyledLink,
-  Header,
-  ExpenseHeader,
 } from "./ExpenseList.styled";
 
 function ExpenseList() {
@@ -31,7 +29,8 @@ function ExpenseList() {
   return (
     <ExpenseContainer>
       <SummaryBox>
-        <SummaryText>Total Expense: {totalExpense} €</SummaryText>
+        <SummaryText>Total:</SummaryText>
+        <SummaryNumber>{totalExpense}€</SummaryNumber>
       </SummaryBox>
       {data.map((expense, index) => (
         <div key={index}>
@@ -39,7 +38,6 @@ function ExpenseList() {
             <ExpenseListDetail
               id={expense._id}
               name={expense.name}
-              description={expense.description}
               amount={expense.amount}
             />
           </ExpenseRow>
