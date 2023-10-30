@@ -10,6 +10,7 @@ const GraphContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding: 20rem;
   width: 100%;
   height: 100vh;
   gap: 5vh;
