@@ -3,7 +3,7 @@ import Router from "next/router";
 import React from "react";
 import { mutate } from "swr";
 
-function Form() {
+function Form({ setToast, setToastMessage }) {
   const handleAdd = async (event) => {
     event.preventDefault();
 
@@ -24,8 +24,11 @@ function Form() {
     }
 
     event.target.reset();
+
     mutate("/api/expenses");
     Router.push("/");
+    setToastMessage("Expense is added successfully!");
+    setToast();
   };
 
   return <ExpenseForm onSubmit={handleAdd} isEditMode={false} />;

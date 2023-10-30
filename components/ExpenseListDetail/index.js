@@ -8,7 +8,15 @@ import {
   TitleLink,
 } from "./ExpenseListDetail.styled";
 
-function ExpenseListDetail({ name, description, amount, id, handleDelete }) {
+function ExpenseListDetail({
+  name,
+  description,
+  amount,
+  id,
+  handleDelete,
+  setToast,
+  setToastMessage,
+}) {
   return (
     <ExpenseDetailContainer>
       <TitleLink href={`expensedetail/${id}`}>

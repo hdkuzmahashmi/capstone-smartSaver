@@ -10,7 +10,7 @@ import {
   ExpenseRow,
 } from "./ExpenseList.styled";
 
-function ExpenseList() {
+function ExpenseList({ setToast, setToastMessage }) {
   const { data, error } = useSWR(`/api/expenses`);
 
   if (!data) {
@@ -39,6 +39,8 @@ function ExpenseList() {
               id={expense._id}
               name={expense.name}
               amount={expense.amount}
+              setToast={setToast}
+              setToastMessage={setToastMessage}
             />
           </ExpenseRow>
         </div>

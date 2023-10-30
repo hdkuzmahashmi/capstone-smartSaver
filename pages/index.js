@@ -1,10 +1,10 @@
 import ExpenseList from "@/components/ExpenseList";
 import styled from "styled-components";
 
-const HomePage = () => {
+const HomePage = ({ setToast, setToastMessage }) => {
   return (
     <PageContainer>
-      <ExpenseList />
+      <ExpenseList setToast={setToast} setToastMessage={setToastMessage} />
     </PageContainer>
   );
 };

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import ExpenseDetail from "@/components/ExpenseDetail";
 import Loading from "@/components/Loading";
-function DetailPage() {
+function DetailPage({ setToast, setToastMessage }) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -15,7 +15,13 @@ function DetailPage() {
   if (!data) {
     return;
   }
-  return <ExpenseDetail expense={data} />;
+  return (
+    <ExpenseDetail
+      expense={data}
+      setToast={setToast}
+      setToastMessage={setToastMessage}
+    />
+  );
 }
 
 export default DetailPage;

@@ -9,7 +9,12 @@ import { Icon } from "@iconify/react";
 import Router from "next/router";
 import { StyledButton } from "./DeleteButton.styled";
 
-export default function DeleteButton({ expenseId, showList }) {
+export default function DeleteButton({
+  expenseId,
+  showList,
+  setToast,
+  setToastMessage,
+}) {
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef(null);
 
@@ -36,6 +41,8 @@ export default function DeleteButton({ expenseId, showList }) {
     });
     if (response.ok) {
       mutate(`/api/expenses`);
+      setToastMessage("Expense is deleted successfully!");
+      setToast();
     }
     hideModal();
     if (showList) Router.push("/");

@@ -4,7 +4,7 @@ import Router from "next/router";
 import { mutate } from "swr";
 import useSWR from "swr";
 
-function FormPage() {
+function FormPage({ setToast, setToastMessage }) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -31,6 +31,8 @@ function FormPage() {
     if (response.ok) {
       mutate(`/api/expenses/${id}`);
       Router.push("/");
+      setToastMessage("Expense is updated successfully!");
+      setToast();
     }
   }
   return <ExpenseForm onSubmit={handleEdit} isEditMode={true} expense={data} />;
