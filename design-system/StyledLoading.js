@@ -1,36 +1,49 @@
 import styled from "styled-components";
 
 export const LoadingAnimation = styled.div`
-  position: absolute;
-  padding: 0;
-  margin: 0;
-  top: calc(50% - 41px);
-  transform: translate(-50%, -50%);
-  left: calc(50% - 41px);
-  border: 16px solid #f3f3f3;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  border-top: 10px solid #56a2e8;
-  border-bottom: 10px solid #56a2e8;
-  width: 82px;
-  height: 82px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
+  position: fixed;
+  animation: rotate 1s linear infinite;
+  top: calc(50% - 24px);
+  left: calc(50% - 24px);
+  transform: translate(-50%, -50%);
 
-  @-webkit-keyframes spin {
-    0% {
-      -webkit-transform: rotate(0deg);
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
-    }
+  &::before,
+  &::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid #202020;
+    animation: prixClipFix 2s linear infinite;
+  }
+  &::after {
+    transform: rotate3d(90, 90, 0, 180deg);
+    border-color: #56a2e8;
   }
 
-  @keyframes spin {
+  @keyframes rotate {
     0% {
       transform: rotate(0deg);
     }
     100% {
       transform: rotate(360deg);
+    }
+  }
+
+  @keyframes prixClipFix {
+    0% {
+      clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+    }
+    50% {
+      clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+    }
+    75%,
+    100% {
+      clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
     }
   }
 `;

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledCard = styled.li`
-  padding: 1rem;
   width: 100%;
   background-color: #f7f7f7;
   box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
@@ -13,4 +12,9 @@ export const StyledCard = styled.li`
 
   ${(props) =>
     props.$addMarginBottom ? `padding-bottom: 4rem;` : `padding-bottom: 0;`}
+
+  ${(props) =>
+    props.$isDetail
+      ? `padding: 1rem; padding-bottom:3rem;`
+      : `padding: 0 1rem;`}
 `;

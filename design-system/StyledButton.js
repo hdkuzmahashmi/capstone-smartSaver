@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
-  margin-top: ${(props) => (props.$isSubmitButton ? "1rem" : "0")};
+  margin: ${(props) => (props.$isSubmitButton ? "1rem 0" : "0")};
   padding: 0.5rem 0.75rem;
   background-color: #fff;
   border: none;

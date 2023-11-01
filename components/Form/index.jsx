@@ -7,6 +7,7 @@ import { StyledTitle } from "@/design-system/StyledTitle";
 import { StyledInput } from "@/design-system/StyledInput";
 import { StyledMargin } from "@/design-system/StyledMargin";
 import { StyledContainer } from "@/design-system/StyledContainer";
+
 function Form({ onSubmit, expense = [], isEditMode }) {
   const { data, error } = useSWR(`/api/categories`);
 
@@ -19,7 +20,7 @@ function Form({ onSubmit, expense = [], isEditMode }) {
   }
 
   return (
-    <StyledCard>
+    <StyledCard $addMarginBottom>
       <StyledTitle>{isEditMode ? "Edit Expense" : "Add Expense"}</StyledTitle>
       <form onSubmit={onSubmit}>
         <StyledMargin>

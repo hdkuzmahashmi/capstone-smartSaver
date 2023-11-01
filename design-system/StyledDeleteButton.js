@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Backdrop = styled.div`
   height: 100dvh;
   width: 100dvw;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.3);
@@ -14,6 +14,7 @@ export const Backdrop = styled.div`
 `;
 
 export const Modal = styled.article`
+  position: fixed;
   height: 150px;
   width: 250px;
   background-color: lightgrey;

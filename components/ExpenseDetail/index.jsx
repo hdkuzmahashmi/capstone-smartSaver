@@ -7,13 +7,17 @@ import { Icon } from "@iconify/react";
 import { StyledCard } from "@/design-system/StyledCard";
 import { StyledIconButton } from "@/design-system/StyledIconButton";
 import { StyledIconGroup } from "@/design-system/StyledIconGroup";
+import { StyledTitle } from "@/design-system/StyledTitle";
 
-function ExpenseDetail({ expense = [], handleDelete }) {
+function ExpenseDetail({ expense = {}, handleDelete }) {
+  if (!expense._id || typeof expense._id !== "string") {
+    return <h2>Something went wrong</h2>;
+  }
+
   return (
-    <StyledCard $addMarginBottom>
+    <StyledCard $addMarginBottom $isDetail>
+      <StyledTitle>{expense.name}</StyledTitle>
       <StyledGrid>
-        <StyledBoldText>Name</StyledBoldText>{" "}
-        <StyledGridItem>{expense.name}</StyledGridItem>
         <StyledBoldText>Description</StyledBoldText>{" "}
         <StyledGridItem> {expense.description}</StyledGridItem>
         <StyledBoldText>Category</StyledBoldText>{" "}

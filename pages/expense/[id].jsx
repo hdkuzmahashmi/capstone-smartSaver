@@ -9,7 +9,7 @@ function DetailPage() {
 
   const { data, isLoading } = useSWR(`/api/expenses/${id}`);
 
-  if (isLoading) {
+  if (true) {
     return <Loading />;
   }
 

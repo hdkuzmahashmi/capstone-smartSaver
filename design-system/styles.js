@@ -19,6 +19,8 @@ export default createGlobalStyle`
     padding-top: 5%;
     font-weight: 400;
     padding-bottom: 30%;
+    position: relative;
+    color: #202020;
 
     @media (min-width: 768px) {
       padding-left: 10%;
@@ -28,6 +30,6 @@ export default createGlobalStyle`
   }
 
   main {
-    padding: 5px;
+    padding: 7px;
   } 
 `;
