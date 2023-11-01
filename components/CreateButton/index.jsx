@@ -1,11 +1,11 @@
 import { Icon } from "@iconify/react";
-import { StyledActionButton } from "../../design-system/StyledActionButton";
+import { StyledFloatingButton } from "../../design-system/StyledFloatingButton";
 
 function CreateButton() {
   return (
-    <StyledActionButton href="/create">
+    <StyledFloatingButton href="/create">
       <Icon icon="ic:round-add" width={32} aria-label="Add new expense" />
-    </StyledActionButton>
+    </StyledFloatingButton>
   );
 }
 

@@ -1,14 +1,12 @@
 import useSWR from "swr";
-import ExpenseListDetail from "../ExpenseListDetail";
 import Loading from "../Loading";
-import { SummaryNumber } from "../../design-system/StyledExpenseList";
-
-import {
-  ExpenseContainer,
-  SummaryBox,
-  SummaryText,
-  ExpenseRow,
-} from "../../design-system/StyledExpenseList";
+import { StyledList } from "@/design-system/StyledList";
+import { StyledCard } from "@/design-system/StyledCard";
+import { StyledContainer } from "@/design-system/StyledContainer";
+import { StyledSummaryBox } from "@/design-system/StyledSummaryBox";
+import { StyledSummaryText } from "@/design-system/StyledSummaryText";
+import { StyledSummaryNumber } from "@/design-system/StyledSummaryNumber";
+import ListItem from "../ListItem";
 
 function ExpenseList() {
   const { data, error } = useSWR(`/api/expenses`);
@@ -18,7 +16,7 @@ function ExpenseList() {
   }
 
   if (error) {
-    return <h1>Error: {error.message}</h1>;
+    return <h2>Error: {error.message}</h2>;
   }
 
   const totalExpense = data.reduce(
@@ -27,23 +25,23 @@ function ExpenseList() {
   );
 
   return (
-    <ExpenseContainer>
-      <SummaryBox>
-        <SummaryText>Total</SummaryText>
-        <SummaryNumber>{totalExpense}€</SummaryNumber>
-      </SummaryBox>
+    <StyledContainer>
+      <StyledSummaryBox>
+        <StyledSummaryText>Total</StyledSummaryText>
+        <StyledSummaryNumber>-{totalExpense}€</StyledSummaryNumber>
+      </StyledSummaryBox>
       {data.map((expense, index) => (
-        <div key={index}>
-          <ExpenseRow>
-            <ExpenseListDetail
+        <StyledList key={index}>
+          <StyledCard>
+            <ListItem
               id={expense._id}
               name={expense.name}
               amount={expense.amount}
             />
-          </ExpenseRow>
-        </div>
+          </StyledCard>
+        </StyledList>
       ))}
-    </ExpenseContainer>
+    </StyledContainer>
   );
 }
 

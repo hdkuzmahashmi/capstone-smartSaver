@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import ExpenseDetail from "@/components/ExpenseDetail";
-import Loading from "@/design-system/StyledLoading";
+import Loading from "@/components/Loading";
 
 function DetailPage() {
   const router = useRouter();

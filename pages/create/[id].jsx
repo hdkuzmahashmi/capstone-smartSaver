@@ -1,10 +1,10 @@
-import ExpenseForm from "@/components/ExpenseForm";
+import Form from "@/components/Form";
 import { useRouter } from "next/router";
 import Router from "next/router";
 import { mutate } from "swr";
 import useSWR from "swr";
 
-function FormPage() {
+function EditPage() {
   const router = useRouter();
   const { id } = router.query;
 
@@ -34,7 +34,7 @@ function FormPage() {
     }
   }
 
-  return <ExpenseForm onSubmit={handleEdit} isEditMode={true} expense={data} />;
+  return <Form onSubmit={handleEdit} isEditMode={true} expense={data} />;
 }
 
-export default FormPage;
+export default EditPage;

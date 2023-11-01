@@ -1,42 +1,39 @@
 import DeleteButton from "../DeleteButton";
-import {
-  StyledContainer,
-  ButtonGroup,
-  StyledButton,
-  StyledHeading,
-  StyledData,
-  StyledDetailContainer,
-} from "../../design-system/StyledExpenseDetail";
-
-import { CustomLink } from "../../design-system/StyledExpenseListDetail";
+import { StyledBoldText } from "@/design-system/StyledBoldText";
+import { StyledLink } from "@/design-system/StyledLink";
+import { StyledGrid } from "@/design-system/StyledGrid";
+import { StyledGridItem } from "@/design-system/StyledGridItem";
 import { Icon } from "@iconify/react";
+import { StyledCard } from "@/design-system/StyledCard";
+import { StyledIconButton } from "@/design-system/StyledIconButton";
+import { StyledIconGroup } from "@/design-system/StyledIconGroup";
 
 function ExpenseDetail({ expense = [], handleDelete }) {
   return (
-    <StyledDetailContainer>
-      <StyledContainer>
-        <StyledHeading>Name</StyledHeading>{" "}
-        <StyledData>{expense.name}</StyledData>
-        <StyledHeading>Description</StyledHeading>{" "}
-        <StyledData> {expense.description}</StyledData>
-        <StyledHeading>Category</StyledHeading>{" "}
-        <StyledData> {expense.categoryId[0].name}</StyledData>
-        <StyledHeading>Amount</StyledHeading>{" "}
-        <StyledData> {expense.amount} €</StyledData>
-      </StyledContainer>
-      <ButtonGroup>
-        <CustomLink href={`/create/${expense._id}`}>
-          <StyledButton>
+    <StyledCard $addMarginBottom>
+      <StyledGrid>
+        <StyledBoldText>Name</StyledBoldText>{" "}
+        <StyledGridItem>{expense.name}</StyledGridItem>
+        <StyledBoldText>Description</StyledBoldText>{" "}
+        <StyledGridItem> {expense.description}</StyledGridItem>
+        <StyledBoldText>Category</StyledBoldText>{" "}
+        <StyledGridItem> {expense.categoryId[0].name}</StyledGridItem>
+        <StyledBoldText>Amount</StyledBoldText>{" "}
+        <StyledGridItem> {expense.amount} €</StyledGridItem>
+      </StyledGrid>
+      <StyledIconGroup>
+        <StyledLink href={`/create/${expense._id}`}>
+          <StyledIconButton>
             <Icon icon="icon-park-outline:edit" width="24" />
-          </StyledButton>
-        </CustomLink>
+          </StyledIconButton>
+        </StyledLink>
         <DeleteButton
           expenseId={expense._id}
           handleDelete={handleDelete}
           showList={true}
         ></DeleteButton>
-      </ButtonGroup>
-    </StyledDetailContainer>
+      </StyledIconGroup>
+    </StyledCard>
   );
 }
 

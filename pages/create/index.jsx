@@ -1,9 +1,9 @@
-import ExpenseForm from "@/components/ExpenseForm";
+import Form from "@/components/Form";
 import Router from "next/router";
 import React from "react";
 import { mutate } from "swr";
 
-function Form() {
+function CreatePage() {
   const handleAdd = async (event) => {
     event.preventDefault();
 
@@ -28,7 +28,7 @@ function Form() {
     Router.push("/");
   };
 
-  return <ExpenseForm onSubmit={handleAdd} isEditMode={false} />;
+  return <Form onSubmit={handleAdd} isEditMode={false} />;
 }
 
-export default Form;
+export default CreatePage;

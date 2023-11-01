@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-export const StyledActionButton = styled(Link)`
+export const StyledFloatingButton = styled(Link)`
   width: 58px;
   height: 58px;
   border-radius: 50%;
