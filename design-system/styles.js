@@ -32,4 +32,9 @@ export default createGlobalStyle`
   main {
     padding: 7px;
   } 
+
+  ul {
+    list-style-type: none;
+    list-style: none;
+  }
 `;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledCard = styled.li`
+  list-style-type: none;
   width: 100%;
   background-color: #f7f7f7;
   box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
