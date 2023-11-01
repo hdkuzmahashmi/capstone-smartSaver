@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { StyledLink } from "../ExpenseList/ExpenseList.styled";
-import { StyledHeader } from "./Header.styled";
-import { StyledContainer } from "./Header.styled";
-import { Title } from "./Header.styled";
+import { StyledLink } from "../../design-system/StyledExpenseList";
+import { StyledHeader } from "../../design-system/StyledHeader";
+import { StyledContainer } from "../../design-system/StyledHeader";
+import { Title } from "../../design-system/StyledHeader";
 
 function Header() {
   return (

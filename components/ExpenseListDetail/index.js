@@ -1,11 +1,11 @@
 import React from "react";
-import { ExpenseNumber } from "./ExpenseListDetail.styled";
+import { ExpenseNumber } from "../../design-system/StyledExpenseListDetail";
 
 import {
   ExpenseDetailContainer,
   ExpenseDetailItem,
   TitleLink,
-} from "./ExpenseListDetail.styled";
+} from "../../design-system/StyledExpenseListDetail";
 
 function ExpenseListDetail({ name, description, amount, id }) {
   return (

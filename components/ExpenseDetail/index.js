@@ -6,9 +6,9 @@ import {
   StyledHeading,
   StyledData,
   StyledDetailContainer,
-} from "./ExpenseDetail.styled";
+} from "../../design-system/StyledExpenseDetail";
 
-import { CustomLink } from "../ExpenseListDetail/ExpenseListDetail.styled";
+import { CustomLink } from "../../design-system/StyledExpenseListDetail";
 import { Icon } from "@iconify/react";
 
 function ExpenseDetail({ expense = [], handleDelete }) {

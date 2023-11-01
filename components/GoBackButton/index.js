@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { StyledActionButton } from "../StyledActionButton/ActionButton.styled";
+import { StyledActionButton } from "../../design-system/StyledActionButton";
 import { Icon } from "@iconify/react";
 
 function GoBackButton() {

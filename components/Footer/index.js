@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { StyledFooter } from "./Footer.styled";
+import { StyledFooter } from "../../design-system/StyledFooter";
 import CreateButton from "../CreateButton";
 import GoBackButton from "../GoBackButton";
 

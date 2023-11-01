@@ -1,14 +1,14 @@
 import useSWR from "swr";
 import ExpenseListDetail from "../ExpenseListDetail";
-import Loading from "../../design-system/Loading";
-import { SummaryNumber } from "./ExpenseList.styled";
+import Loading from "../../design-system/StyledLoading";
+import { SummaryNumber } from "../../design-system/StyledExpenseList";
 
 import {
   ExpenseContainer,
   SummaryBox,
   SummaryText,
   ExpenseRow,
-} from "./ExpenseList.styled";
+} from "../../design-system/StyledExpenseList";
 
 function ExpenseList() {
   const { data, error } = useSWR(`/api/expenses`);

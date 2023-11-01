@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { mutate } from "swr";
-import { Backdrop } from "./DeleteButton.styled";
-import { Modal } from "./DeleteButton.styled";
-import { FlexDiv } from "./DeleteButton.styled";
-import { ModalButton } from "./DeleteButton.styled";
+import { Backdrop } from "../../design-system/StyledDeleteButton";
+import { Modal } from "../../design-system/StyledDeleteButton";
+import { FlexDiv } from "../../design-system/StyledDeleteButton";
+import { ModalButton } from "../../design-system/StyledDeleteButton";
 import { useRef } from "react";
 import { Icon } from "@iconify/react";
 import Router from "next/router";
-import { StyledButton } from "./DeleteButton.styled";
+import { StyledButton } from "../../design-system/StyledDeleteButton";
 
 function DeleteButton({ expenseId, showList }) {
   const [showModal, setShowModal] = useState(false);

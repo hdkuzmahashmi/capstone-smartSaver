@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import { StyledActionButton } from "../StyledActionButton/ActionButton.styled";
+import { StyledActionButton } from "../../design-system/StyledActionButton";
 
 function CreateButton() {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import useSWR from "swr";
-import Link from "next/link";
+
 import {
   FormContainer,
   FormTitle,
@@ -8,8 +8,8 @@ import {
   StyledInput,
   ButtonGroup,
   StyledButton,
-} from "./ExpenseForm.styled";
-import Loading from "../../design-system/Loading";
+} from "../../design-system/StyledExpenseForm";
+import Loading from "../../design-system/StyledLoading";
 
 function ExpenseForm({ onSubmit, expense = [], isEditMode }) {
   const { data, error } = useSWR(`/api/categories`);
