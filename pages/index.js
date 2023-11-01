@@ -1,13 +1,13 @@
 import ExpenseList from "@/components/ExpenseList";
 import styled from "styled-components";
 
-const HomePage = () => {
+function Homepage() {
   return (
     <PageContainer>
       <ExpenseList />
     </PageContainer>
   );
-};
+}
 
 const PageContainer = styled.div`
   display: flex;
@@ -16,4 +16,4 @@ const PageContainer = styled.div`
   justify-content: center;
 `;
 
-export default HomePage;
+export default Homepage;

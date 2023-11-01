@@ -4,7 +4,7 @@ import Head from "next/head";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
     <Layout>
       <Head>
@@ -16,3 +16,5 @@ export default function App({ Component, pageProps }) {
     </Layout>
   );
 }
+
+export default App;

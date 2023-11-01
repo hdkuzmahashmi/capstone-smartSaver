@@ -4,14 +4,13 @@ import { ExpenseNumber } from "./ExpenseListDetail.styled";
 import {
   ExpenseDetailContainer,
   ExpenseDetailItem,
-  CustomLink,
   TitleLink,
 } from "./ExpenseListDetail.styled";
 
-function ExpenseListDetail({ name, description, amount, id, handleDelete }) {
+function ExpenseListDetail({ name, description, amount, id }) {
   return (
     <ExpenseDetailContainer>
-      <TitleLink href={`expensedetail/${id}`}>
+      <TitleLink href={`expense/${id}`}>
         <ExpenseDetailItem>{name}</ExpenseDetailItem>
       </TitleLink>
 

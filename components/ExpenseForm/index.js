@@ -9,7 +9,7 @@ import {
   ButtonGroup,
   StyledButton,
 } from "./ExpenseForm.styled";
-import Loading from "../Loading";
+import Loading from "../../design-system/Loading";
 
 function ExpenseForm({ onSubmit, expense = [], isEditMode }) {
   const { data, error } = useSWR(`/api/categories`);
