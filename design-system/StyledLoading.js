@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
-function Loading() {
-  return <LoadingAnimation />;
-}
-
-const LoadingAnimation = styled.div`
+export const LoadingAnimation = styled.div`
   position: absolute;
   padding: 0;
   margin: 0;
@@ -38,5 +34,3 @@ const LoadingAnimation = styled.div`
     }
   }
 `;
-
-export default Loading;

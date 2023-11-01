@@ -1,4 +1,4 @@
-import LoadingAnimation from "@/design-system/StyledLoading";
+import { LoadingAnimation } from "@/design-system/StyledLoading";
 
 function Loading() {
   return <LoadingAnimation />;

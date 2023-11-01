@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import ExpenseListDetail from "../ExpenseListDetail";
-import Loading from "../../design-system/StyledLoading";
+import Loading from "../Loading";
 import { SummaryNumber } from "../../design-system/StyledExpenseList";
 
 import {
