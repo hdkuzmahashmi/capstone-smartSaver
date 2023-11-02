@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { mutate } from "swr";
-import { Backdrop } from "../../design-system/StyledDeleteButton";
+import { StyledBackdrop } from "../../design-system/StyledBackdrop";
 import { Modal } from "../../design-system/StyledDeleteButton";
 import { FlexDiv } from "../../design-system/StyledDeleteButton";
 import { ModalButton } from "../../design-system/StyledDeleteButton";
@@ -57,7 +57,7 @@ function DeleteButton({ expenseId, showList }) {
         />
       )}
       {showModal && (
-        <Backdrop onClick={handleOuterClick}>
+        <StyledBackdrop onClick={handleOuterClick}>
           <Modal ref={modalRef}>
             <p>Are you sure?</p>
             <FlexDiv>
@@ -73,7 +73,7 @@ function DeleteButton({ expenseId, showList }) {
               </ModalButton>
             </FlexDiv>
           </Modal>
-        </Backdrop>
+        </StyledBackdrop>
       )}
     </>
   );
