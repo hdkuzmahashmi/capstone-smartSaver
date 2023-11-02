@@ -5,30 +5,43 @@ import { mutate } from "swr";
 
 function Form({ setToast, setToastMessage }) {
   const handleAdd = async (event) => {
-    event.preventDefault();
+    try {
+      event.preventDefault();
 
-    const formdata = new FormData(event.target);
-    const expData = Object.fromEntries(formdata);
+      const formdata = new FormData(event.target);
+      const expData = Object.fromEntries(formdata);
 
-    const response = await fetch("/api/expenses", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(expData),
-    });
+      const response = await fetch("/api/expenses", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(expData),
+      });
 
-    if (!response.ok) {
-      console.error(response.status);
-      return;
+      if (!response.ok) {
+        console.error(response.status);
+        setToastMessage(
+          "Something went wrong. Please contact to application administrator.",
+          "error"
+        );
+        setToast();
+        return;
+      }
+
+      event.target.reset();
+
+      mutate("/api/expenses");
+      Router.push("/");
+      setToastMessage("Expense is added successfully!", "success");
+      setToast();
+    } catch {
+      setToastMessage(
+        "Something went wrong. Please contact to application administrator.",
+        "error"
+      );
+      setToast();
     }
-
-    event.target.reset();
-
-    mutate("/api/expenses");
-    Router.push("/");
-    setToastMessage("Expense is added successfully!");
-    setToast();
   };
 
   return <ExpenseForm onSubmit={handleAdd} isEditMode={false} />;

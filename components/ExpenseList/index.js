@@ -18,7 +18,12 @@ function ExpenseList({ setToast, setToastMessage }) {
   }
 
   if (error) {
-    return <h1>Error: {error.message}</h1>;
+    setToastMessage(
+      "Something went wrong. Please contact to application administrator.",
+      "error"
+    );
+    setToast();
+    return; //<h1>Error: {error.message}</h1>;
   }
 
   const totalExpense = data.reduce(

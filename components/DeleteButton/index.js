@@ -36,16 +36,24 @@ export default function DeleteButton({
   }
 
   async function handleDelete(expenseId) {
-    const response = await fetch(`/api/expenses/${expenseId}`, {
-      method: "DELETE",
-    });
-    if (response.ok) {
-      mutate(`/api/expenses`);
-      setToastMessage("Expense is deleted successfully!");
+    try {
+      const response = await fetch(`/api/expenses/${expenseId}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        mutate(`/api/expenses`);
+        setToastMessage("Expense is deleted successfully!", "success");
+        setToast();
+      }
+      hideModal();
+      if (showList) Router.push("/");
+    } catch {
+      setToastMessage(
+        "Something went wrong. Please contact to application administrator.",
+        "error"
+      );
       setToast();
     }
-    hideModal();
-    if (showList) Router.push("/");
   }
 
   return (

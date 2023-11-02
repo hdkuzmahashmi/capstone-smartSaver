@@ -28,9 +28,11 @@ export default function App({ Component, pageProps }) {
   // configuration for Toast messages
   const [open, setOpen] = React.useState(false);
   const [message, setmessage] = React.useState("");
+  const [alert, setAlert] = React.useState("");
 
-  const handleToastMessage = (message) => {
-    setmessage(message);
+  const handleToastMessage = (msgText, type) => {
+    setmessage(msgText);
+    setAlert(type);
   };
 
   const handleClick = () => {
@@ -65,7 +67,7 @@ export default function App({ Component, pageProps }) {
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
         TransitionComponent={TransitionLeft}
       >
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+        <Alert onClose={handleClose} severity={alert} sx={{ width: "100%" }}>
           {message}
         </Alert>
       </Snackbar>
