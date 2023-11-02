@@ -30,6 +30,7 @@ export const TitleLink = styled(Link)`
   color: inherit;
   text-decoration: none;
   max-width: 220px;
+  padding-left: 5%;
   &:hover {
     color: coral;
     transform: translateY(-2px);
@@ -39,4 +40,10 @@ export const TitleLink = styled(Link)`
 export const ExpenseNumber = styled.span`
   margin-left: auto;
   font-weight: 500;
+`;
+
+export const StyledColorDiv = styled.div`
+  background-color: ${({ $color }) => $color};
+  width: 2%;
+  height: 100%;
 `;

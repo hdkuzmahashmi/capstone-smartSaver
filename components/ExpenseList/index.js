@@ -19,17 +19,20 @@ function ExpenseList({ setToast, setToastMessage }) {
 
   if (error) {
     setToastMessage(
-      "Something went wrong. Please contact to application administrator.",
-      "error"
+      "Something went wrong. Please contact to application administrator."
     );
     setToast();
     return; //<h1>Error: {error.message}</h1>;
   }
-
-  const totalExpense = data.reduce(
-    (total, expense) => total + expense.amount,
-    0
-  );
+  let totalExpense = 0;
+  try {
+    totalExpense = data.reduce((total, expense) => total + expense.amount, 0);
+  } catch {
+    setToastMessage(
+      "Something went wrong. Please contact to application administrator."
+    );
+    setToast();
+  }
 
   return (
     <ExpenseContainer>
@@ -44,8 +47,8 @@ function ExpenseList({ setToast, setToastMessage }) {
               id={expense._id}
               name={expense.name}
               amount={expense.amount}
-              setToast={setToast}
-              setToastMessage={setToastMessage}
+              icon={expense.categoryId[0].icon}
+              color={expense.categoryId[0].color}
             />
           </ExpenseRow>
         </div>

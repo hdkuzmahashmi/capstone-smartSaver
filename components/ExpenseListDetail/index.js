@@ -1,24 +1,19 @@
 import React from "react";
 import { ExpenseNumber } from "./ExpenseListDetail.styled";
+import { Icon } from "@iconify/react";
 
 import {
   ExpenseDetailContainer,
   ExpenseDetailItem,
   CustomLink,
   TitleLink,
+  StyledColorDiv,
 } from "./ExpenseListDetail.styled";
 
-function ExpenseListDetail({
-  name,
-  description,
-  amount,
-  id,
-  handleDelete,
-  setToast,
-  setToastMessage,
-}) {
+function ExpenseListDetail({ name, description, amount, id, icon, color }) {
   return (
     <ExpenseDetailContainer>
+      <Icon icon={icon} />
       <TitleLink href={`expensedetail/${id}`}>
         <ExpenseDetailItem>{name}</ExpenseDetailItem>
       </TitleLink>
@@ -27,6 +22,7 @@ function ExpenseListDetail({
       <ExpenseDetailItem>
         <ExpenseNumber>{amount} €</ExpenseNumber>
       </ExpenseDetailItem>
+      <StyledColorDiv $color={color}></StyledColorDiv>
     </ExpenseDetailContainer>
   );
 }
