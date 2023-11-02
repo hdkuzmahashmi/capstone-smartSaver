@@ -2,18 +2,19 @@ import styled from "styled-components";
 import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip } from "chart.js";
 import useSWR from "swr";
+import { Icon } from "@iconify/react";
 
 Chart.register(ArcElement, [Tooltip]);
 
 const GraphContainer = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 20rem;
-  width: 100%;
-  height: 100vh;
+  padding: 3rem;
+  margin-top: 3rem;
   gap: 5vh;
+  position: relative;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 `;
 
 const TotalContainer = styled.div`
@@ -24,7 +25,6 @@ const TotalContainer = styled.div`
   text-align: center;
   font-size: 20px;
   font-weight: bold;
-
   color: #333;
 
   div:nth-child(2) {
@@ -48,7 +48,7 @@ const ListItem = styled.div`
   margin: 5px;
   width: 100%;
   gap: 0.3rem;
-  background-color: #f0f0f0;
+  background-color: #f5f5f5;
   border-radius: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   padding: 2px;
@@ -59,6 +59,9 @@ const ColorBox = styled.div`
   width: 15px;
   height: 15px;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 10px;
 `;
 
@@ -84,51 +87,43 @@ function DoughnutGraph() {
     return <h1>Error: {error.message}</h1>;
   }
 
-  const labels = data.map((expense) => expense.categoryId[0].name);
-  console.log("labels:", labels);
+  // Extract and calculate category totals
+  const categoryTotalsArray = Object.values(
+    data.reduce((acc, expense) => {
+      const { name, color, icon } = expense.categoryId[0];
+      const amount = expense.amount;
 
-  const categoryTotals = data.reduce((acc, expense) => {
-    const categoryId = expense.categoryId[0]._id;
-    const amount = expense.amount;
+      if (!acc[name]) {
+        acc[name] = {
+          name,
+          total: 0,
+          color,
+          icon,
+        };
+      }
 
-    if (acc[categoryId]) {
-      acc[categoryId] += amount;
-    } else {
-      acc[categoryId] = amount;
-    }
+      acc[name].total += amount;
+      return acc;
+    }, {})
+  );
 
-    return acc;
-  }, {});
+  // Extract category names, total expenses, and colors for the chart
+  const categoryNames = categoryTotalsArray.map((category) => category.name);
+  const categoryValues = categoryTotalsArray.map((category) => category.total);
+  const categoryColor = categoryTotalsArray.map((category) => category.color);
 
-  console.log("categoryTotals:", categoryTotals);
-  console.log("Array of :", Object.values(categoryTotals));
-
-  const categoryTotalValues = Object.values(categoryTotals);
-  const totalAmount = categoryTotalValues.reduce((acc, cur) => {
+  // Calculate the total amount of all expenses
+  const totalAmountOfExpenses = categoryValues.reduce((acc, cur) => {
     return acc + cur;
   }, 0);
 
-  console.log(totalAmount);
-
+  // Create chart data and configuration
   const chartData = {
-    labels: labels,
+    labels: categoryNames,
     datasets: [
       {
-        label: "My First Dataset",
-        data: Object.values(categoryTotals),
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-          "rgb(224, 176, 255)",
-          "rgb(75, 192, 192)",
-          "rgb(255, 180, 135)",
-          "rgb(51, 133, 255)",
-          "rgb(255, 78, 80)",
-          "rgb(140, 201, 82)",
-          "rgb(204, 51, 255)",
-          "rgb(128, 255, 195)",
-        ],
+        data: categoryValues,
+        backgroundColor: categoryColor,
         hoverOffset: 4,
         borderRadius: 8,
       },
@@ -143,7 +138,7 @@ function DoughnutGraph() {
         tooltip: {
           callbacks: {
             title: function (context) {
-              return labels[context[0].dataIndex];
+              return categoryNames[context[0].dataIndex];
             },
             label: function (context) {
               const value = context.parsed;
@@ -155,25 +150,23 @@ function DoughnutGraph() {
     },
   };
 
+  // Render the Doughnut chart with total expenses and the category list
   return (
     <GraphContainer>
       <div style={{ position: "relative" }}>
         <Doughnut {...config}></Doughnut>
         <TotalContainer>
           <div>Total</div>
-          <div>{totalAmount} €</div>
+          <div>{totalAmountOfExpenses} €</div>
         </TotalContainer>
       </div>
       <ListContainer>
-        {Object.keys(categoryTotals).map((categoryId, index) => (
+        {categoryTotalsArray.map((category, index) => (
           <ListItem key={index}>
-            <ColorBox
-              style={{
-                backgroundColor: chartData.datasets[0].backgroundColor[index],
-              }}
-            ></ColorBox>
-            <ItemName>{labels[index]}</ItemName>
-            <Amount>{categoryTotals[categoryId]} €</Amount>
+            <ColorBox style={{ backgroundColor: category.color }}></ColorBox>
+            <Icon icon={category.icon} width={15} />
+            <ItemName>{category.name}</ItemName>
+            <Amount>{category.total} €</Amount>
           </ListItem>
         ))}
       </ListContainer>
