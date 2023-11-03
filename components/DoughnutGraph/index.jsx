@@ -18,21 +18,20 @@ const GraphContainer = styled.div`
 `;
 
 const TotalContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   text-align: center;
   font-size: 20px;
   font-weight: bold;
-  color: #333;
-
-  div:nth-child(2) {
-    font-size: 24px;
-    margin-top: 8px;
-    color: #ff6600;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-  }
+  font-size: 24px;
+  margin-top: 8px;
+  color: #202020;
 `;
 
 const ListContainer = styled.div`
@@ -50,8 +49,8 @@ const ListItem = styled.div`
   gap: 0.3rem;
   background-color: #f5f5f5;
   border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   padding: 2px;
+  padding-left: 13px;
   font-size: 13px;
 `;
 
@@ -84,7 +83,7 @@ function DoughnutGraph() {
   }
 
   if (error) {
-    return <h1>Error: {error.message}</h1>;
+    return <div>Error: {error.message}</div>;
   }
 
   // Extract and calculate category totals
@@ -152,25 +151,22 @@ function DoughnutGraph() {
 
   // Render the Doughnut chart with total expenses and the category list
   return (
-    <GraphContainer>
-      <div style={{ position: "relative" }}>
-        <Doughnut {...config}></Doughnut>
-        <TotalContainer>
-          <div>Total</div>
-          <div>{totalAmountOfExpenses} €</div>
-        </TotalContainer>
-      </div>
-      <ListContainer>
-        {categoryTotalsArray.map((category, index) => (
-          <ListItem key={index}>
-            <ColorBox style={{ backgroundColor: category.color }}></ColorBox>
-            <Icon icon={category.icon} width={15} />
-            <ItemName>{category.name}</ItemName>
-            <Amount>{category.total} €</Amount>
-          </ListItem>
-        ))}
-      </ListContainer>
-    </GraphContainer>
+      <GraphContainer>
+        <div style={{ position: "relative" }}>
+          <Doughnut {...config}></Doughnut>
+          <TotalContainer>{totalAmountOfExpenses} €</TotalContainer>
+        </div>
+        <ListContainer>
+          {categoryTotalsArray.map((category, index) => (
+            <ListItem key={index}>
+              <Icon icon={category.icon} width={15} />
+              <ItemName>{category.name}</ItemName>
+              <Amount>{category.total} €</Amount>
+              <ColorBox style={{ backgroundColor: category.color }}></ColorBox>
+            </ListItem>
+          ))}
+        </ListContainer>
+      </GraphContainer>
   );
 }
 
