@@ -2,9 +2,7 @@ import styled from "styled-components";
 
 export const StyledContainer = styled.div`
   display: flex;
-  height: 100%;
   width: 100%;
-  color: #202020;
   gap: 8px;
 
   ${({ $isFlexRow }) =>
@@ -15,5 +13,10 @@ export const StyledContainer = styled.div`
   ${({ $isSpaceBetween }) =>
     $isSpaceBetween
       ? `flex-direction:row; align-items: center; justify-content: space-between; height:auto;`
+      : ``};
+
+  ${({ $isCenter }) =>
+    $isCenter
+      ? `flex-direction:row;align-items:center;justify-content:center;`
       : ``};
 `;

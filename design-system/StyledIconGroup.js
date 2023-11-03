@@ -5,4 +5,5 @@ export const StyledIconGroup = styled.div`
   right: 0;
   bottom: 0;
   margin: 5px;
+  cursor: pointer;
 `;

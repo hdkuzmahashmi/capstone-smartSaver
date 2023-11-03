@@ -4,9 +4,9 @@ import { StyledList } from "@/design-system/StyledList";
 import { StyledCard } from "@/design-system/StyledCard";
 import { StyledContainer } from "@/design-system/StyledContainer";
 import { StyledSummaryBox } from "@/design-system/StyledSummaryBox";
-import { StyledSummaryText } from "@/design-system/StyledSummaryText";
-import { StyledSummaryNumber } from "@/design-system/StyledSummaryNumber";
 import ListItem from "../ListItem";
+import { StyledText } from "@/design-system/StyledText";
+import { StyledLink } from "@/design-system/StyledLink";
 
 function ExpenseList() {
   const { data, error } = useSWR(`/api/expenses`);
@@ -27,17 +27,19 @@ function ExpenseList() {
   return (
     <StyledContainer>
       <StyledSummaryBox>
-        <StyledSummaryText>Total</StyledSummaryText>
-        <StyledSummaryNumber>-{totalExpense}€</StyledSummaryNumber>
+        <StyledText>Total</StyledText>
+        <StyledText $isSummaryNumber>-{totalExpense}€</StyledText>
       </StyledSummaryBox>
       {data.map((expense, index) => (
         <StyledList key={index}>
           <StyledCard>
-            <ListItem
-              id={expense._id}
-              name={expense.name}
-              amount={expense.amount}
-            />
+            <StyledLink href={`expense/${expense._id}`}>
+              <ListItem
+                id={expense._id}
+                name={expense.name}
+                amount={expense.amount}
+              />
+            </StyledLink>
           </StyledCard>
         </StyledList>
       ))}
