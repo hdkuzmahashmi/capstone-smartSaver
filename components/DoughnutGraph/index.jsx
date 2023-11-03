@@ -3,6 +3,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip } from "chart.js";
 import useSWR from "swr";
 import { Icon } from "@iconify/react";
+import Loading from "../Loading";
 
 Chart.register(ArcElement, [Tooltip]);
 
@@ -13,25 +14,33 @@ const GraphContainer = styled.div`
   padding: 3rem;
   margin-top: 3rem;
   gap: 5vh;
+  width: 100%;
+
+  box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
+    inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 1px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
   position: relative;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 `;
 
 const TotalContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
   font-size: 20px;
   font-weight: bold;
-  font-size: 24px;
-  margin-top: 8px;
-  color: #202020;
+
+  color: #333;
+
+  div:nth-child(2) {
+    font-size: 24px;
+    margin-top: 8px;
+    color: #ff6600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  }
 `;
 
 const ListContainer = styled.div`
@@ -47,7 +56,6 @@ const ListItem = styled.div`
   margin: 5px;
   width: 100%;
   gap: 0.3rem;
-  background-color: #f5f5f5;
   border-radius: 15px;
   padding: 2px;
   padding-left: 13px;
@@ -79,7 +87,7 @@ function DoughnutGraph() {
   const { data, error } = useSWR("/api/expenses");
 
   if (!data) {
-    return <h1>Loading...</h1>;
+    return <Loading></Loading>;
   }
 
   if (error) {
@@ -151,22 +159,22 @@ function DoughnutGraph() {
 
   // Render the Doughnut chart with total expenses and the category list
   return (
-      <GraphContainer>
-        <div style={{ position: "relative" }}>
-          <Doughnut {...config}></Doughnut>
-          <TotalContainer>{totalAmountOfExpenses} €</TotalContainer>
-        </div>
-        <ListContainer>
-          {categoryTotalsArray.map((category, index) => (
-            <ListItem key={index}>
-              <Icon icon={category.icon} width={15} />
-              <ItemName>{category.name}</ItemName>
-              <Amount>{category.total} €</Amount>
-              <ColorBox style={{ backgroundColor: category.color }}></ColorBox>
-            </ListItem>
-          ))}
-        </ListContainer>
-      </GraphContainer>
+    <GraphContainer>
+      <div style={{ position: "relative" }}>
+        <Doughnut {...config}></Doughnut>
+        <TotalContainer>{totalAmountOfExpenses} €</TotalContainer>
+      </div>
+      <ListContainer>
+        {categoryTotalsArray.map((category, index) => (
+          <ListItem key={index}>
+            <Icon icon={category.icon} width={15} />
+            <ItemName>{category.name}</ItemName>
+            <Amount>{category.total} €</Amount>
+            <ColorBox style={{ backgroundColor: category.color }}></ColorBox>
+          </ListItem>
+        ))}
+      </ListContainer>
+    </GraphContainer>
   );
 }
 
