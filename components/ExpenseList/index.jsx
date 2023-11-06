@@ -28,7 +28,7 @@ function ExpenseList() {
     <StyledContainer>
       <StyledSummaryBox>
         <StyledText>Total</StyledText>
-        <StyledText $isSummaryNumber>-{totalExpense}€</StyledText>
+        <StyledText $isSummaryNumber>-{totalExpense} €</StyledText>
       </StyledSummaryBox>
       {data.map((expense, index) => (
         <StyledList key={index}>

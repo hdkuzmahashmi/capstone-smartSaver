@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledText = styled.p`
   margin: 0;
@@ -8,7 +8,10 @@ export const StyledText = styled.p`
   letter-spacing: 2px;
 
   ${(props) =>
-    props.$isBold
-      ? "font-weight:500;letter-spacing:normal;font-size:1rem;"
-      : ""}
+    props.$isBold &&
+    css`
+      font-weight: 500;
+      letter-spacing: normal;
+      font-size: 1rem;
+    `};
 `;
