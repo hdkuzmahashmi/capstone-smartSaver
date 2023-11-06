@@ -101,8 +101,8 @@ function DoughnutGraph() {
         </Link>
       </ExpenseOverviewContainer>
       <ListContainer>
-        {categoryTotalsArray.map((category, id) => (
-          <ListItem key={id}>
+        {categoryTotalsArray.map((category) => (
+          <ListItem key={category.name}>
             <ColorBox style={{ backgroundColor: category.color }}></ColorBox>
             <Icon icon={category.icon} width={15} />
             <ItemName>{category.name}</ItemName>
