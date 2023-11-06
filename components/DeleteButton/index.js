@@ -9,12 +9,7 @@ import { Icon } from "@iconify/react";
 import Router from "next/router";
 import { StyledButton } from "./DeleteButton.styled";
 
-export default function DeleteButton({
-  expenseId,
-  showList,
-  setToast,
-  setToastMessage,
-}) {
+export default function DeleteButton({ expenseId, showList, setToast }) {
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef(null);
 
@@ -42,17 +37,16 @@ export default function DeleteButton({
       });
       if (response.ok) {
         mutate(`/api/expenses`);
-        setToastMessage("Expense is deleted successfully!", "success");
-        setToast();
+        setToast(true, "Expense is deleted successfully!", "success");
       }
       hideModal();
       if (showList) Router.push("/");
     } catch {
-      setToastMessage(
+      setToast(
+        true,
         "Something went wrong. Please contact to application administrator.",
         "error"
       );
-      setToast();
     }
   }
 

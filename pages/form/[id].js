@@ -4,7 +4,7 @@ import Router from "next/router";
 import { mutate } from "swr";
 import useSWR from "swr";
 
-function FormPage({ setToast, setToastMessage }) {
+function FormPage({ setToast }) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -15,19 +15,20 @@ function FormPage({ setToast, setToastMessage }) {
   }
 
   if (error) {
-    setToastMessage(
-      "Something went wrong. Please contact to application administrator.",
+    setToast(
+      true,
+      "Something went wrong, API does not response data. Please contact to application administrator.",
       "error"
     );
-    setToast();
   }
 
   if (!data) {
-    setToastMessage(
+    setToast(
+      true,
       "Something went wrong, API does not response data. Please contact to application administrator.",
-      "warning"
+      "info"
     );
-    setToast();
+
     return;
   }
 
@@ -45,15 +46,15 @@ function FormPage({ setToast, setToastMessage }) {
       if (response.ok) {
         mutate(`/api/expenses/${id}`);
         Router.push("/");
-        setToastMessage("Expense is updated successfully!", "success");
-        setToast();
+
+        setToast(true, "Expense is updated successfully!", "success");
       }
     } catch {
-      setToastMessage(
+      setToast(
+        true,
         "Something went wrong. Please contact to application administrator.",
         "error"
       );
-      setToast();
     }
   }
   return <ExpenseForm onSubmit={handleEdit} isEditMode={true} expense={data} />;

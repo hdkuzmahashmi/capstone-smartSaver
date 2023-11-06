@@ -3,7 +3,7 @@ import Router from "next/router";
 import React from "react";
 import { mutate } from "swr";
 
-function Form({ setToast, setToastMessage }) {
+function Form({ setToast }) {
   const handleAdd = async (event) => {
     try {
       event.preventDefault();
@@ -20,12 +20,13 @@ function Form({ setToast, setToastMessage }) {
       });
 
       if (!response.ok) {
-        console.error(response.status);
-        setToastMessage(
-          "Something went wrong. Please contact to application administrator.",
-          "error"
+        setToast(
+          true,
+          "Something went wrong, API does not response data. Please contact to application administrator.",
+          "info"
         );
-        setToast();
+        console.error(response.status);
+
         return;
       }
 
@@ -33,14 +34,14 @@ function Form({ setToast, setToastMessage }) {
 
       mutate("/api/expenses");
       Router.push("/");
-      setToastMessage("Expense is added successfully!", "success");
-      setToast();
+
+      setToast(true, "Expense is added successfully!", "success");
     } catch {
-      setToastMessage(
+      setToast(
+        true,
         "Something went wrong. Please contact to application administrator.",
         "error"
       );
-      setToast();
     }
   };
 

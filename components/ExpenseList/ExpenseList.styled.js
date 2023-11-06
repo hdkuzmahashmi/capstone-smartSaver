@@ -41,7 +41,6 @@ export const ExpenseRow = styled.div`
   display: flex;
   justify-content: space-evenly;
   padding: 1rem;
-
   background-color: #f7f7f7;
   text-align: center;
   box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
@@ -49,6 +48,7 @@ export const ExpenseRow = styled.div`
     inset 0 -2px 1px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 15px;
+  border-right: 10px solid ${({ $color }) => $color};
 `;
 
 export const StyledLink = styled(Link)`

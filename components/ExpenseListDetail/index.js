@@ -7,13 +7,12 @@ import {
   ExpenseDetailItem,
   CustomLink,
   TitleLink,
-  StyledColorDiv,
 } from "./ExpenseListDetail.styled";
 
 function ExpenseListDetail({ name, description, amount, id, icon, color }) {
   return (
     <ExpenseDetailContainer>
-      <Icon icon={icon} />
+      <Icon icon={icon} width={20} />
       <TitleLink href={`expensedetail/${id}`}>
         <ExpenseDetailItem>{name}</ExpenseDetailItem>
       </TitleLink>
@@ -22,7 +21,6 @@ function ExpenseListDetail({ name, description, amount, id, icon, color }) {
       <ExpenseDetailItem>
         <ExpenseNumber>{amount} €</ExpenseNumber>
       </ExpenseDetailItem>
-      <StyledColorDiv $color={color}></StyledColorDiv>
     </ExpenseDetailContainer>
   );
 }

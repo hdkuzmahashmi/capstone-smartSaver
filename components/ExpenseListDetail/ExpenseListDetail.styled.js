@@ -46,4 +46,6 @@ export const StyledColorDiv = styled.div`
   background-color: ${({ $color }) => $color};
   width: 2%;
   height: 100%;
+  margin-right: 0;
+  padding-right: 0;
 `;

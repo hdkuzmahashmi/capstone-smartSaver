@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import ExpenseDetail from "@/components/ExpenseDetail";
 import Loading from "@/components/Loading";
-function DetailPage({ setToast, setToastMessage }) {
+function DetailPage({ setToast }) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -12,28 +12,22 @@ function DetailPage({ setToast, setToastMessage }) {
     return <Loading />;
   }
   if (error) {
-    setToastMessage(
-      "Something went wrong. Please contact to application administrator.",
+    setToast(
+      true,
+      "Something went wrong, API does not response data. Please contact to application administrator.",
       "error"
     );
-    setToast();
   }
 
   if (!data) {
-    setToastMessage(
+    setToast(
+      true,
       "Something went wrong, API does not response data. Please contact to application administrator.",
-      "warning"
+      "info"
     );
-    setToast();
     return;
   }
-  return (
-    <ExpenseDetail
-      expense={data}
-      setToast={setToast}
-      setToastMessage={setToastMessage}
-    />
-  );
+  return <ExpenseDetail expense={data} setToast={setToast} />;
 }
 
 export default DetailPage;

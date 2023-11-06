@@ -11,12 +11,7 @@ import {
 import { CustomLink } from "../ExpenseListDetail/ExpenseListDetail.styled";
 import { Icon } from "@iconify/react";
 
-function ExpenseDetail({
-  expense = [],
-  handleDelete,
-  setToast,
-  setToastMessage,
-}) {
+function ExpenseDetail({ expense = [], handleDelete, setToast }) {
   return (
     <StyledDetailContainer>
       <StyledContainer>
@@ -40,7 +35,6 @@ function ExpenseDetail({
           handleDelete={handleDelete}
           showList={true}
           setToast={setToast}
-          setToastMessage={setToastMessage}
         ></DeleteButton>
       </ButtonGroup>
     </StyledDetailContainer>
