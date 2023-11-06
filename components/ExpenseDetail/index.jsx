@@ -1,5 +1,4 @@
 import DeleteButton from "../DeleteButton";
-import { StyledBoldText } from "@/design-system/StyledBoldText";
 import { StyledLink } from "@/design-system/StyledLink";
 import { StyledGrid } from "@/design-system/StyledGrid";
 import { StyledGridItem } from "@/design-system/StyledGridItem";
@@ -8,6 +7,7 @@ import { StyledCard } from "@/design-system/StyledCard";
 import { StyledIconButton } from "@/design-system/StyledIconButton";
 import { StyledIconGroup } from "@/design-system/StyledIconGroup";
 import { StyledTitle } from "@/design-system/StyledTitle";
+import { StyledText } from "@/design-system/StyledText";
 
 function ExpenseDetail({ expense = {}, handleDelete }) {
   if (!expense._id || typeof expense._id !== "string") {
@@ -18,11 +18,11 @@ function ExpenseDetail({ expense = {}, handleDelete }) {
     <StyledCard $addMarginBottom $isDetail>
       <StyledTitle>{expense.name}</StyledTitle>
       <StyledGrid>
-        <StyledBoldText>Description</StyledBoldText>{" "}
+        <StyledText $isBold>Description</StyledText>{" "}
         <StyledGridItem> {expense.description}</StyledGridItem>
-        <StyledBoldText>Category</StyledBoldText>{" "}
+        <StyledText $isBold>Category</StyledText>{" "}
         <StyledGridItem> {expense.categoryId[0].name}</StyledGridItem>
-        <StyledBoldText>Amount</StyledBoldText>{" "}
+        <StyledText $isBold>Amount</StyledText>{" "}
         <StyledGridItem> {expense.amount} €</StyledGridItem>
       </StyledGrid>
       <StyledIconGroup>
@@ -35,6 +35,7 @@ function ExpenseDetail({ expense = {}, handleDelete }) {
           expenseId={expense._id}
           handleDelete={handleDelete}
           showList={true}
+          expenseName={expense.name}
         ></DeleteButton>
       </StyledIconGroup>
     </StyledCard>
