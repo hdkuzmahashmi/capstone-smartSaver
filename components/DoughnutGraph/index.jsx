@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip } from "chart.js";
 import useSWR from "swr";
@@ -94,7 +95,9 @@ function DoughnutGraph() {
     <GraphContainer>
       <div style={{ position: "relative" }}>
         <Doughnut {...config}></Doughnut>
-        <TotalContainer>{totalAmountOfExpenses} €</TotalContainer>
+        <Link href="/">
+          <TotalContainer>{totalAmountOfExpenses} €</TotalContainer>
+        </Link>
       </div>
       <ListContainer>
         {categoryTotalsArray.map((category, index) => (

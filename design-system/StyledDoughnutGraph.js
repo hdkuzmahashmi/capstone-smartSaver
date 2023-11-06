@@ -33,6 +33,12 @@ export const TotalContainer = styled.div`
   letter-spacing: 1px;
   color: #202020;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: font-size 0.3s ease;
+
+  &:hover {
+    font-size: 23px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+  }
 `;
 
 export const ListContainer = styled.div`
