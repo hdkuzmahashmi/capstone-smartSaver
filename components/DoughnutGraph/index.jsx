@@ -7,6 +7,7 @@ import Loading from "../Loading";
 import {
   GraphContainer,
   TotalContainer,
+  ExpenseOverviewContainer,
   ListContainer,
   ListItem,
   ColorBox,
@@ -20,7 +21,7 @@ function DoughnutGraph() {
   const { data, error } = useSWR("/api/expenses");
 
   if (!data) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
 
   if (error) {
@@ -93,15 +94,15 @@ function DoughnutGraph() {
   // Render the Doughnut chart with total expenses and the category list
   return (
     <GraphContainer>
-      <div style={{ position: "relative" }}>
+      <ExpenseOverviewContainer>
         <Doughnut {...config}></Doughnut>
         <Link href="/">
           <TotalContainer>{totalAmountOfExpenses} €</TotalContainer>
         </Link>
-      </div>
+      </ExpenseOverviewContainer>
       <ListContainer>
-        {categoryTotalsArray.map((category, index) => (
-          <ListItem key={index}>
+        {categoryTotalsArray.map((category, id) => (
+          <ListItem key={id}>
             <ColorBox style={{ backgroundColor: category.color }}></ColorBox>
             <Icon icon={category.icon} width={15} />
             <ItemName>{category.name}</ItemName>

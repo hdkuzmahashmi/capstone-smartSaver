@@ -22,6 +22,10 @@ export const GraphContainer = styled.div`
   }
 `;
 
+export const ExpenseOverviewContainer = styled.div`
+  position: relative;
+`;
+
 export const TotalContainer = styled.div`
   position: absolute;
   top: 50%;
