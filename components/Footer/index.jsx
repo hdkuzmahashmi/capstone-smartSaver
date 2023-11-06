@@ -8,7 +8,11 @@ function Footer() {
 
   return (
     <StyledFooter>
-      {route === "/" ? <CreateButton /> : <GoBackButton />}
+      {route === "/" || route === "/graph" ? (
+        <CreateButton />
+      ) : (
+        <GoBackButton />
+      )}
     </StyledFooter>
   );
 }

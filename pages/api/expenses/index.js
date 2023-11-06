@@ -5,7 +5,7 @@ export default async function handler(request, response) {
   await dbConnect();
   if (request.method === "GET") {
     try {
-      const expense = await Expense.find();
+      const expense = await Expense.find().populate("categoryId");
       response.status(200).json(expense);
     } catch (error) {
       return response.status(400).json({ message: error });
