@@ -8,7 +8,7 @@ import { StyledInput } from "@/design-system/StyledInput";
 import { StyledMargin } from "@/design-system/StyledMargin";
 import { StyledContainer } from "@/design-system/StyledContainer";
 
-function Form({ onSubmit, expense = [], isEditMode }) {
+function Form({ onSubmit, expense = [], isEditMode, setToast }) {
   const { data, error } = useSWR(`/api/categories`);
 
   if (!data) {
@@ -16,7 +16,12 @@ function Form({ onSubmit, expense = [], isEditMode }) {
   }
 
   if (error) {
-    return <h2> Error:{error.message} </h2>;
+    setToast(
+      true,
+      "Something went wrong, API does not response data. Please contact to application administrator.",
+      "warning"
+    );
+    return;
   }
 
   return (

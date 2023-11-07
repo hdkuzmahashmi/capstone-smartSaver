@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { ToastContainer, CloseButton } from "./StyledToast";
+import { ToastContainer, CloseButton } from "@/design-system/StyledToast";
 
 function Toast({ message, showToast, setShowToast, type }) {
   useEffect(() => {

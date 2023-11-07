@@ -7,15 +7,29 @@ function DetailPage({ setToast }) {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data, isLoading } = useSWR(`/api/expenses/${id}`);
+  const { data, isLoading, error } = useSWR(`/api/expenses/${id}`);
 
   if (isLoading) {
     return <Loading />;
   }
-
-  if (!data) {
+  if (error) {
+    setToast(
+      true,
+      "Something went wrong, API does not response data. Please contact to application administrator.",
+      "error"
+    );
     return;
   }
+
+  if (!data) {
+    setToast(
+      true,
+      "Something went wrong, API does not response data. Please contact to application administrator.",
+      "warning"
+    );
+    return;
+  }
+
   return <ExpenseDetail expense={data} setToast={setToast} />;
 }
 
