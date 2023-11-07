@@ -1,17 +1,13 @@
 import Image from "next/image";
-import { StyledLink } from "../ExpenseList/ExpenseList.styled";
-import { StyledHeader } from "./Header.styled";
-import { StyledContainer } from "./Header.styled";
-import { Title } from "./Header.styled";
+import { StyledHeadline } from "@/design-system/StyledHeadline";
+import { StyledContainer } from "@/design-system/StyledContainer";
 
 function Header() {
   return (
-    <StyledHeader>
-      <StyledContainer>
-        <Image src="./smartsaver.svg" width="75" height="75" alt="Logo" />
-        <Title>SmartSaver</Title>
-      </StyledContainer>
-    </StyledHeader>
+    <StyledContainer $isFlexRow>
+      <Image src="/smartsaver.svg" width="75" height="75" alt="Logo" />
+      <StyledHeadline>SmartSaver</StyledHeadline>
+    </StyledContainer>
   );
 }
 

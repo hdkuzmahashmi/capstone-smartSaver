@@ -1,17 +1,14 @@
 import React from "react";
 import useSWR from "swr";
-import Link from "next/link";
-import {
-  FormContainer,
-  FormTitle,
-  FormGroup,
-  StyledInput,
-  ButtonGroup,
-  StyledButton,
-} from "./ExpenseForm.styled";
+import { StyledButton } from "@/design-system/StyledButton";
+import { StyledCard } from "../../design-system/StyledCard";
 import Loading from "../Loading";
+import { StyledTitle } from "@/design-system/StyledTitle";
+import { StyledInput } from "@/design-system/StyledInput";
+import { StyledMargin } from "@/design-system/StyledMargin";
+import { StyledContainer } from "@/design-system/StyledContainer";
 
-function ExpenseForm({ onSubmit, expense = [], isEditMode }) {
+function Form({ onSubmit, expense = [], isEditMode }) {
   const { data, error } = useSWR(`/api/categories`);
 
   if (!data) {
@@ -19,14 +16,14 @@ function ExpenseForm({ onSubmit, expense = [], isEditMode }) {
   }
 
   if (error) {
-    return <h1> Error:{error.message} </h1>;
+    return <h2> Error:{error.message} </h2>;
   }
 
   return (
-    <FormContainer>
-      <FormTitle>{isEditMode ? "Edit Expense" : "Add Expense"}</FormTitle>
+    <StyledCard $addMarginBottom>
+      <StyledTitle>{isEditMode ? "Edit Expense" : "Add Expense"}</StyledTitle>
       <form onSubmit={onSubmit}>
-        <FormGroup>
+        <StyledMargin>
           <StyledInput
             id="name"
             name="name"
@@ -69,16 +66,16 @@ function ExpenseForm({ onSubmit, expense = [], isEditMode }) {
             required
             defaultValue={isEditMode ? expense.amount : ""}
           />
-        </FormGroup>
+        </StyledMargin>
 
-        <ButtonGroup>
-          <StyledButton type="submit">
+        <StyledContainer $isFlexRow>
+          <StyledButton type="submit" $isSubmitButton>
             {isEditMode ? "Update" : "Add"}
           </StyledButton>
-        </ButtonGroup>
+        </StyledContainer>
       </form>
-    </FormContainer>
+    </StyledCard>
   );
 }
 
-export default ExpenseForm;
+export default Form;

@@ -23,7 +23,6 @@ Smart Saver App is an expense tracker web application developed during our web d
 ## Key Features 🚀
 
 - Expense tracking
-- Budgeting
 - Savings goals
 - User-friendly interface
 - Secure data storage

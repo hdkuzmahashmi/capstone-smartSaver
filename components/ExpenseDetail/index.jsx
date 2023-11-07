@@ -1,43 +1,47 @@
 import DeleteButton from "../DeleteButton";
-import {
-  StyledContainer,
-  ButtonGroup,
-  StyledButton,
-  StyledHeading,
-  StyledData,
-  StyledDetailContainer,
-} from "./ExpenseDetail.styled";
-
-import { CustomLink } from "../ExpenseListDetail/ExpenseListDetail.styled";
+import { StyledLink } from "@/design-system/StyledLink";
+import { StyledGrid } from "@/design-system/StyledGrid";
+import { StyledGridItem } from "@/design-system/StyledGridItem";
 import { Icon } from "@iconify/react";
+import { StyledCard } from "@/design-system/StyledCard";
+import { StyledIcon } from "@/design-system/StyledIcon";
+import { StyledIconButton } from "@/design-system/StyledIconButton";
+import { StyledIconGroup } from "@/design-system/StyledIconGroup";
+import { StyledTitle } from "@/design-system/StyledTitle";
+import { StyledText } from "@/design-system/StyledText";
 
-function ExpenseDetail({ expense = [], handleDelete, setToast }) {
+function ExpenseDetail({ expense = {}, handleDelete, setToast }) {
+  if (!expense._id || typeof expense._id !== "string") {
+    return <h2>Something went wrong</h2>;
+  }
+
   return (
-    <StyledDetailContainer>
-      <StyledContainer>
-        <StyledHeading>Name</StyledHeading>{" "}
-        <StyledData>{expense.name}</StyledData>
-        <StyledHeading>Description</StyledHeading>{" "}
-        <StyledData> {expense.description}</StyledData>
-        <StyledHeading>Category</StyledHeading>{" "}
-        <StyledData> {expense.categoryId[0].name}</StyledData>
-        <StyledHeading>Amount</StyledHeading>{" "}
-        <StyledData> {expense.amount} €</StyledData>
-      </StyledContainer>
-      <ButtonGroup>
-        <CustomLink href={`/form/${expense._id}`}>
-          <StyledButton>
+    <StyledCard $addMarginBottom $isDetail $color={expense.categoryId[0].color}>
+      <StyledIcon icon={expense.categoryId[0].icon} width={25} />
+      <StyledTitle>{expense.name}</StyledTitle>
+      <StyledGrid>
+        <StyledText $isBold>Description</StyledText>{" "}
+        <StyledGridItem> {expense.description}</StyledGridItem>
+        <StyledText $isBold>Category</StyledText>{" "}
+        <StyledGridItem> {expense.categoryId[0].name}</StyledGridItem>
+        <StyledText $isBold>Amount</StyledText>{" "}
+        <StyledGridItem> {expense.amount} €</StyledGridItem>
+      </StyledGrid>
+      <StyledIconGroup>
+        <StyledLink href={`/create/${expense._id}`}>
+          <StyledIconButton>
             <Icon icon="icon-park-outline:edit" width="24" />
-          </StyledButton>
-        </CustomLink>
+          </StyledIconButton>
+        </StyledLink>
         <DeleteButton
           expenseId={expense._id}
           handleDelete={handleDelete}
           showList={true}
+          expenseName={expense.name}
           setToast={setToast}
         ></DeleteButton>
-      </ButtonGroup>
-    </StyledDetailContainer>
+      </StyledIconGroup>
+    </StyledCard>
   );
 }
 

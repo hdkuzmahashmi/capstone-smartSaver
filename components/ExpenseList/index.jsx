@@ -1,15 +1,12 @@
 import useSWR from "swr";
-import ExpenseListDetail from "../ExpenseListDetail";
 import Loading from "../Loading";
-import { SummaryNumber } from "./ExpenseList.styled";
-
-import {
-  ExpenseContainer,
-  SummaryBox,
-  SummaryText,
-  ExpenseRow,
-  StyledColorDiv,
-} from "./ExpenseList.styled";
+import { StyledList } from "@/design-system/StyledList";
+import { StyledCard } from "@/design-system/StyledCard";
+import { StyledContainer } from "@/design-system/StyledContainer";
+import { StyledSummaryBox } from "@/design-system/StyledSummaryBox";
+import ListItem from "../ListItem";
+import { StyledText } from "@/design-system/StyledText";
+import { StyledLink } from "@/design-system/StyledLink";
 
 function ExpenseList({ setToast }) {
   const { data, error } = useSWR(`/api/expenses`);
@@ -26,37 +23,33 @@ function ExpenseList({ setToast }) {
     );
     return;
   }
-  let totalExpense = 0;
-  try {
-    totalExpense = data.reduce((total, expense) => total + expense.amount, 0);
-  } catch {
-    setToast(
-      true,
-      "Something went wrong. Please contact to application administrator.",
-      "error"
-    );
-  }
+
+  const totalExpense = data.reduce(
+    (total, expense) => total + expense.amount,
+    0
+  );
 
   return (
-    <ExpenseContainer>
-      <SummaryBox>
-        <SummaryText>Total:</SummaryText>
-        <SummaryNumber>{totalExpense}€</SummaryNumber>
-      </SummaryBox>
+    <StyledContainer>
+      <StyledSummaryBox>
+        <StyledText>Total</StyledText>
+        <StyledText $isSummaryNumber>-{totalExpense} €</StyledText>
+      </StyledSummaryBox>
       {data.map((expense, index) => (
-        <div key={index}>
-          <ExpenseRow $color={expense.categoryId[0].color}>
-            <ExpenseListDetail
-              id={expense._id}
-              name={expense.name}
-              amount={expense.amount}
-              icon={expense.categoryId[0].icon}
-              color={expense.categoryId[0].color}
-            />
-          </ExpenseRow>
-        </div>
+        <StyledList key={index}>
+          <StyledCard $color={expense.categoryId[0].color}>
+            <StyledLink href={`expense/${expense._id}`}>
+              <ListItem
+                id={expense._id}
+                name={expense.name}
+                amount={expense.amount}
+                icon={expense.categoryId[0].icon}
+              />
+            </StyledLink>
+          </StyledCard>
+        </StyledList>
       ))}
-    </ExpenseContainer>
+    </StyledContainer>
   );
 }
 

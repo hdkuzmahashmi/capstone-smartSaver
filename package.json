@@ -17,6 +17,7 @@
     "mongoose": "^7.6.2",
     "next": "^13.5.4",
     "react": "18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0",
     "styled-component": "^2.8.0",
     "styled-components": "^6.0.2",
