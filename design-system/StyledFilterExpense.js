@@ -2,11 +2,11 @@ import styled from "styled-components";
 import DatePicker from "react-datepicker";
 
 const commonStyles = `
-  padding: 10px;
-  margin: 10px;
+  padding: 0.2rem;
+  margin: 0.3rem;
   text-align: center;
   border: 1px solid rgba(28, 145, 227, 0.3);
-  border-radius: 15px;
+  border-radius: 10px;
   color: #333;
   font-size: 16px;
   cursor: pointer;
@@ -30,12 +30,14 @@ const commonStyles = `
 
 export const Select = styled.select`
   ${commonStyles}
+  width: 100%;
 `;
 
 export const DatePickerWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin: 10px;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 export const CustomDatePicker = styled(DatePicker)`
@@ -49,20 +51,23 @@ export const CollapseContainer = styled.div`
 `;
 
 export const CollapsiblePanelContainer = styled.div`
-  border: 5px dashed green;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 10px;
   transition: max-height 0.3s ease;
   overflow: hidden;
-  max-height: ${(props) => (props.collapsed ? "0" : "200px")};
+  max-height: ${(props) => (props.collapsed ? "0" : "none")};
   padding: ${(props) => (props.collapsed ? "0" : "10px")};
   border: ${(props) =>
     props.collapsed ? "none" : "1px solid rgba(0, 0, 0, 0.2)"};
   border-radius: 15px;
   box-shadow: 0 2px 10px rgba(28, 145, 227, 0.3),
     0 0 5px rgba(28, 145, 227, 0.2);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const FilterButton = styled.button`

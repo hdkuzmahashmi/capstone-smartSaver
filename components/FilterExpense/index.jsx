@@ -38,6 +38,16 @@ function FilterExpense({ selectedCategory, categoryNames, onCategoryFilter }) {
               </option>
             ))}
           </Select>
+          <Select
+            value={selectedCategory}
+            onChange={(e) => onCategoryFilter(e.target.value)}
+          >
+            <option value="">Select Amount Range</option>
+            <option value="0-50">Less than €50</option>
+            <option value="50-100">Between €50 and €100</option>
+            <option value="100-200">Between €100 and €200</option>
+            <option value="200+">More than €200</option>
+          </Select>
           <DatePickerWrapper>
             <CustomDatePicker
               placeholderText="Start Date"
@@ -58,17 +68,6 @@ function FilterExpense({ selectedCategory, categoryNames, onCategoryFilter }) {
               minDate={startDate}
             />
           </DatePickerWrapper>
-          <Select
-            value={selectedCategory}
-            onChange={(e) => onCategoryFilter(e.target.value)}
-          >
-            <option value="">All Categories</option>
-            {categoryNames.map((categoryName) => (
-              <option key={categoryName} value={categoryName}>
-                {categoryName}
-              </option>
-            ))}
-          </Select>
         </CollapsiblePanelContainer>
       </CollapseContainer>
     </>
