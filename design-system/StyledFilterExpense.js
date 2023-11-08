@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import DatePicker from "react-datepicker";
 
-export const Select = styled.select`
+const commonStyles = `
   padding: 10px;
   margin: 10px;
+  text-align: center;
   border: 1px solid rgba(28, 145, 227, 0.3);
   border-radius: 15px;
   color: #333;
@@ -24,6 +26,20 @@ export const Select = styled.select`
     border-color: #1c91e3;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   }
+`;
+
+export const Select = styled.select`
+  ${commonStyles}
+`;
+
+export const DatePickerWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 10px;
+`;
+
+export const CustomDatePicker = styled(DatePicker)`
+  ${commonStyles}
 `;
 
 export const CollapseContainer = styled.div`
