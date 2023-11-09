@@ -48,6 +48,7 @@ export const CollapseContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+    width: 100%;
 `;
 
 export const CollapsiblePanelContainer = styled.div`
@@ -59,11 +60,11 @@ export const CollapsiblePanelContainer = styled.div`
   overflow: hidden;
   max-height: ${(props) => (props.collapsed ? "0" : "none")};
   padding: ${(props) => (props.collapsed ? "0" : "10px")};
-  border: ${(props) =>
+  /* border: ${(props) =>
     props.collapsed ? "none" : "1px solid rgba(0, 0, 0, 0.2)"};
   border-radius: 15px;
   box-shadow: 0 2px 10px rgba(28, 145, 227, 0.3),
-    0 0 5px rgba(28, 145, 227, 0.2);
+    0 0 5px rgba(28, 145, 227, 0.2); */
 
   @media (max-width: 768px) {
     flex-direction: column;
