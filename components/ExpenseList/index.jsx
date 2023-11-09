@@ -8,7 +8,7 @@ import ListItem from "../ListItem";
 import { StyledText } from "@/design-system/StyledText";
 import { StyledLink } from "@/design-system/StyledLink";
 
-function ExpenseList() {
+function ExpenseList({ setToast }) {
   const { data, error } = useSWR(`/api/expenses`);
 
   if (!data) {
@@ -16,7 +16,12 @@ function ExpenseList() {
   }
 
   if (error) {
-    return <h2>Error: {error.message}</h2>;
+    setToast(
+      true,
+      "Something went wrong. Please contact to application administrator.",
+      "error"
+    );
+    return;
   }
 
   const totalExpense = data.reduce(
@@ -32,12 +37,13 @@ function ExpenseList() {
       </StyledSummaryBox>
       {data.map((expense, index) => (
         <StyledList key={index}>
-          <StyledCard>
+          <StyledCard $color={expense.categoryId[0].color}>
             <StyledLink href={`expense/${expense._id}`}>
               <ListItem
                 id={expense._id}
                 name={expense.name}
                 amount={expense.amount}
+                icon={expense.categoryId[0].icon}
               />
             </StyledLink>
           </StyledCard>

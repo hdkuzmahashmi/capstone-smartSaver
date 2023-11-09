@@ -8,6 +8,7 @@ export const StyledCard = styled.li`
     inset 0 -2px 1px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 15px;
+  border-right: 10px solid ${({ $color }) => $color};
   position: relative;
 
   ${(props) =>

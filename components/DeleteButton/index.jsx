@@ -2,7 +2,7 @@ import { mutate } from "swr";
 import Router from "next/router";
 import ConfirmModal from "../ConfirmModal";
 
-function DeleteButton({ expenseId, showList, expenseName }) {
+function DeleteButton({ expenseId, showList, expenseName, setToast }) {
   async function handleDelete(expenseId) {
     const response = await fetch(`/api/expenses/${expenseId}`, {
       method: "DELETE",
@@ -11,6 +11,7 @@ function DeleteButton({ expenseId, showList, expenseName }) {
       mutate(`/api/expenses`);
     }
     if (showList) Router.push("/");
+    setToast(true, "Expense is deleted successfully!", "success");
   }
 
   return (
