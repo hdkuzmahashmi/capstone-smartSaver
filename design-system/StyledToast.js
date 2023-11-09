@@ -15,14 +15,14 @@ export const ToastContainer = styled.div`
   top: 20px;
   right: 20px;
 
-  background-color: ${(props) =>
-    props.type === "info"
+  background-color: ${({ $type }) =>
+    $type === "info"
       ? "#188be7"
-      : props.type === "error"
+      : $type === "error"
       ? "#fa0530"
-      : props.type === "warning"
+      : $type === "warning"
       ? "#f5500a"
-      : props.type === "success"
+      : $type === "success"
       ? "#6fb44b"
       : " #333"};
   color: #fff;
@@ -32,8 +32,8 @@ export const ToastContainer = styled.div`
   visibility: hidden;
   animation: ${slideIn} 0.3s ease;
 
-  ${(props) =>
-    props.showToast &&
+  ${({ $showToast }) =>
+    $showToast &&
     css`
       opacity: 1;
       visibility: visible;

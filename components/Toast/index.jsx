@@ -14,7 +14,7 @@ function Toast({ message, showToast, setShowToast, type }) {
   }, [showToast, setShowToast]);
 
   return (
-    <ToastContainer showToast={showToast} type={type}>
+    <ToastContainer $showToast={showToast} $type={type}>
       {message}
       {showToast && (
         <CloseButton onClick={() => setShowToast(false)}>&times;</CloseButton>
