@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   RangeButton,
   RangeSlider,
@@ -10,6 +10,10 @@ import { CollapsiblePanelContainer } from "@/design-system/StyledFilterExpense";
 function AmountRange({ onAmountRangeChange, selectedAmountRange }) {
   const [collapsedRange, setCollapsedRange] = useState(true);
   const [rangeValue, setRangeValue] = useState(0);
+
+  useEffect(() => {
+    setRangeValue(selectedAmountRange);
+  }, [selectedAmountRange]);
 
   return (
     <RangeSliderContainer>
@@ -29,8 +33,9 @@ function AmountRange({ onAmountRangeChange, selectedAmountRange }) {
             step="1"
             value={rangeValue}
             onChange={(event) => {
-              setRangeValue(event.target.value);
-              onAmountRangeChange(event.target.value);
+              const newValue = parseInt(event.target.value);
+              setRangeValue(newValue);
+              onAmountRangeChange(newValue);
             }}
           />
           <SelectedRangeValue>{rangeValue} €</SelectedRangeValue>

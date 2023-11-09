@@ -15,17 +15,23 @@ function FilterExpense({
   onCategoryFilter,
   selectedAmountRange,
   onAmountRangeChange,
+  isFiltered,
+  onClearFilters,
 }) {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleCollapse = () => {
+    if (isFiltered) {
+      onClearFilters();
+    }
     setCollapsed(!collapsed);
   };
 
   return (
     <CollapseContainer>
       <FilterButton onClick={toggleCollapse}>
-        {collapsed ? "Filter" : "Close"}
+        {isFiltered ? "Clear Filter" : "Filter"}
+
         <Icon icon="mi:filter" color="white" width="24" height="24" />
       </FilterButton>
       <CollapsiblePanelContainer collapsed={collapsed}>

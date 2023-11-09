@@ -14,6 +14,7 @@ function ExpenseList({ setToast }) {
   const { data, error } = useSWR(`/api/expenses`);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAmountRange, setSelectedAmountRange] = useState(0);
+  const [isFiltered, setIsFiltered] = useState(false);
 
   if (!data) {
     return <Loading />;
@@ -28,20 +29,26 @@ function ExpenseList({ setToast }) {
     return;
   }
 
+  function handleClearFilters() {
+    setSelectedCategory("");
+    setSelectedAmountRange(0);
+    setIsFiltered(false);
+  }
+
   function handleCategoryFilter(category) {
     setSelectedCategory(category);
+    setIsFiltered(true);
   }
 
   function handleAmountRangeChange(amountRange) {
     setSelectedAmountRange(amountRange);
 
-    if (amountRange === 0) {
-      // If the amount range is 0, reset the selected category
-      setSelectedCategory("");
+    if (amountRange === 0 && selectedCategory === "") {
+      // If both the amount range and selected category are 0, reset filters
+      setIsFiltered(false);
+    } else {
+      setIsFiltered(true);
     }
-
-    console.log("Selected Category:", selectedCategory);
-    console.log("Selected Amount Range:", amountRange);
   }
 
   console.log("Data:", data);
@@ -52,20 +59,12 @@ function ExpenseList({ setToast }) {
   const categoryNames = Array.from(new Set(ExpenseCategoryNames));
 
   const filteredExpenses = data.filter((expense) => {
-    // console.log("Filtering - Selected Category:", selectedCategory);
-    // console.log("Filtering - Selected Amount Range:", selectedAmountRange);
-    // console.log("Expense Category:", expense.categoryId[0].name);
-    // console.log("Expense Amount:", expense.amount);
-
     const categoryMatch =
       !selectedCategory || expense.categoryId[0].name === selectedCategory;
 
     const rangeMatch =
       selectedAmountRange === 0 ||
       (selectedAmountRange > 0 && expense.amount <= selectedAmountRange);
-
-    // console.log("Category Match:", categoryMatch);
-    // console.log("Range Match:", rangeMatch);
 
     return categoryMatch && rangeMatch;
   });
@@ -80,6 +79,8 @@ function ExpenseList({ setToast }) {
         onCategoryFilter={handleCategoryFilter}
         onAmountRangeChange={handleAmountRangeChange}
         selectedAmountRange={selectedAmountRange}
+        isFiltered={isFiltered}
+        onClearFilters={handleClearFilters}
       />
 
       <StyledSummaryBox>
