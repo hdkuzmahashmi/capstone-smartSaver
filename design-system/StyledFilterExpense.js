@@ -48,7 +48,7 @@ export const CollapseContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-    width: 100%;
+  width: 100%;
 `;
 
 export const CollapsiblePanelContainer = styled.div`
@@ -74,7 +74,7 @@ export const CollapsiblePanelContainer = styled.div`
 export const FilterButton = styled.button`
   display: flex;
   align-items: center;
-  padding: 10px 20px;
+  padding: 5px 15px;
   margin: 10px;
   border: none;
   border-radius: 15px;
