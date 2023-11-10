@@ -4,11 +4,10 @@ import {
   CollapseContainer,
   CollapsiblePanelContainer,
   FilterButton,
-  Select,
 } from "@/design-system/StyledFilterExpense";
-
 import AmountRange from "../RangeSlider";
 import DatePicker from "../DatePicker";
+import FilterCategory from "../FilterCategory";
 
 function FilterExpense({ selectedCategory, categoryNames, onCategoryFilter }) {
   const [collapsed, setCollapsed] = useState(true);
@@ -25,21 +24,13 @@ function FilterExpense({ selectedCategory, categoryNames, onCategoryFilter }) {
           <Icon icon="mi:filter" color="white" width="24" height="24" />
         </FilterButton>
         <CollapsiblePanelContainer collapsed={collapsed}>
-          <Select
-            value={selectedCategory}
-            onChange={(e) => onCategoryFilter(e.target.value)}
-          >
-            <option value="">All Categories</option>
-            {categoryNames.map((categoryName) => (
-              <option key={categoryName} value={categoryName}>
-                {categoryName}
-              </option>
-            ))}
-          </Select>
-
+          <FilterCategory
+            selectedCategory={selectedCategory}
+            categoryNames={categoryNames}
+            onCategoryFilter={onCategoryFilter}
+          />
           <AmountRange />
           <DatePicker />
-          
         </CollapsiblePanelContainer>
       </CollapseContainer>
     </>
