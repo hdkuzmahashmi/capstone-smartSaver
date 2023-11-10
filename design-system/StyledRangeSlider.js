@@ -7,20 +7,22 @@ export const RangeButton = styled.button`
   width: 100%;
 `;
 
-export const RangeSlider = styled.input`
-  background-color: red;
-  text-align: center;
+export const RangeSlider = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 `;
 
 export const SelectedRangeValue = styled.span`
   font-size: 16px;
-  margin-left: 20px;
+  font-weight: bold;
 `;
 
 export const RangeSliderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   flex-direction: column;
+  width: 100%;
 `;

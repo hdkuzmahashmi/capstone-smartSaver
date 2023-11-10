@@ -20,17 +20,19 @@ function AmountRange() {
         Select Amount Range
       </RangeButton>
       <CollapsiblePanelContainer collapsed={collapsedRange}>
-        <RangeSlider
-          type="range"
-          min="0"
-          max="10000"
-          step="50"
-          value={rangeValue}
-          onChange={(event) => {
-            setRangeValue(event.target.value);
-          }}
-        />
-        <SelectedRangeValue>{rangeValue} €</SelectedRangeValue>
+        <RangeSlider>
+          <input
+            type="range"
+            min="0"
+            max="2000"
+            step="1"
+            value={rangeValue}
+            onChange={(event) => {
+              setRangeValue(event.target.value);
+            }}
+          />
+          <SelectedRangeValue>{rangeValue} €</SelectedRangeValue>
+        </RangeSlider>
       </CollapsiblePanelContainer>
     </RangeSliderContainer>
   );

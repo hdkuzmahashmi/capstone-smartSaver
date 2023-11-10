@@ -1,5 +1,6 @@
 import {
   CustomDatePicker,
+  DatePickerLabel,
   DatePickerWrapper,
 } from "@/design-system/StyledDatePicker";
 import { useState } from "react";
@@ -10,7 +11,7 @@ function DatePicker() {
   const [endDate, setEndDate] = useState(null);
   return (
     <DatePickerWrapper>
-      <span> From </span>
+      <DatePickerLabel> From </DatePickerLabel>
       <CustomDatePicker
         placeholderText="Start Date"
         selected={startDate}
@@ -19,7 +20,7 @@ function DatePicker() {
         startDate={startDate}
         endDate={endDate}
       />
-      <span> To </span>
+      <DatePickerLabel> To </DatePickerLabel>
       <CustomDatePicker
         placeholderText="End Date"
         selected={endDate}
@@ -29,6 +30,7 @@ function DatePicker() {
         endDate={endDate}
         minDate={startDate}
       />
+
     </DatePickerWrapper>
   );
 }

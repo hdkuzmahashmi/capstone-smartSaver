@@ -32,12 +32,16 @@ export const CollapseContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const CollapsiblePanelContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  max-width: 400px;
+  width: 100%; 
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   margin: 10px;
   transition: max-height 0.3s ease;
@@ -45,9 +49,6 @@ export const CollapsiblePanelContainer = styled.div`
   max-height: ${(props) => (props.collapsed ? "0" : "none")};
   padding: ${(props) => (props.collapsed ? "0" : "10px")};
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
 `;
 
 export const FilterButton = styled.button`

@@ -11,4 +11,13 @@ export const DatePickerWrapper = styled.div`
 
 export const CustomDatePicker = styled(DatePicker)`
   ${commonFilterStyle};
+  width: 100%;
+  margin: 5px;
+`;
+export const DatePickerLabel = styled.span`
+  margin: 10px;
+  color: #777;
+  font-size: 14px;
+  font-style: italic;
+  padding: 5px;
 `;
