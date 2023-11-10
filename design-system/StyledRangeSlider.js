@@ -2,9 +2,7 @@ import styled from "styled-components";
 import { commonFilterStyle } from "@/design-system/StyledFilterExpense";
 
 export const RangeButton = styled.button`
-  ${commonFilterStyle}
-  background-color: transparent;
-  width: 100%;
+  ${commonFilterStyle};
 `;
 
 export const RangeSlider = styled.div`

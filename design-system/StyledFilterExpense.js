@@ -6,9 +6,13 @@ export const commonFilterStyle = `
   text-align: center;
   border: 1px solid rgba(120, 179, 230, 0.3);
   border-radius: 10px;
-  color: #333;
-  font-size: 16px;
+  color: #777;
+  width: 100%;
   cursor: pointer;
+  font-size: 14px;
+  font-style: italic;
+  background-color: transparent;
+
  
   &:hover {
     // border-color: #666; 
@@ -24,8 +28,9 @@ export const commonFilterStyle = `
 `;
 
 export const Select = styled.select`
-  ${commonFilterStyle}
-  width: 100%;
+  background-color: transparent;
+  ${commonFilterStyle};
+  margin-bottom: 22px;
 `;
 
 export const CollapseContainer = styled.div`
@@ -39,7 +44,7 @@ export const CollapseContainer = styled.div`
 export const CollapsiblePanelContainer = styled.div`
   display: flex;
   max-width: 400px;
-  width: 100%; 
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -48,7 +53,6 @@ export const CollapsiblePanelContainer = styled.div`
   overflow: hidden;
   max-height: ${(props) => (props.collapsed ? "0" : "none")};
   padding: ${(props) => (props.collapsed ? "0" : "10px")};
-
 `;
 
 export const FilterButton = styled.button`

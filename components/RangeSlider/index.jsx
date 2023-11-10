@@ -10,14 +10,14 @@ function AmountRange() {
   const [collapsedRange, setCollapsedRange] = useState(true);
   const [rangeValue, setRangeValue] = useState(0);
 
-  const toggleCollapseRange = () => {
-    setCollapsedRange(!collapsedRange);
-  };
-
   return (
     <RangeSliderContainer>
-      <RangeButton onClick={toggleCollapseRange}>
-        Select Amount Range
+      <RangeButton
+        onClick={() => {
+          setCollapsedRange(!collapsedRange);
+        }}
+      >
+        Select an Amount Range
       </RangeButton>
       <CollapsiblePanelContainer collapsed={collapsedRange}>
         <RangeSlider>
