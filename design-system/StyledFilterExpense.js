@@ -10,10 +10,10 @@ const commonStyles = `
   color: #333;
   font-size: 16px;
   cursor: pointer;
-  transition: border-color 0.3s;
-  box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
-    inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
-    inset 0 -2px 1px rgba(0, 0, 0, 0.05);
+  // transition: border-color 0.3s;
+  // box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
+  //   inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
+  //   inset 0 -2px 1px rgba(0, 0, 0, 0.05);
 
   &:hover {
     /* border-color: #666; */
@@ -28,6 +28,30 @@ const commonStyles = `
   }
 `;
 
+export const RangeButton = styled.button`
+  ${commonStyles}
+  background-color: transparent;
+  width: 100%;
+`;
+
+export const RangeSlider = styled.input`
+  background-color: red;
+  text-align: center;
+`;
+
+export const SelectedRangeValue = styled.span`
+  font-size: 16px;
+  margin-left: 20px;
+`;
+
+export const RangeSliderContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+`;
+
 export const Select = styled.select`
   ${commonStyles}
   width: 100%;
@@ -36,23 +60,24 @@ export const Select = styled.select`
 export const DatePickerWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
+ 
 `;
 
 export const CustomDatePicker = styled(DatePicker)`
-  ${commonStyles}
+  ${commonStyles};
 `;
 
 export const CollapseContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  width: 100%;
 `;
 
 export const CollapsiblePanelContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin: 10px;

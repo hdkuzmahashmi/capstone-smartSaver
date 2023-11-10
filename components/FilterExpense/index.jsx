@@ -5,6 +5,10 @@ import {
   Select,
   DatePickerWrapper,
   CustomDatePicker,
+  RangeButton,
+  RangeSlider,
+  SelectedRangeValue,
+  RangeSliderContainer,
 } from "@/design-system/StyledFilterExpense";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
@@ -15,8 +19,15 @@ function FilterExpense({ selectedCategory, categoryNames, onCategoryFilter }) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
+  const [collapsedRange, setCollapsedRange] = useState(true);
+  const [rangeValue, setRangeValue] = useState(0);
+
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
+  };
+
+  const toggleCollapseRange = () => {
+    setCollapsedRange(!collapsedRange);
   };
 
   return (
@@ -38,17 +49,31 @@ function FilterExpense({ selectedCategory, categoryNames, onCategoryFilter }) {
               </option>
             ))}
           </Select>
-          <Select
-            value={selectedCategory}
-            onChange={(e) => onCategoryFilter(e.target.value)}
-          >
-            <option value="">Select Amount Range</option>
-            <option value="0-50">Less than €50</option>
-            <option value="50-100">Between €50 and €100</option>
-            <option value="100-200">Between €100 and €200</option>
-            <option value="200+">More than €200</option>
-          </Select>
+
+          {/* ////////Range////////// */}
+            <RangeSliderContainer>
+          <RangeButton onClick={toggleCollapseRange}>
+            Select Amount Range
+          </RangeButton>
+          <CollapsiblePanelContainer collapsed={collapsedRange}>
+              <RangeSlider
+                type="range"
+                min="0"
+                max="10000"
+                step="50"
+                value={rangeValue}
+                onChange={(event) => {
+                  setRangeValue(event.target.value);
+                }}
+              />
+              <SelectedRangeValue>{rangeValue} €</SelectedRangeValue>
+          </CollapsiblePanelContainer>
+            </RangeSliderContainer>
+          {/* ///////////////////////// */}
+
+          {/* ////////Date////////// */}
           <DatePickerWrapper>
+          <span> from </span>
             <CustomDatePicker
               placeholderText="Start Date"
               selected={startDate}
@@ -68,6 +93,7 @@ function FilterExpense({ selectedCategory, categoryNames, onCategoryFilter }) {
               minDate={startDate}
             />
           </DatePickerWrapper>
+          {/* ///////////////////////// */}
         </CollapsiblePanelContainer>
       </CollapseContainer>
     </>
