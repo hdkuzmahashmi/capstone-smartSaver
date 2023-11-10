@@ -53,6 +53,9 @@ function ExpenseList({ setToast }) {
       !selectedCategory || expense.categoryId[0].name === selectedCategory
   );
 
+ 
+
+
   console.log("filteredExpenses:", filteredExpenses);
 
   const filteredExpensesTotalAmount = filteredExpenses.reduce(
@@ -60,6 +63,7 @@ function ExpenseList({ setToast }) {
     0
   );
   console.log("Amount:", filteredExpensesTotalAmount);
+
 
   return (
     <StyledContainer $isFlexEnd>

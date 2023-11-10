@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import DatePicker from "react-datepicker";
 
-const commonStyles = `
+export const commonFilterStyle = `
   padding: 0.2rem;
   margin: 0.3rem;
   text-align: center;
@@ -28,45 +27,9 @@ const commonStyles = `
   }
 `;
 
-export const RangeButton = styled.button`
-  ${commonStyles}
-  background-color: transparent;
-  width: 100%;
-`;
-
-export const RangeSlider = styled.input`
-  background-color: red;
-  text-align: center;
-`;
-
-export const SelectedRangeValue = styled.span`
-  font-size: 16px;
-  margin-left: 20px;
-`;
-
-export const RangeSliderContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  flex-direction: column;
-`;
-
 export const Select = styled.select`
-  ${commonStyles}
+  ${commonFilterStyle}
   width: 100%;
-`;
-
-export const DatePickerWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
- 
-`;
-
-export const CustomDatePicker = styled(DatePicker)`
-  ${commonStyles};
 `;
 
 export const CollapseContainer = styled.div`
