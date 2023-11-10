@@ -6,7 +6,8 @@ import {
   RangeSliderContainer,
 } from "@/design-system/StyledRangeSlider";
 import { CollapsiblePanelContainer } from "@/design-system/StyledFilterExpense";
-function AmountRange() {
+
+function AmountRange({ onAmountRangeChange, selectedAmountRange }) {
   const [collapsedRange, setCollapsedRange] = useState(true);
   const [rangeValue, setRangeValue] = useState(0);
 
@@ -29,6 +30,7 @@ function AmountRange() {
             value={rangeValue}
             onChange={(event) => {
               setRangeValue(event.target.value);
+              onAmountRangeChange(event.target.value);
             }}
           />
           <SelectedRangeValue>{rangeValue} €</SelectedRangeValue>

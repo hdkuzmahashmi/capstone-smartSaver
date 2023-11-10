@@ -9,7 +9,13 @@ import AmountRange from "../RangeSlider";
 import DatePicker from "../DatePicker";
 import FilterCategory from "../FilterCategory";
 
-function FilterExpense({ selectedCategory, categoryNames, onCategoryFilter }) {
+function FilterExpense({
+  selectedCategory,
+  categoryNames,
+  onCategoryFilter,
+  selectedAmountRange,
+  onAmountRangeChange,
+}) {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleCollapse = () => {
@@ -17,23 +23,24 @@ function FilterExpense({ selectedCategory, categoryNames, onCategoryFilter }) {
   };
 
   return (
-    <>
-      <CollapseContainer>
-        <FilterButton onClick={toggleCollapse}>
-          {collapsed ? "Filter" : "Close"}
-          <Icon icon="mi:filter" color="white" width="24" height="24" />
-        </FilterButton>
-        <CollapsiblePanelContainer collapsed={collapsed}>
-          <FilterCategory
-            selectedCategory={selectedCategory}
-            categoryNames={categoryNames}
-            onCategoryFilter={onCategoryFilter}
-          />
-          <AmountRange />
-          <DatePicker />
-        </CollapsiblePanelContainer>
-      </CollapseContainer>
-    </>
+    <CollapseContainer>
+      <FilterButton onClick={toggleCollapse}>
+        {collapsed ? "Filter" : "Close"}
+        <Icon icon="mi:filter" color="white" width="24" height="24" />
+      </FilterButton>
+      <CollapsiblePanelContainer collapsed={collapsed}>
+        <FilterCategory
+          selectedCategory={selectedCategory}
+          categoryNames={categoryNames}
+          onCategoryFilter={onCategoryFilter}
+        />
+        <AmountRange
+          onAmountRangeChange={onAmountRangeChange}
+          selectedAmountRange={selectedAmountRange}
+        />
+        <DatePicker />
+      </CollapsiblePanelContainer>
+    </CollapseContainer>
   );
 }
 

@@ -13,6 +13,7 @@ import FilterExpense from "../FilterExpense";
 function ExpenseList({ setToast }) {
   const { data, error } = useSWR(`/api/expenses`);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedAmountRange, setSelectedAmountRange] = useState(0);
 
   if (!data) {
     return <Loading />;
@@ -31,39 +32,45 @@ function ExpenseList({ setToast }) {
     setSelectedCategory(category);
   }
 
+  function handleAmountRangeChange(amountRange) {
+    setSelectedAmountRange(amountRange);
+
+    if (amountRange === 0) {
+      // If the amount range is 0, reset the selected category
+      setSelectedCategory("");
+    }
+
+    console.log("Selected Category:", selectedCategory);
+    console.log("Selected Amount Range:", amountRange);
+  }
+
   console.log("Data:", data);
 
-  // Function to get category names
-  /**
-   * A Set is a built-in JavaScript data structure that represents a collection of unique values. It is similar to an array, but it can only contain unique values.
-   * Array.from(...) is used to convert the Set back to an array. This step is necessary because Sets do not provide direct access to elements by index, so converting it back to an array allows you to access elements as you would in a regular array.
-   */
   const ExpenseCategoryNames = data.map(
     (expense) => expense.categoryId[0].name
   );
   const categoryNames = Array.from(new Set(ExpenseCategoryNames));
-  console.log("Unique Category Names:", categoryNames);
 
-  /**
-   * selectedCategory is not defined (falsy), in which case all expenses are included.
-   * The category name of the expense matches the selectedCategory.
-   */
-  const filteredExpenses = data.filter(
-    (expense) =>
-      !selectedCategory || expense.categoryId[0].name === selectedCategory
-  );
+  const filteredExpenses = data.filter((expense) => {
+    // console.log("Filtering - Selected Category:", selectedCategory);
+    // console.log("Filtering - Selected Amount Range:", selectedAmountRange);
+    // console.log("Expense Category:", expense.categoryId[0].name);
+    // console.log("Expense Amount:", expense.amount);
 
- 
+    const categoryMatch =
+      !selectedCategory || expense.categoryId[0].name === selectedCategory;
 
+    const rangeMatch =
+      selectedAmountRange === 0 ||
+      (selectedAmountRange > 0 && expense.amount <= selectedAmountRange);
 
-  console.log("filteredExpenses:", filteredExpenses);
+    // console.log("Category Match:", categoryMatch);
+    // console.log("Range Match:", rangeMatch);
 
-  const filteredExpensesTotalAmount = filteredExpenses.reduce(
-    (total, expense) => total + expense.amount,
-    0
-  );
-  console.log("Amount:", filteredExpensesTotalAmount);
+    return categoryMatch && rangeMatch;
+  });
 
+  console.log("Filtered Expenses:", filteredExpenses);
 
   return (
     <StyledContainer $isFlexEnd>
@@ -71,6 +78,8 @@ function ExpenseList({ setToast }) {
         selectedCategory={selectedCategory}
         categoryNames={categoryNames}
         onCategoryFilter={handleCategoryFilter}
+        onAmountRangeChange={handleAmountRangeChange}
+        selectedAmountRange={selectedAmountRange}
       />
 
       <StyledSummaryBox>
