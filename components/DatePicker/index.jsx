@@ -6,14 +6,23 @@ import {
 } from "@/design-system/StyledDatePicker";
 import { CollapsiblePanelContainer } from "@/design-system/StyledFilterExpense";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 
-function DatePicker() {
+function DatePicker({
+  onFromDate,
+  onToDate,
+  selectedFromDate,
+  selectedToDate,
+}) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-
   const [collapsedDate, setCollapsedDate] = useState(true);
+
+  useEffect(() => {
+    setStartDate(selectedFromDate);
+    setEndDate(selectedToDate);
+  }, [selectedFromDate, selectedToDate]);
 
   return (
     <>
@@ -30,7 +39,10 @@ function DatePicker() {
           <CustomDatePicker
             placeholderText="Start Date"
             selected={startDate}
-            onChange={(date) => setStartDate(date)}
+            onChange={(date) => {
+              setStartDate(date);
+              onFromDate(date);
+            }}
             selectsStart
             startDate={startDate}
             endDate={endDate}
@@ -39,7 +51,10 @@ function DatePicker() {
           <CustomDatePicker
             placeholderText="End Date"
             selected={endDate}
-            onChange={(date) => setEndDate(date)}
+            onChange={(date) => {
+              setEndDate(date);
+              onToDate(date);
+            }}
             selectsEnd
             startDate={startDate}
             endDate={endDate}

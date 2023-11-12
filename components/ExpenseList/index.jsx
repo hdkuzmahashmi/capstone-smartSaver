@@ -14,6 +14,8 @@ function ExpenseList({ setToast }) {
   const { data, error } = useSWR(`/api/expenses`);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAmountRange, setSelectedAmountRange] = useState(0);
+  const [selectedFromDateRange, setSelectedFromDateRange] = useState("");
+  const [selectedToDateRange, setSelectedToDateRange] = useState("");
   const [isFiltered, setIsFiltered] = useState(false);
 
   if (!data) {
@@ -51,6 +53,18 @@ function ExpenseList({ setToast }) {
     }
   }
 
+  function handleFromDateFilter(selectedFromDateRange) {
+    console.log("selectedFromDateRange", selectedFromDateRange);
+    setSelectedFromDateRange(selectedFromDateRange);
+    setIsFiltered(true);
+  }
+
+  function handleToDateFilter(selectedToDateRange) {
+    console.log("selectedToDateRange", selectedToDateRange);
+    setSelectedToDateRange(selectedToDateRange);
+    setIsFiltered(true);
+  }
+
   console.log("Data:", data);
 
   const ExpenseCategoryNames = data.map(
@@ -66,7 +80,16 @@ function ExpenseList({ setToast }) {
       selectedAmountRange === 0 ||
       (selectedAmountRange > 0 && expense.amount <= selectedAmountRange);
 
-    return categoryMatch && rangeMatch;
+    const dateAt = new Date(expense.createdAt);
+    dateAt.setHours(0, 0, 0, 0);
+    console.log("dateAt", dateAt);
+
+    const dateRange =
+      !selectedFromDateRange ||
+      !selectedToDateRange ||
+      (dateAt >= selectedFromDateRange && dateAt <= selectedToDateRange);
+
+    return categoryMatch && rangeMatch && dateRange;
   });
 
   console.log("Filtered Expenses:", filteredExpenses);
@@ -81,6 +104,10 @@ function ExpenseList({ setToast }) {
         selectedAmountRange={selectedAmountRange}
         isFiltered={isFiltered}
         onClearFilters={handleClearFilters}
+        onFromDateFilter={handleFromDateFilter}
+        onToDateFilter={handleToDateFilter}
+        selectedFromDateRange={selectedFromDateRange}
+        selectedToDateRange={selectedToDateRange}
       />
 
       <StyledSummaryBox>
