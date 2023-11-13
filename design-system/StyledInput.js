@@ -2,7 +2,8 @@ import styled from "styled-components";
 import DatePicker from "react-datepicker";
 
 export const StyledInput = styled.input`
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
+  margin-bottom: 0.8rem;
   display: block;
   width: 100%;
   padding: 0.5rem 0.75rem;
@@ -12,6 +13,8 @@ export const StyledInput = styled.input`
   border-radius: 0.375rem;
   outline: none;
   font-size: 1rem;
+
+  ${({ $isValid }) => ($isValid ? `outline: 0;` : `outline: 2px red solid;`)}
 `;
 
 export const FormDateInput = styled(DatePicker)`
