@@ -14,6 +14,7 @@ function DatePicker({
   onToDate,
   selectedFromDate,
   selectedToDate,
+  isFiltered,
 }) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -38,7 +39,7 @@ function DatePicker({
           <DatePickerLabel> From </DatePickerLabel>
           <CustomDatePicker
             placeholderText="Start Date"
-            selected={startDate}
+            selected={isFiltered ? startDate : ""}
             onChange={(date) => {
               setStartDate(date);
               onFromDate(date);
@@ -50,7 +51,7 @@ function DatePicker({
           <DatePickerLabel> To </DatePickerLabel>
           <CustomDatePicker
             placeholderText="End Date"
-            selected={endDate}
+            selected={isFiltered ? endDate : ""}
             onChange={(date) => {
               setEndDate(date);
               onToDate(date);

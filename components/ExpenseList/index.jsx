@@ -34,6 +34,8 @@ function ExpenseList({ setToast }) {
   function handleClearFilters() {
     setSelectedCategory("");
     setSelectedAmountRange(0);
+    setSelectedFromDateRange("");
+    setSelectedToDateRange("");
     setIsFiltered(false);
   }
 
@@ -68,13 +70,13 @@ function ExpenseList({ setToast }) {
   console.log("Data:", data);
 
   const ExpenseCategoryNames = data.map(
-    (expense) => expense.categoryId[0].name
+    (expense) => expense.categoryId[0]?.name
   );
   const categoryNames = Array.from(new Set(ExpenseCategoryNames));
 
   const filteredExpenses = data.filter((expense) => {
     const categoryMatch =
-      !selectedCategory || expense.categoryId[0].name === selectedCategory;
+      !selectedCategory || expense.categoryId[0]?.name === selectedCategory;
 
     const rangeMatch =
       selectedAmountRange === 0 ||
@@ -123,13 +125,13 @@ function ExpenseList({ setToast }) {
       </StyledSummaryBox>
       {filteredExpenses.map((expense) => (
         <StyledList key={expense.name}>
-          <StyledCard $color={expense.categoryId[0].color}>
+          <StyledCard $color={expense.categoryId[0]?.color}>
             <StyledLink href={`expense/${expense._id}`}>
               <ListItem
                 id={expense._id}
                 name={expense.name}
                 amount={expense.amount}
-                icon={expense.categoryId[0].icon}
+                icon={expense.categoryId[0]?.icon}
               />
             </StyledLink>
           </StyledCard>

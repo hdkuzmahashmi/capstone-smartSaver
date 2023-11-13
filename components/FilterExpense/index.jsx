@@ -48,17 +48,12 @@ function FilterExpense({
           onAmountRangeChange={onAmountRangeChange}
           selectedAmountRange={selectedAmountRange}
         />
-        {/* <DatePicker
-          onFromDate={onFromDateFilter}
-          onToDate={onToDateFilter}
-          selectedFromDate={selectedFromDateFilter}
-          selectedToDate={selectedToDateFilter}
-        /> */}
         <DatePicker
           onFromDate={(date) => onFromDateFilter(date)}
           onToDate={(date) => onToDateFilter(date)}
           selectedFromDate={selectedFromDateFilter}
           selectedToDate={selectedToDateFilter}
+          isFiltered={isFiltered}
         />
       </CollapsiblePanelContainer>
     </CollapseContainer>
