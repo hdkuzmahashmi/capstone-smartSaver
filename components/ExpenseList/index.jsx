@@ -115,13 +115,11 @@ function ExpenseList({ setToast }) {
       <StyledSummaryBox>
         <StyledText>Total</StyledText>
         <StyledText $isSummaryNumber>
-          -
-          {filteredExpenses.reduce(
-            (total, expense) => total + expense.amount,
-            0
-          )}{" "}
-          €
-        </StyledText>
+  -
+  {filteredExpenses.reduce((total, expense) => total + expense.amount, 0)
+    .toFixed(2)}{" "}
+  €
+</StyledText>
       </StyledSummaryBox>
       {filteredExpenses.map((expense) => (
         <StyledList key={expense.name}>
