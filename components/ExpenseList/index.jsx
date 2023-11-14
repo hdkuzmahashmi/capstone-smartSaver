@@ -11,7 +11,9 @@ import { useState } from "react";
 import FilterExpense from "../FilterExpense";
 
 function ExpenseList({ setToast }) {
-  const { data, error } = useSWR(`/api/expenses`);
+  const { data, error } = useSWR("/api/expenses");
+
+  // State variables for handling filters and UI state
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAmountRange, setSelectedAmountRange] = useState(0);
   const [selectedFromDateRange, setSelectedFromDateRange] = useState("");
@@ -31,6 +33,7 @@ function ExpenseList({ setToast }) {
     return;
   }
 
+  // Function to clear all filters
   function handleClearFilters() {
     setSelectedCategory("");
     setSelectedAmountRange(0);
@@ -39,41 +42,43 @@ function ExpenseList({ setToast }) {
     setIsFiltered(false);
   }
 
+  // Function to handle category filtering
   function handleCategoryFilter(category) {
     setSelectedCategory(category);
     setIsFiltered(true);
   }
 
+  // Function to handle amount range filtering
   function handleAmountRangeChange(amountRange) {
     setSelectedAmountRange(amountRange);
 
+    // Update filter status based on the selected amount range and category
     if (amountRange === 0 && selectedCategory === "") {
-      // If both the amount range and selected category are 0, reset filters
       setIsFiltered(false);
     } else {
       setIsFiltered(true);
     }
   }
 
+  // Function to handle start-date filtering
   function handleFromDateFilter(selectedFromDateRange) {
-    console.log("selectedFromDateRange", selectedFromDateRange);
     setSelectedFromDateRange(selectedFromDateRange);
     setIsFiltered(true);
   }
 
+  // Function to handle end-date filtering
   function handleToDateFilter(selectedToDateRange) {
-    console.log("selectedToDateRange", selectedToDateRange);
     setSelectedToDateRange(selectedToDateRange);
     setIsFiltered(true);
   }
 
-  console.log("Data:", data);
-
+  // Extract unique category names from the expense data
   const ExpenseCategoryNames = data.map(
     (expense) => expense.categoryId[0]?.name
   );
   const categoryNames = Array.from(new Set(ExpenseCategoryNames));
 
+  // Filter expenses based on selected filters
   const filteredExpenses = data.filter((expense) => {
     const categoryMatch =
       !selectedCategory || expense.categoryId[0]?.name === selectedCategory;
@@ -84,7 +89,6 @@ function ExpenseList({ setToast }) {
 
     const dateAt = new Date(expense.createdAt);
     dateAt.setHours(0, 0, 0, 0);
-    console.log("dateAt", dateAt);
 
     const dateRange =
       !selectedFromDateRange ||
@@ -93,8 +97,6 @@ function ExpenseList({ setToast }) {
 
     return categoryMatch && rangeMatch && dateRange;
   });
-
-  console.log("Filtered Expenses:", filteredExpenses);
 
   return (
     <StyledContainer $isFlexEnd>
