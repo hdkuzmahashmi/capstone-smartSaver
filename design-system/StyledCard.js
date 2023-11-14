@@ -11,6 +11,11 @@ export const StyledCard = styled.li`
   border-right: 10px solid ${({ $color }) => $color};
   position: relative;
 
+  &:hover {
+    border: 1px solid #eee;
+    border-right: 10px solid ${({ $color }) => $color};
+  }
+
   ${(props) =>
     props.$addMarginBottom ? `padding-bottom: 4rem;` : `padding-bottom: 0;`}
 
