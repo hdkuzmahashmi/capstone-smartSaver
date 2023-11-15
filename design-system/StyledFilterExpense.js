@@ -15,7 +15,6 @@ export const commonFilterStyle = `
 
  
   &:hover {
-    // border-color: #666; 
     box-shadow: 0 2px 10px rgba(120, 179, 230, 0.3),
       0 0 5px rgba(120, 179, 230, 0.2);
   }

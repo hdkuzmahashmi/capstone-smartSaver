@@ -16,8 +16,8 @@ function ExpenseList({ setToast }) {
   // State variables for handling filters and UI state
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAmountRange, setSelectedAmountRange] = useState(0);
-  const [selectedFromDateRange, setSelectedFromDateRange] = useState("");
-  const [selectedToDateRange, setSelectedToDateRange] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [isFiltered, setIsFiltered] = useState(false);
 
   if (!data) {
@@ -37,8 +37,8 @@ function ExpenseList({ setToast }) {
   function handleClearFilters() {
     setSelectedCategory("");
     setSelectedAmountRange(0);
-    setSelectedFromDateRange("");
-    setSelectedToDateRange("");
+    setStartDate("");
+    setEndDate("");
     setIsFiltered(false);
   }
 
@@ -61,22 +61,28 @@ function ExpenseList({ setToast }) {
   }
 
   // Function to handle start-date filtering
-  function handleFromDateFilter(selectedFromDateRange) {
-    setSelectedFromDateRange(selectedFromDateRange);
+  function handleFromDateFilter(startDate) {
+    setStartDate(startDate);
     setIsFiltered(true);
   }
 
   // Function to handle end-date filtering
-  function handleToDateFilter(selectedToDateRange) {
-    setSelectedToDateRange(selectedToDateRange);
+  function handleToDateFilter(endDate) {
+    setEndDate(endDate);
     setIsFiltered(true);
   }
 
+  const maxAmount = Math.ceil(
+    data.reduce((max, current) => {
+      return current.amount > max.amount ? current : max;
+    }, data[0]).amount
+  );
+
   // Extract unique category names from the expense data
-  const ExpenseCategoryNames = data.map(
+  const expenseCategoryNames = data.map(
     (expense) => expense.categoryId[0]?.name
   );
-  const categoryNames = Array.from(new Set(ExpenseCategoryNames));
+  const categoryNames = Array.from(new Set(expenseCategoryNames));
 
   // Filter expenses based on selected filters
   const filteredExpenses = data.filter((expense) => {
@@ -91,9 +97,7 @@ function ExpenseList({ setToast }) {
     dateAt.setHours(0, 0, 0, 0);
 
     const dateRange =
-      !selectedFromDateRange ||
-      !selectedToDateRange ||
-      (dateAt >= selectedFromDateRange && dateAt <= selectedToDateRange);
+      !startDate || !endDate || (dateAt >= startDate && dateAt <= endDate);
 
     return categoryMatch && rangeMatch && dateRange;
   });
@@ -110,8 +114,11 @@ function ExpenseList({ setToast }) {
         onClearFilters={handleClearFilters}
         onFromDateFilter={handleFromDateFilter}
         onToDateFilter={handleToDateFilter}
-        selectedFromDateRange={selectedFromDateRange}
-        selectedToDateRange={selectedToDateRange}
+        maxAmount={maxAmount}
+        startDate={startDate}
+        endDate={endDate}
+        setStartDate={setStartDate}
+        setEndDate={setEndDate}
       />
 
       <StyledSummaryBox>
@@ -124,9 +131,9 @@ function ExpenseList({ setToast }) {
           €
         </StyledText>
       </StyledSummaryBox>
-      {filteredExpenses.map((expense) => (
-        <StyledList key={expense.name}>
-          <StyledCard $color={expense.categoryId[0]?.color}>
+      <StyledList>
+        {filteredExpenses.map((expense) => (
+          <StyledCard $color={expense.categoryId[0]?.color} key={expense.name}>
             <StyledLink href={`expense/${expense._id}`}>
               <ListItem
                 id={expense._id}
@@ -137,8 +144,8 @@ function ExpenseList({ setToast }) {
               />
             </StyledLink>
           </StyledCard>
-        </StyledList>
-      ))}
+        ))}
+      </StyledList>
     </StyledContainer>
   );
 }

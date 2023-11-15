@@ -5,26 +5,19 @@ import {
   DatePickerWrapper,
 } from "@/design-system/StyledDatePicker";
 import { CollapsiblePanelContainer } from "@/design-system/StyledFilterExpense";
-
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 
 function DatePicker({
+  isFiltered,
+  startDate,
+  endDate,
+  setStartDate,
+  setEndDate,
   onFromDate,
   onToDate,
-  selectedFromDate,
-  selectedToDate,
-  isFiltered,
 }) {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
   const [collapsedDate, setCollapsedDate] = useState(true);
-
-  useEffect(() => {
-    setStartDate(selectedFromDate);
-    setEndDate(selectedToDate);
-  }, [selectedFromDate, selectedToDate]);
-
   return (
     <>
       <DatePickerButton
@@ -62,7 +55,7 @@ function DatePicker({
             minDate={startDate}
           />
         </DatePickerWrapper>
-      </CollapsiblePanelContainer>{" "}
+      </CollapsiblePanelContainer>
     </>
   );
 }

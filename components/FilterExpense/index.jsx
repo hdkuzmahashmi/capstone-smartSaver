@@ -19,8 +19,11 @@ function FilterExpense({
   onClearFilters,
   onFromDateFilter,
   onToDateFilter,
-  selectedFromDateFilter,
-  selectedToDateFilter,
+  maxAmount = { maxAmount },
+  startDate,
+  endDate,
+  setStartDate,
+  setEndDate,
 }) {
   const [collapsed, setCollapsed] = useState(true);
 
@@ -47,13 +50,16 @@ function FilterExpense({
         <AmountRange
           onAmountRangeChange={onAmountRangeChange}
           selectedAmountRange={selectedAmountRange}
+          maxAmount={maxAmount}
         />
         <DatePicker
           onFromDate={(date) => onFromDateFilter(date)}
           onToDate={(date) => onToDateFilter(date)}
-          selectedFromDate={selectedFromDateFilter}
-          selectedToDate={selectedToDateFilter}
           isFiltered={isFiltered}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
+          startDate={startDate}
+          endDate={endDate}
         />
       </CollapsiblePanelContainer>
     </CollapseContainer>
