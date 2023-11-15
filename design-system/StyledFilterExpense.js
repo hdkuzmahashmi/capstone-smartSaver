@@ -50,8 +50,8 @@ export const CollapsiblePanelContainer = styled.div`
   margin: 10px;
   transition: max-height 0.3s ease;
   overflow: hidden;
-  max-height: ${(props) => (props.collapsed ? "0" : "none")};
-  padding: ${(props) => (props.collapsed ? "0" : "10px")};
+  max-height: ${(props) => (props.$collapsed ? "0" : "none")};
+  padding: ${(props) => (props.$collapsed ? "0" : "10px")};
 `;
 
 export const FilterButton = styled.button`

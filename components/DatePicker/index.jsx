@@ -27,7 +27,7 @@ function DatePicker({
       >
         Select a Date Range
       </DatePickerButton>
-      <CollapsiblePanelContainer collapsed={collapsedDate}>
+      <CollapsiblePanelContainer $collapsed={collapsedDate}>
         <DatePickerWrapper>
           <DatePickerLabel> From </DatePickerLabel>
           <CustomDatePicker

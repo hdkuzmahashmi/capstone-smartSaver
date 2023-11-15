@@ -41,7 +41,7 @@ function FilterExpense({
 
         <Icon icon="mi:filter" color="white" width="24" height="24" />
       </FilterButton>
-      <CollapsiblePanelContainer collapsed={collapsed}>
+      <CollapsiblePanelContainer $collapsed={collapsed}>
         <FilterCategory
           selectedCategory={selectedCategory}
           categoryNames={categoryNames}

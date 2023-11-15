@@ -19,7 +19,7 @@ function AmountRange({ onAmountRangeChange, selectedAmountRange, maxAmount }) {
       >
         Select an Amount Range
       </RangeButton>
-      <CollapsiblePanelContainer collapsed={collapsedRange}>
+      <CollapsiblePanelContainer $collapsed={collapsedRange}>
         <RangeSlider>
           <input
             type="range"
