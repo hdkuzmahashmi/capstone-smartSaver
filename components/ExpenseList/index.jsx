@@ -9,6 +9,7 @@ import { StyledText } from "@/design-system/StyledText";
 import { StyledLink } from "@/design-system/StyledLink";
 import { useState } from "react";
 import FilterExpense from "../FilterExpense";
+import Expenses from "../Expenses";
 
 function ExpenseList({ setToast }) {
   const { data, error } = useSWR("/api/expenses");
@@ -27,8 +28,8 @@ function ExpenseList({ setToast }) {
   if (error) {
     setToast(
       true,
-      "Something went wrong. Please contact to application administrator.",
-      "error"
+      "Something went wrong. Please contact the application administrator.",
+      "Error"
     );
     return;
   }
@@ -131,21 +132,7 @@ function ExpenseList({ setToast }) {
           €
         </StyledText>
       </StyledSummaryBox>
-      <StyledList>
-        {filteredExpenses.map((expense) => (
-          <StyledCard $color={expense.categoryId[0]?.color} key={expense.name}>
-            <StyledLink href={`expense/${expense._id}`}>
-              <ListItem
-                id={expense._id}
-                name={expense.name}
-                amount={expense.amount}
-                icon={expense.categoryId[0]?.icon}
-                date={expense.createdAt}
-              />
-            </StyledLink>
-          </StyledCard>
-        ))}
-      </StyledList>
+      <Expenses expenses={filteredExpenses} />
     </StyledContainer>
   );
 }

@@ -1,9 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Link from "next/link";
 
 export const StyledLink = styled(Link)`
   all: unset;
-  width: 100%;
   cursor: pointer;
   color: inherit;
   text-decoration: none;

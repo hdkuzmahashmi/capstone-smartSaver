@@ -5,7 +5,7 @@ export const GraphContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 3rem;
-  margin-top: 3rem;
+  margin-top: 1rem;
   gap: 5vh;
   width: 100%;
   box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),

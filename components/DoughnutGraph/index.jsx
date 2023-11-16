@@ -54,9 +54,11 @@ function DoughnutGraph() {
   const categoryColor = categoryTotalsArray.map((category) => category.color);
 
   // Calculate the total amount of all expenses
-  const totalAmountOfExpenses = categoryValues.reduce((acc, cur) => {
-    return acc + cur;
-  }, 0);
+  const totalAmountOfExpenses = categoryValues
+    .reduce((acc, cur) => {
+      return acc + cur;
+    }, 0)
+    .toFixed(2);
 
   // Create chart data and configuration
   const chartData = {
