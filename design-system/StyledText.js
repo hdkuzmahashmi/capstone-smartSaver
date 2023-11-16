@@ -12,6 +12,6 @@ export const StyledText = styled.p`
     css`
       font-weight: 500;
       letter-spacing: normal;
-      font-size: 1rem;
+      font-size: 1.1rem;
     `};
 `;

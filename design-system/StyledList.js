@@ -6,4 +6,6 @@ export const StyledList = styled.ul`
   margin: 0;
   width: 100%;
   display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 `;

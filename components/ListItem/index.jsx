@@ -1,14 +1,21 @@
 import React from "react";
 import { StyledContainer } from "@/design-system/StyledContainer";
 import { StyledExpenseTitle } from "@/design-system/StyledExpenseTitle";
-import { StyledLink } from "@/design-system/StyledLink";
 import { StyledText } from "@/design-system/StyledText";
 import { Icon } from "@iconify/react";
-function ListItem({ name, amount, id, icon }) {
+import { StyledDate, StyledTextContainer } from "@/design-system/StyledDate";
+import { formatDate } from "@/assets/utils/DateUtils";
+
+function ListItem({ name, amount, icon, date }) {
+  const formattedDate = formatDate(date);
+
   return (
     <StyledContainer $isSpaceBetween>
-      <Icon icon={icon} width={20} />
-      <StyledExpenseTitle>{name}</StyledExpenseTitle>
+      <Icon icon={icon} width={25} />
+      <StyledTextContainer>
+        <StyledExpenseTitle>{name}</StyledExpenseTitle>
+        {formattedDate && <StyledDate>{formattedDate}</StyledDate>}
+      </StyledTextContainer>
       <StyledText $isBold>{amount} €</StyledText>
     </StyledContainer>
   );
