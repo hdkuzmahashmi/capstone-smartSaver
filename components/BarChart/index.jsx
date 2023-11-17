@@ -83,10 +83,9 @@ function BarChart() {
   );
   const { monthNames, totalExpenses } = getMonthlyExpenseSumsByMonth(data);
   console.log("Month Names:", monthNames);
-  console.log("Total Expenses:", totalExpenses);
+  console.log("Total Expenses for each month:", totalExpenses);
 
   /////////////
-
 
   const options = {
     plugins: {
@@ -95,7 +94,19 @@ function BarChart() {
       },
       title: {
         display: true,
-        text: "Monthly Report",
+        text: "Monthly Expense Summary",
+      },
+      tooltip: {
+        callbacks: {
+          title: function (tooltipItems) {
+            // Display the month name for the tooltip title
+            return tooltipItems[0].label;
+          },
+          label: function (context) {
+            // Display the total expense for the corresponding month with the euro sign
+            return `Total Expense: ${context.parsed.y} €`;
+          },
+        },
       },
     },
     maintainAspectRatio: false,
@@ -106,8 +117,8 @@ function BarChart() {
     labels: monthNames,
     datasets: [
       {
-        label: "Faght Test",
-        data: [78, 80, 66, 56, 161, 173, 166, 175, 150, 93, 131, 111],
+        label: "Monthly Summary",
+        data: [78, 180, 66, 56, 161, 173, 166, 175, 150, 93, 131, 111],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -144,7 +155,7 @@ function BarChart() {
   return (
     <>
       <GraphContainer>
-        <Bar style={{ height: '300px' }} options={options} data={chartData} />
+        <Bar style={{ height: "300px" }} options={options} data={chartData} />
       </GraphContainer>
     </>
   );
