@@ -60,7 +60,6 @@ function DoughnutGraph() {
 
   // Create chart data and configuration
   const chartData = {
-    labels: categoryNames,
     datasets: [
       {
         data: categoryValues,
@@ -76,6 +75,11 @@ function DoughnutGraph() {
     data: chartData,
     options: {
       plugins: {
+        title: {
+          display: true,
+          text: "Category Expense Summary",
+        },
+
         tooltip: {
           callbacks: {
             title: function (context) {
