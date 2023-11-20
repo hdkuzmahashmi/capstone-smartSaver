@@ -13,6 +13,7 @@ import {
 import { GraphContainer } from "@/design-system/StyledDoughnutGraph";
 import useSWR from "swr";
 import Loading from "../Loading";
+import { calculateMonthlyExpenses } from "@/assets/utils/monthlyExpenseCalculator";
 
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -24,52 +25,18 @@ function BarChart() {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return (
+      <div>
+        Sorry, we couldn't load your expense data. Please check your internet
+        connection and try again
+      </div>
+    );
   }
 
-// Process the raw expense data to calculate monthly sums
-  function getMonthlyExpenseSumsByMonth(data) {
-    // Define an array of month names
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
+  // Calculate monthly expenses using utility function
+  const { monthNames, totalExpenses } = calculateMonthlyExpenses(data);
 
-    // Initialize an array to store objects with month names and corresponding sums
-    const monthlySumsByMonth = Array.from({ length: 12 }, (_, monthIndex) => {
-      return { month: monthNames[monthIndex], totalExpense: 0 };
-    });
-
-    // Iterate through the data and accumulate the sums for each month
-    data.forEach((expense) => {
-      const createdAtDate = new Date(expense.createdAt);
-
-      const monthIndex = createdAtDate.getMonth();
-
-      monthlySumsByMonth[monthIndex].totalExpense += expense.amount;
-    });
-
-    // Separate the array into two arrays for keys (month names) and values (sums)
-    const monthNamesArray = monthlySumsByMonth.map((item) => item.month);
-    const totalExpensesArray = monthlySumsByMonth.map((item) => item.totalExpense);
-
-    // Return an object with the month names and corresponding total expenses
-    return { monthNames: monthNamesArray, totalExpenses: totalExpensesArray };
-  }
-
-  const { monthNames, totalExpenses } = getMonthlyExpenseSumsByMonth(data);
-
-// Configuration options for the bar chart
+  // Configuration options for the bar chart
   const options = {
     plugins: {
       legend: {
@@ -136,11 +103,9 @@ function BarChart() {
   };
 
   return (
-    <>
-      <GraphContainer>
-        <Bar style={{ height: "400px" }} options={options} data={chartData} />
-      </GraphContainer>
-    </>
+    <GraphContainer>
+      <Bar style={{ height: "400px" }} options={options} data={chartData} />
+    </GraphContainer>
   );
 }
 
