@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import useSWR from "swr";
 import { StyledButton } from "@/design-system/StyledButton";
 import { StyledCard } from "../../design-system/StyledCard";
 import Loading from "../Loading";
 import { StyledTitle } from "@/design-system/StyledTitle";
-import { StyledInput } from "@/design-system/StyledInput";
+import {
+  FormDateInput,
+  FormDateLabel,
+  StyledInput,
+} from "@/design-system/StyledInput";
 import { StyledMargin } from "@/design-system/StyledMargin";
 import { StyledContainer } from "@/design-system/StyledContainer";
+import "react-datepicker/dist/react-datepicker.css";
 
 function Form({ onSubmit, expense = [], isEditMode, setToast }) {
   const { data, error } = useSWR(`/api/categories`);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   if (!data) {
     return <Loading />;
@@ -70,6 +76,15 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
             min={0}
             required
             defaultValue={isEditMode ? expense.amount : ""}
+          />
+          <FormDateLabel> Select a Date: </FormDateLabel>
+          <FormDateInput
+            id="createdAt"
+            name="createdAt"
+            selected={selectedDate}
+            onChange={(date) => setSelectedDate(date)}
+            placeholder="Amount"
+            required
           />
         </StyledMargin>
 
