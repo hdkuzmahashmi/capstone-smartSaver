@@ -5,7 +5,6 @@ import DoughnutGraph from "@/components/DoughnutGraph";
 import { StyledContainer } from "@/design-system/StyledContainer";
 import { StyledIcon } from "@/design-system/StyledIcon";
 import { StyledLink } from "@/design-system/StyledLink";
-import Expenses from "@/components/Expenses";
 import DashboardExpenses from "@/components/DashboardExpenses";
 
 const Dashboard = ({ setToast }) => {

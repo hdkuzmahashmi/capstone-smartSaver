@@ -12,10 +12,11 @@ function DashboardExpenses({ expenses }) {
       <StyledContainer $isDashboard $isCenter>
         {expenses.map((expense) => (
           <StyledLink key={expense._id} href={`/expense/${expense._id}`}>
-            <StyledExpenseSquare color={expense.categoryId[0]?.color}>
+            <StyledExpenseSquare backgroundColor={expense.categoryId[0]?.color}>
               <StyledBackgroundIcon
                 icon={expense.categoryId[0]?.icon}
-                width="72"
+                width="30"
+                backgroundColor={expense.categoryId[0]?.color}
               />
               <h3>{expense.amount}€</h3>
               <p>{expense.name.split(" ")[0]}</p>
