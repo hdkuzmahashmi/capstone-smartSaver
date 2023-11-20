@@ -27,18 +27,9 @@ function BarChart() {
     return <div>Error: {error.message}</div>;
   }
 
-  console.log("data:", data);
-  const createdAt = data[0].createdAt;
-
-  console.log("date:", createdAt);
-  const createdAtValues = data.map((item) => item.createdAt);
-  console.log("data array:", createdAtValues);
-
-  ////////////////////
-
-  // Assuming data is your array of expense objects
-
+// Process the raw expense data to calculate monthly sums
   function getMonthlyExpenseSumsByMonth(data) {
+    // Define an array of month names
     const monthNames = [
       "January",
       "February",
@@ -62,31 +53,23 @@ function BarChart() {
     // Iterate through the data and accumulate the sums for each month
     data.forEach((expense) => {
       const createdAtDate = new Date(expense.createdAt);
+
       const monthIndex = createdAtDate.getMonth();
+
       monthlySumsByMonth[monthIndex].totalExpense += expense.amount;
     });
 
     // Separate the array into two arrays for keys (month names) and values (sums)
     const monthNamesArray = monthlySumsByMonth.map((item) => item.month);
-    const totalExpensesArray = monthlySumsByMonth.map(
-      (item) => item.totalExpense
-    );
+    const totalExpensesArray = monthlySumsByMonth.map((item) => item.totalExpense);
 
+    // Return an object with the month names and corresponding total expenses
     return { monthNames: monthNamesArray, totalExpenses: totalExpensesArray };
   }
 
-  // Example usage
-
-  console.log(
-    "totalexpenses in every months:",
-    getMonthlyExpenseSumsByMonth(data)
-  );
   const { monthNames, totalExpenses } = getMonthlyExpenseSumsByMonth(data);
-  console.log("Month Names:", monthNames);
-  console.log("Total Expenses for each month:", totalExpenses);
 
-  /////////////
-
+// Configuration options for the bar chart
   const options = {
     plugins: {
       legend: {
@@ -118,7 +101,7 @@ function BarChart() {
     datasets: [
       {
         label: "Monthly Summary",
-        data: [78, 180, 66, 56, 161, 173, 166, 175, 150, 93, 131, 111],
+        data: totalExpenses,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -155,7 +138,7 @@ function BarChart() {
   return (
     <>
       <GraphContainer>
-        <Bar style={{ height: "300px" }} options={options} data={chartData} />
+        <Bar style={{ height: "400px" }} options={options} data={chartData} />
       </GraphContainer>
     </>
   );

@@ -5,10 +5,6 @@ function GraphPage() {
   return (
     <>
       <div>
-        <DoughnutGraph />
-      </div>
-  
-      <div>
         <BarChart />
       </div>
     </>
