@@ -26,4 +26,11 @@ export const StyledContainer = styled.div`
       align-items: center;
       justify-content: center;
     `};
+
+  ${({ $isDashboard }) =>
+    $isDashboard &&
+    css`
+      padding-left: 10px;
+      padding-right: 10px;
+    `};
 `;

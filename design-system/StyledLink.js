@@ -3,7 +3,6 @@ import Link from "next/link";
 
 export const StyledLink = styled(Link)`
   all: unset;
-  width: 100%;
   cursor: pointer;
   color: inherit;
   text-decoration: none;
