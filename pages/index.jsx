@@ -26,7 +26,7 @@ const Dashboard = ({ setToast }) => {
   }
 
   const lastExpenses = data
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .toSorted((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .slice(0, 3);
 
   return (

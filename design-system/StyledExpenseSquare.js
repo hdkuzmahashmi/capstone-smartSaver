@@ -28,20 +28,20 @@ export const StyledExpenseSquare = styled.li`
 
   h3 {
     margin: 0;
-    margin-top: -12px;
+    margin-top: -7px;
     padding: 0;
     z-index: 5;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 5vw, 1.4rem);
   }
 
   p {
-    font-size: 1rem;
+    font-size: 0.9rem;
     text-align: center;
     margin: 0;
     padding: 0;
     word-break: break-all;
     z-index: 5;
-    margin-top: -8px;
+    margin-top: -6px;
   }
 `;
 
