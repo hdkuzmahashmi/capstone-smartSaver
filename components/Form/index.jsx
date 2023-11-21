@@ -1,15 +1,10 @@
-import React, { useState } from "react";
 import useSWR from "swr";
 import { useState } from "react";
 import { StyledButton } from "@/design-system/StyledButton";
-import { StyledCard } from "../../design-system/StyledCard";
+import { StyledCard } from "@/design-system/StyledCard";
 import Loading from "../Loading";
 import { StyledTitle } from "@/design-system/StyledTitle";
-import {
-  FormDateInput,
-  FormDateLabel,
-  StyledInput,
-} from "@/design-system/StyledInput";
+import { FormDateInput, StyledInput } from "@/design-system/StyledInput";
 import { StyledLabel } from "@/design-system/StyledLabel";
 import { StyledMargin } from "@/design-system/StyledMargin";
 import { StyledContainer } from "@/design-system/StyledContainer";
@@ -66,41 +61,39 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
       <StyledTitle>{isEditMode ? "Edit Expense" : "Add Expense"}</StyledTitle>
       <form onSubmit={onSubmit}>
         <StyledMargin>
-          <StyledLabel htmlFor="name">Expense Title</StyledLabel>
+          <StyledLabel htmlFor="name">Expense Title*</StyledLabel>
           <StyledInput
-            $isValid={isWrong.name ? false : true}
+            $isValid={isWrong.name}
             id="name"
             name="name"
             type="text"
             placeholder="Supermarket"
             maxLength={25}
-            minLength={3}
+            minLength={1}
             required
             defaultValue={isEditMode ? expense.name : ""}
             onBlur={(event) => {
-              formValidation(event)
-                ? setIsWrong({ name: false })
-                : setIsWrong({ name: true });
+              const isValid = formValidation(event);
+              setIsWrong((elements) => ({ ...elements, name: !isValid }));
             }}
           />
           {isWrong.name && (
             <StyledErrorMessage>
-              Title should have at least 3 characters
+              Please enter an Expense Title
             </StyledErrorMessage>
           )}
-          <StyledLabel htmlFor="categoryId">Select Category</StyledLabel>
+          <StyledLabel htmlFor="categoryId">Select Category*</StyledLabel>
           <StyledInput
-            $isValid={isWrong.categoryId ? false : true}
+            $isValid={isWrong.categoryId}
             as="select"
             id="categoryId"
             name="categoryId"
             required
             selected
-            defaultValue={isEditMode ? expense.categoryId[0]._id : ""}
+            defaultValue={isEditMode ? expense.categoryId[0]?._id : ""}
             onBlur={(event) => {
-              formValidation(event)
-                ? setIsWrong({ categoryId: false })
-                : setIsWrong({ categoryId: true });
+              const isValid = formValidation(event);
+              setIsWrong((elements) => ({ ...elements, categoryId: !isValid }));
             }}
           >
             <option disabled value="">
@@ -115,9 +108,9 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
           {isWrong.categoryId && (
             <StyledErrorMessage>Please choose a category</StyledErrorMessage>
           )}
-          <StyledLabel htmlFor="description">Description</StyledLabel>
+          <StyledLabel htmlFor="description">Description*</StyledLabel>
           <StyledInput
-            $isValid={isWrong.description ? false : true}
+            $isValid={isWrong.description}
             as="textarea"
             id="description"
             name="description"
@@ -128,33 +121,40 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
             required
             defaultValue={isEditMode ? expense.description : ""}
             onBlur={(event) => {
-              formValidation(event)
-                ? setIsWrong({ description: false })
-                : setIsWrong({ description: true });
+              const isValid = formValidation(event);
+              setIsWrong((elements) => ({
+                ...elements,
+                description: !isValid,
+              }));
             }}
           />
           {isWrong.description && (
             <StyledErrorMessage>
-              Description should have at least 4 characters
+              Please describe your Expense
             </StyledErrorMessage>
           )}
-          <StyledLabel htmlFor="amount">Amount</StyledLabel>
+          <StyledLabel htmlFor="amount">Amount*</StyledLabel>
           <StyledInput
-            $isValid={isWrong.amount ? false : true}
+            $isValid={isWrong.amount}
             type="text"
             id="amount"
             name="amount"
-            placeholder="56.34"
+            placeholder="0.01"
             required
             step="0.01"
+            min={0.01}
             defaultValue={isEditMode ? expense.amount : ""}
             onBlur={(event) => {
-              validateNumberInput(event.currentTarget.value)
-                ? setIsWrong({ amount: false })
-                : setIsWrong({ amount: true });
+              const isValid = validateNumberInput(event.currentTarget.value);
+              setIsWrong((elements) => ({ ...elements, amount: !isValid }));
             }}
           />
-          <FormDateLabel> Select a Date: </FormDateLabel>
+          {isWrong.amount && (
+            <StyledErrorMessage>
+              Please enter a valid Amount (0.01)
+            </StyledErrorMessage>
+          )}
+          <StyledLabel> Select a Date* </StyledLabel>
           <FormDateInput
             id="createdAt"
             name="createdAt"
@@ -163,11 +163,7 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
             placeholder="Amount"
             required
           />
-          {isWrong.amount && (
-            <StyledErrorMessage>Please enter an Amount</StyledErrorMessage>
-          )}
         </StyledMargin>
-
         <StyledContainer $isFlexRow>
           <StyledButton type="submit" $isSubmitButton>
             {isEditMode ? "Update" : "Add"}

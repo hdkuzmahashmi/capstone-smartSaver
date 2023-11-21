@@ -14,6 +14,7 @@ export const StyledButton = styled.button`
   outline: ${(props) => (props.$isDeleteButton ? "#ca0b00" : "rgba(0,0,0,0.2)")}
     1px solid;
   background-color: ${(props) => (props.$isDeleteButton ? "#f32013" : "")};
+  width: ${(props) => (props.$isSubmitButton ? "50%" : "")};
 
   &:hover {
     transform: translate(0, 2px);
