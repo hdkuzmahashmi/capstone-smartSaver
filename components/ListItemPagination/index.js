@@ -60,7 +60,9 @@ const ListItemPagination = ({
   return (
     <PaginationContainer>
       <div>
-        <PaginationLabel htmlFor="limit-select">Page:</PaginationLabel>
+        <PaginationLabel htmlFor="limit-select">
+          Results per page:
+        </PaginationLabel>
         <PaginationSelect
           name="limit"
           id="limit-select"

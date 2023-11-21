@@ -7,7 +7,7 @@ import { StyledSummaryBox } from "@/design-system/StyledSummaryBox";
 import ListItem from "../ListItem";
 import { StyledText } from "@/design-system/StyledText";
 import { StyledLink } from "@/design-system/StyledLink";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FilterExpense from "../FilterExpense";
 import ListItemPagination from "../ListItemPagination";
 
@@ -20,6 +20,11 @@ function ExpenseList({ setToast }) {
   const [isFiltered, setIsFiltered] = useState(false);
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(5);
+  const [allExp, setAllExp] = useState([]);
+
+  useEffect(() => {
+    getAllExpense();
+  }, []);
 
   const { data, error, isLoading } = useSWR(
     `api/expenses?page=${page}&limit=${limit}`
@@ -32,7 +37,7 @@ function ExpenseList({ setToast }) {
   if (error) {
     setToast(
       true,
-      "Something went wrong, API does not response data. Please contact to application administrator.",
+      "An error occurred: the API is not responding. Please contact the application administrator for assistance.",
       "error"
     );
     return;
@@ -42,6 +47,12 @@ function ExpenseList({ setToast }) {
   }
 
   const { expenses, hasNextPage } = data;
+
+  async function getAllExpense() {
+    const response = await fetch("/api/expenses");
+    const data = await response.json();
+    setAllExp(data);
+  }
 
   // Function to clear all filters
   function handleClearFilters() {
@@ -83,9 +94,9 @@ function ExpenseList({ setToast }) {
   }
 
   const maxAmount = Math.ceil(
-    expenses.reduce((max, current) => {
+    allExp.reduce((max, current) => {
       return current.amount > max.amount ? current : max;
-    }, expenses[0])?.amount
+    }, allExp[0])?.amount
   );
 
   // Extract unique category names from the expense data
@@ -134,7 +145,7 @@ function ExpenseList({ setToast }) {
         <StyledText>Total</StyledText>
         <StyledText $isSummaryNumber>
           -
-          {filteredExpenses
+          {allExp
             .reduce((total, expense) => total + expense.amount, 0)
             .toFixed(2)}{" "}
           €
