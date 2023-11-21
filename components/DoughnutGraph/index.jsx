@@ -86,7 +86,7 @@ function DoughnutGraph() {
     <GraphContainer>
       <ExpenseOverviewContainer>
         <Doughnut {...config}></Doughnut>
-        <Link href="/">
+        <Link href="/details">
           <TotalContainer>{totalAmountOfExpenses} €</TotalContainer>
         </Link>
       </ExpenseOverviewContainer>
