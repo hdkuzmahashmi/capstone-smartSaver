@@ -6,6 +6,7 @@ import { StyledContainer } from "@/design-system/StyledContainer";
 import { StyledIcon } from "@/design-system/StyledIcon";
 import { StyledLink } from "@/design-system/StyledLink";
 import DashboardExpenses from "@/components/DashboardExpenses";
+import BarChart from "@/components/BarChart";
 
 const Dashboard = ({ setToast }) => {
   const { data, error, isLoading } = useSWR("/api/expenses");
@@ -39,6 +40,7 @@ const Dashboard = ({ setToast }) => {
         </StyledLink>
       </StyledContainer>
       <DashboardExpenses expenses={lastExpenses} />
+      <BarChart/>
     </PageContainer>
   );
 };

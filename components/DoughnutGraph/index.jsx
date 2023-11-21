@@ -14,6 +14,7 @@ import {
   ItemName,
   Amount,
 } from "@/design-system/StyledDoughnutGraph";
+import { calculateCategoryTotals } from "@/assets/utils/categoryTotalsCalculator";
 
 Chart.register(ArcElement, [Tooltip]);
 
@@ -28,25 +29,8 @@ function DoughnutGraph() {
     return <div>Error: {error.message}</div>;
   }
 
-  // Extract and calculate category totals
-  const categoryTotalsArray = Object.values(
-    data.reduce((acc, expense) => {
-      const { name, color, icon } = expense.categoryId[0];
-      const amount = expense.amount;
-
-      if (!acc[name]) {
-        acc[name] = {
-          name,
-          total: 0,
-          color,
-          icon,
-        };
-      }
-
-      acc[name].total += amount;
-      return acc;
-    }, {})
-  );
+  // Use utility function to extract and calculate totals for each expense category
+  const categoryTotalsArray = calculateCategoryTotals(data);
 
   // Extract category names, total expenses, and colors for the chart
   const categoryNames = categoryTotalsArray.map((category) => category.name);
@@ -102,7 +86,7 @@ function DoughnutGraph() {
     <GraphContainer>
       <ExpenseOverviewContainer>
         <Doughnut {...config}></Doughnut>
-        <Link href="/">
+        <Link href="/details">
           <TotalContainer>{totalAmountOfExpenses} €</TotalContainer>
         </Link>
       </ExpenseOverviewContainer>
