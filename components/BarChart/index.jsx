@@ -27,12 +27,12 @@ function BarChart() {
   if (error) {
     return (
       <div>
-        Sorry, we couldn't load your expense data. Please check your internet
-        connection and try again
+        {
+          "Sorry, we couldn't load your expense data. Please check your internet connection and try again"
+        }
       </div>
     );
   }
-
   // Calculate monthly expenses using utility function
   const { monthNames, totalExpenses } = calculateMonthlyExpenses(data);
 
