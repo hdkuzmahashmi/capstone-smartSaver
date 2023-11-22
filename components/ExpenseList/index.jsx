@@ -7,31 +7,52 @@ import { StyledSummaryBox } from "@/design-system/StyledSummaryBox";
 import ListItem from "../ListItem";
 import { StyledText } from "@/design-system/StyledText";
 import { StyledLink } from "@/design-system/StyledLink";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FilterExpense from "../FilterExpense";
+import ListItemPagination from "../ListItemPagination";
 import Expenses from "../Expenses";
 
 function ExpenseList({ setToast }) {
-  const { data, error } = useSWR("/api/expenses");
-
   // State variables for handling filters and UI state
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAmountRange, setSelectedAmountRange] = useState(0);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [isFiltered, setIsFiltered] = useState(false);
+  const [page, setPage] = useState(0);
+  const [limit, setLimit] = useState(5);
+  const [allExp, setAllExp] = useState([]);
 
-  if (!data) {
+  useEffect(() => {
+    getAllExpense();
+  }, []);
+
+  const { data, error, isLoading } = useSWR(
+    `api/expenses?page=${page}&limit=${limit}`
+  );
+
+  if (isLoading) {
     return <Loading />;
   }
 
   if (error) {
     setToast(
       true,
-      "Something went wrong. Please contact the application administrator.",
-      "Error"
+      "An error occurred: the API is not responding. Please contact the application administrator for assistance.",
+      "error"
     );
     return;
+  }
+  if (!data) {
+    return;
+  }
+
+  const { expenses, hasNextPage } = data;
+
+  async function getAllExpense() {
+    const response = await fetch("/api/expenses");
+    const data = await response.json();
+    setAllExp(data);
   }
 
   // Function to clear all filters
@@ -74,19 +95,19 @@ function ExpenseList({ setToast }) {
   }
 
   const maxAmount = Math.ceil(
-    data.reduce((max, current) => {
+    allExp.reduce((max, current) => {
       return current.amount > max.amount ? current : max;
-    }, data[0]).amount
+    }, allExp[0])?.amount
   );
 
   // Extract unique category names from the expense data
-  const expenseCategoryNames = data.map(
+  const expenseCategoryNames = expenses.map(
     (expense) => expense.categoryId[0]?.name
   );
   const categoryNames = Array.from(new Set(expenseCategoryNames));
 
   // Filter expenses based on selected filters
-  const filteredExpenses = data.filter((expense) => {
+  const filteredExpenses = expenses.filter((expense) => {
     const categoryMatch =
       !selectedCategory || expense.categoryId[0]?.name === selectedCategory;
 
@@ -121,18 +142,25 @@ function ExpenseList({ setToast }) {
         setStartDate={setStartDate}
         setEndDate={setEndDate}
       />
-
       <StyledSummaryBox>
         <StyledText>Total</StyledText>
         <StyledText $isSummaryNumber>
           -
-          {filteredExpenses
+          {allExp
             .reduce((total, expense) => total + expense.amount, 0)
             .toFixed(2)}{" "}
           €
         </StyledText>
       </StyledSummaryBox>
       <Expenses expenses={filteredExpenses} />
+
+      <ListItemPagination
+        limit={limit}
+        setLimit={setLimit}
+        page={page}
+        setPage={setPage}
+        hasNextPage={hasNextPage}
+      />
     </StyledContainer>
   );
 }
