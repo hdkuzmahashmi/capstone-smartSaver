@@ -33,6 +33,7 @@ function DatePicker({
           <CustomDatePicker
             placeholderText="Start Date"
             selected={isFiltered ? startDate : ""}
+            dateFormat="dd.MM.yyyy"
             onChange={(date) => {
               setStartDate(date);
               onFromDate(date);
@@ -45,6 +46,7 @@ function DatePicker({
           <CustomDatePicker
             placeholderText="End Date"
             selected={isFiltered ? endDate : ""}
+            dateFormat="dd.MM.yyyy"
             onChange={(date) => {
               setEndDate(date);
               onToDate(date);

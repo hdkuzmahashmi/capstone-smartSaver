@@ -5,7 +5,7 @@ export const GraphContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 3rem;
-  margin-top: 3rem;
+  margin-top: 1rem;
   gap: 5vh;
   width: 100%;
   box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
@@ -28,11 +28,11 @@ export const ExpenseOverviewContainer = styled.div`
 
 export const TotalContainer = styled.div`
   position: absolute;
-  top: 50%;
+  top: 58%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   letter-spacing: 1px;
   color: #202020;
@@ -40,7 +40,7 @@ export const TotalContainer = styled.div`
   transition: font-size 0.3s ease;
 
   &:hover {
-    font-size: 23px;
+    font-size: 20px;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
   }
 `;

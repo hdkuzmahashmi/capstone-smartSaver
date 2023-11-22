@@ -14,6 +14,7 @@ import {
   ItemName,
   Amount,
 } from "@/design-system/StyledDoughnutGraph";
+import { calculateCategoryTotals } from "@/assets/utils/categoryTotalsCalculator";
 
 Chart.register(ArcElement, [Tooltip]);
 
@@ -28,25 +29,8 @@ function DoughnutGraph() {
     return <div>Error: {error.message}</div>;
   }
 
-  // Extract and calculate category totals
-  const categoryTotalsArray = Object.values(
-    data.reduce((acc, expense) => {
-      const { name, color, icon } = expense.categoryId[0];
-      const amount = expense.amount;
-
-      if (!acc[name]) {
-        acc[name] = {
-          name,
-          total: 0,
-          color,
-          icon,
-        };
-      }
-
-      acc[name].total += amount;
-      return acc;
-    }, {})
-  );
+  // Use utility function to extract and calculate totals for each expense category
+  const categoryTotalsArray = calculateCategoryTotals(data);
 
   // Extract category names, total expenses, and colors for the chart
   const categoryNames = categoryTotalsArray.map((category) => category.name);
@@ -54,13 +38,14 @@ function DoughnutGraph() {
   const categoryColor = categoryTotalsArray.map((category) => category.color);
 
   // Calculate the total amount of all expenses
-  const totalAmountOfExpenses = categoryValues.reduce((acc, cur) => {
-    return acc + cur;
-  }, 0);
+  const totalAmountOfExpenses = categoryValues
+    .reduce((acc, cur) => {
+      return acc + cur;
+    }, 0)
+    .toFixed(2);
 
   // Create chart data and configuration
   const chartData = {
-    labels: categoryNames,
     datasets: [
       {
         data: categoryValues,
@@ -76,6 +61,11 @@ function DoughnutGraph() {
     data: chartData,
     options: {
       plugins: {
+        title: {
+          display: true,
+          text: "Category Expense Summary",
+        },
+
         tooltip: {
           callbacks: {
             title: function (context) {
@@ -96,7 +86,7 @@ function DoughnutGraph() {
     <GraphContainer>
       <ExpenseOverviewContainer>
         <Doughnut {...config}></Doughnut>
-        <Link href="/">
+        <Link href="/details">
           <TotalContainer>{totalAmountOfExpenses} €</TotalContainer>
         </Link>
       </ExpenseOverviewContainer>

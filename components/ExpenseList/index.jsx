@@ -10,6 +10,7 @@ import { StyledLink } from "@/design-system/StyledLink";
 import { useEffect, useState } from "react";
 import FilterExpense from "../FilterExpense";
 import ListItemPagination from "../ListItemPagination";
+import Expenses from "../Expenses";
 
 function ExpenseList({ setToast }) {
   // State variables for handling filters and UI state
@@ -151,28 +152,15 @@ function ExpenseList({ setToast }) {
           €
         </StyledText>
       </StyledSummaryBox>
-      <StyledList>
-        {filteredExpenses.map((expense) => (
-          <StyledCard $color={expense.categoryId[0]?.color} key={expense.name}>
-            <StyledLink href={`expense/${expense._id}`}>
-              <ListItem
-                id={expense._id}
-                name={expense.name}
-                amount={expense.amount}
-                icon={expense.categoryId[0]?.icon}
-                date={expense.createdAt}
-              />
-            </StyledLink>
-          </StyledCard>
-        ))}
-        <ListItemPagination
-          limit={limit}
-          setLimit={setLimit}
-          page={page}
-          setPage={setPage}
-          hasNextPage={hasNextPage}
-        />
-      </StyledList>
+      <Expenses expenses={filteredExpenses} />
+
+      <ListItemPagination
+        limit={limit}
+        setLimit={setLimit}
+        page={page}
+        setPage={setPage}
+        hasNextPage={hasNextPage}
+      />
     </StyledContainer>
   );
 }

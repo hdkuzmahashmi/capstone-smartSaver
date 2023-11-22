@@ -1,13 +1,51 @@
-import ExpenseList from "@/components/ExpenseList";
 import styled from "styled-components";
+import useSWR from "swr";
+import Loading from "@/components/Loading";
+import DoughnutGraph from "@/components/DoughnutGraph";
+import { StyledContainer } from "@/design-system/StyledContainer";
+import { StyledIcon } from "@/design-system/StyledIcon";
+import { StyledLink } from "@/design-system/StyledLink";
+import DashboardExpenses from "@/components/DashboardExpenses";
+import BarChart from "@/components/BarChart";
 
-const HomePage = ({ setToast }) => {
+const Dashboard = ({ setToast }) => {
+  const { data, error, isLoading } = useSWR("/api/expenses");
+
+  if (isLoading) {
+    return <Loading />;
+  }
+  if (!data) {
+    return;
+  }
+  if (error) {
+    setToast(
+      true,
+      "Something went wrong. Please contact the application administrator.",
+      "Error"
+    );
+    return;
+  }
+
+  const lastExpenses = data
+    .toSorted((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 3);
+
   return (
     <PageContainer>
-      <ExpenseList setToast={setToast} />
+      <DoughnutGraph />
+      <StyledContainer $isSpaceBetween $isDashboard>
+        <h2>Last Expenses</h2>
+        <StyledLink href="/details">
+          <StyledIcon icon="material-symbols:history" width="36" />
+        </StyledLink>
+      </StyledContainer>
+      <DashboardExpenses expenses={lastExpenses} />
+      <BarChart/>
     </PageContainer>
   );
 };
+
+export default Dashboard;
 
 const PageContainer = styled.div`
   display: flex;
@@ -15,5 +53,3 @@ const PageContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
-export default HomePage;
