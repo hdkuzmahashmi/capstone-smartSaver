@@ -2,7 +2,7 @@ import styled, { css, keyframes } from "styled-components";
 import DatePicker from "react-datepicker";
 
 const inputBaseStyles = `
-  padding: 0.5rem 0.75rem;
+  padding:  0.75rem;
   background-color: #fff;
   border: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -48,12 +48,11 @@ export const FormDateInput = styled(DatePicker)`
 
 export const FileInput = styled.input`
   ${inputBaseStyles}
+
   @media (max-width: 768px) {
     width: 100%;
   }
-  
 `;
-
 
 export const DateAndFileWrapper = styled.div`
   display: flex;

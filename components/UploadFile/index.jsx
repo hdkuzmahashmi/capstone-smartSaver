@@ -1,7 +1,7 @@
 import { FileInput } from "@/design-system/StyledInput";
 import React, { useState } from "react";
 
-function FileUpload({ onFileChange }) {
+function UploadFile({ onFileChange }) {
   const [file, setFile] = useState(null);
 
   const handleFileChange = (event) => {
@@ -13,4 +13,4 @@ function FileUpload({ onFileChange }) {
   return <FileInput type="file" onChange={handleFileChange} accept="image/*" />;
 }
 
-export default FileUpload;
+export default UploadFile;

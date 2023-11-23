@@ -4,12 +4,18 @@ import { StyledButton } from "@/design-system/StyledButton";
 import { StyledCard } from "@/design-system/StyledCard";
 import Loading from "../Loading";
 import { StyledTitle } from "@/design-system/StyledTitle";
-import { FormDateInput, StyledInput } from "@/design-system/StyledInput";
+import {
+  DateAndFileWrapper,
+  FormDateInput,
+  LabelAndInputContainer,
+  StyledInput,
+} from "@/design-system/StyledInput";
 import { StyledLabel } from "@/design-system/StyledLabel";
 import { StyledMargin } from "@/design-system/StyledMargin";
 import { StyledContainer } from "@/design-system/StyledContainer";
 import "react-datepicker/dist/react-datepicker.css";
 import { StyledErrorMessage } from "@/design-system/StyledErrorMessage";
+import UploadFile from "../UploadFile";
 
 function Form({ onSubmit, expense = [], isEditMode, setToast }) {
   const { data, error } = useSWR(`/api/categories`);
@@ -177,15 +183,23 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
               Please enter a valid Amount (0.01)
             </StyledErrorMessage>
           )}
-          <StyledLabel> Select a Date* </StyledLabel>
-          <FormDateInput
-            id="createdAt"
-            name="createdAt"
-            selected={selectedDate}
-            onChange={(date) => setSelectedDate(date)}
-            placeholder="Amount"
-            required
-          />
+          <DateAndFileWrapper>
+            <LabelAndInputContainer>
+              <StyledLabel> Select a Date* </StyledLabel>
+              <FormDateInput
+                id="createdAt"
+                name="createdAt"
+                selected={selectedDate}
+                onChange={(date) => setSelectedDate(date)}
+                placeholder="Amount"
+                required
+              />
+            </LabelAndInputContainer>
+            <LabelAndInputContainer>
+              <StyledLabel> Select a File </StyledLabel>
+              <UploadFile />
+            </LabelAndInputContainer>
+          </DateAndFileWrapper>
         </StyledMargin>
         <StyledContainer $isFlexRow>
           <StyledButton type="submit" $isSubmitButton>
