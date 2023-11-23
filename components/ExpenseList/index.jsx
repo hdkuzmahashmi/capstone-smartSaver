@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import FilterExpense from "../FilterExpense";
 import ListItemPagination from "../ListItemPagination";
 import Expenses from "../Expenses";
+import HomePage from "../SearchBox";
 
 function ExpenseList({ setToast }) {
   // State variables for handling filters and UI state
@@ -133,6 +134,7 @@ function ExpenseList({ setToast }) {
         setStartDate={setStartDate}
         setEndDate={setEndDate}
       />
+      <HomePage></HomePage>
       <StyledSummaryBox>
         <StyledText>Total</StyledText>
         <StyledText $isSummaryNumber>
