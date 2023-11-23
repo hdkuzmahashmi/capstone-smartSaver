@@ -24,12 +24,11 @@ function BarChart() {
     return <Loading />;
   }
 
-  if (error) {
+  if (false) {
     return (
       <div>
-        {
-          "Sorry, we couldn't load your expense data. Please check your internet connection and try again"
-        }
+        Sorry, we couldn&apos;t load your expense data. Please check your
+        internet connection and try again
       </div>
     );
   }
