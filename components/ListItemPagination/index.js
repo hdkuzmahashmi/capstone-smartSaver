@@ -6,12 +6,7 @@ const PaginationContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 0px;
-  padding: 0px;
-  background-color: #f0f0f0;
-  box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
-    inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
-    inset 0 -2px 1px rgba(0, 0, 0, 0.05);
+  width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 15px;
 `;
