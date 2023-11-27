@@ -5,4 +5,5 @@ export const StyledExpenseTitle = styled.p`
   overflow: hidden;
   white-space: nowrap;
   flex: 1;
+  width: 75%;
 `;

@@ -2,7 +2,12 @@ export function validateStringInput(string, type) {
   const stringType = type === "title" ? 3 : 4;
   const regEx =
     /<[^>]*>|&[^;]+;|<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
-  if (string.length >= stringType && typeof string === "string") {
+  const hasNonWhitespaceCharacters = /\S/.test(string);
+  if (
+    string.length >= stringType &&
+    typeof string === "string" &&
+    hasNonWhitespaceCharacters
+  ) {
     if (regEx.test(string)) {
       return false;
     } else {

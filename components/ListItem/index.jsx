@@ -10,7 +10,7 @@ function ListItem({ name, amount, icon, date }) {
   const formattedDate = formatDate(date);
 
   return (
-    <StyledContainer $isSpaceBetween>
+    <StyledContainer $isList $isSpaceBetween>
       <Icon icon={icon} width={25} />
       <StyledTextContainer>
         <StyledExpenseTitle>{name}</StyledExpenseTitle>

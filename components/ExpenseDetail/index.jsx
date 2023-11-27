@@ -23,13 +23,13 @@ function ExpenseDetail({ expense = {}, handleDelete, setToast }) {
       <StyledIcon icon={expense.categoryId[0].icon} width={32} />
       <StyledTitle>{expense.name}</StyledTitle>
       <StyledGrid>
-        <StyledText $isBold>Description:</StyledText>{" "}
+        <StyledText $isBold>Description:</StyledText>
         <StyledGridItem> {expense.description}</StyledGridItem>
-        <StyledText $isBold>Category:</StyledText>{" "}
+        <StyledText $isBold>Category:</StyledText>
         <StyledGridItem> {expense.categoryId[0].name}</StyledGridItem>
-        <StyledText $isBold>Amount:</StyledText>{" "}
+        <StyledText $isBold>Amount:</StyledText>
         <StyledGridItem> {expense.amount} €</StyledGridItem>
-        <StyledText $isBold>Date:</StyledText>{" "}
+        <StyledText $isBold>Date:</StyledText>
         <StyledGridItem> {formattedDate} </StyledGridItem>
       </StyledGrid>
       <StyledIconGroup>

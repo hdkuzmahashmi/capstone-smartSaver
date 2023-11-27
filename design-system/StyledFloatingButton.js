@@ -8,7 +8,7 @@ export const StyledFloatingButton = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 99;
+  z-index: 100;
   cursor: pointer;
   background-color: #56a2e8;
   color: #f5f5f5;

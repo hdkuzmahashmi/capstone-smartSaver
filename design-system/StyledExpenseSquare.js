@@ -13,6 +13,7 @@ export const StyledExpenseSquare = styled.li`
   justify-content: center;
   overflow: hidden;
   padding: 3px;
+  z-index: 0;
   position: relative;
   color: #202020;
   box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
@@ -23,7 +24,6 @@ export const StyledExpenseSquare = styled.li`
   &:hover {
     background-color: ${(props) => props.backgroundColor};
     box-shadow: none;
-    color: white;
   }
 
   h3 {

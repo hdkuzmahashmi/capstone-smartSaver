@@ -28,14 +28,17 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
   }
 
   function validateNumberInput(input) {
-    const trimmedInput = input.trim();
-    if (trimmedInput.length === 0 && input.value > 0.01) {
+    if (input.length === 0 && parseFloat(input) > 0.01) {
       return false;
     }
-    const parts = trimmedInput.split(/[\.,]/);
-    if (parts.length === 2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
+    const parts = input.split(/[\.,]/);
+    if (
+      parts.length <= 2 &&
+      !isNaN(parts[0]) &&
+      (!parts[1] || !isNaN(parts[1]))
+    ) {
       const minValue = parseFloat(parts.join("."));
-      if (minValue >= 0.01 && parts[1].length <= 2) {
+      if (minValue >= 0.01) {
         return true;
       }
     }
