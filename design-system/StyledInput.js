@@ -1,7 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
 import DatePicker from "react-datepicker";
-import SearchIcon from "@/public/search";
-import ArrowRightIcon from "@/public/arrowRight";
 
 export const StyledInput = styled.input`
   margin-top: 0.35rem;
@@ -68,17 +66,4 @@ const IconCommonCss = css`
   fill: #00adb5;
   z-index: 10;
   animation: ${fadeIn} 1s linear;
-`;
-
-export const IconMagnifyingGlass = styled(SearchIcon)`
-  ${IconCommonCss}
-`;
-
-export const IconRightArrow = styled(ArrowRightIcon)`
-  ${IconCommonCss}
-  align-self: flex-end;
-  cursor: pointer;
-  &:hover {
-    fill: #393e46;
-  }
 `;

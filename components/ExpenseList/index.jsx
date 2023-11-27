@@ -12,6 +12,7 @@ import FilterExpense from "../FilterExpense";
 import ListItemPagination from "../ListItemPagination";
 import Expenses from "../Expenses";
 import HomePage from "../SearchBox";
+import SearchBox from "../SearchBox";
 
 function ExpenseList({ setToast }) {
   // State variables for handling filters and UI state
@@ -118,6 +119,17 @@ function ExpenseList({ setToast }) {
 
   return (
     <StyledContainer $isFlexEnd>
+      <StyledSummaryBox>
+        <StyledText>Total</StyledText>
+        <StyledText $isSummaryNumber>
+          -
+          {allExp
+            .reduce((total, expense) => total + expense.amount, 0)
+            .toFixed(2)}{" "}
+          €
+        </StyledText>
+      </StyledSummaryBox>
+      <SearchBox />
       <FilterExpense
         selectedCategory={selectedCategory}
         categoryNames={categoryNames}
