@@ -23,8 +23,17 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
   };
   const [isWrong, setIsWrong] = useState(formElements);
 
-  function formValidation(event) {
+  function categoryValidation(event) {
     return event.target.checkValidity();
+  }
+
+  function trimStringInput(event) {
+    return event.target.value.trim();
+  }
+
+  function validateStringInput(input, minLength) {
+    const trimmedInput = input.trim();
+    return trimmedInput.length >= minLength && /\S/.test(trimmedInput);
   }
 
   function validateNumberInput(input) {
@@ -42,8 +51,6 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
         return true;
       }
     }
-
-    return false;
   }
 
   if (!data) {
@@ -72,12 +79,17 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
             type="text"
             placeholder="Supermarket"
             maxLength={25}
-            minLength={1}
+            minLength={3}
             required
             defaultValue={isEditMode ? expense.name : ""}
             onBlur={(event) => {
-              const isValid = formValidation(event);
-              setIsWrong((elements) => ({ ...elements, name: !isValid }));
+              const trimedInput = trimStringInput(event);
+              event.currentTarget.value = trimedInput;
+              const isValid = validateStringInput(trimedInput, 3);
+              setIsWrong((elements) => ({
+                ...elements,
+                name: !isValid,
+              }));
             }}
           />
           {isWrong.name && (
@@ -95,7 +107,7 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
             selected
             defaultValue={isEditMode ? expense.categoryId[0]?._id : ""}
             onBlur={(event) => {
-              const isValid = formValidation(event);
+              const isValid = categoryValidation(event);
               setIsWrong((elements) => ({ ...elements, categoryId: !isValid }));
             }}
           >
@@ -124,7 +136,11 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
             required
             defaultValue={isEditMode ? expense.description : ""}
             onBlur={(event) => {
-              const isValid = formValidation(event);
+              const trimedInput = trimStringInput(event);
+              console.log("Trimmed Input:", trimedInput);
+              event.currentTarget.value = trimedInput;
+              const isValid = validateStringInput(trimedInput, 5);
+              console.log("Is Valid:", isValid);
               setIsWrong((elements) => ({
                 ...elements,
                 description: !isValid,
@@ -139,7 +155,7 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
           <StyledLabel htmlFor="amount">Amount*</StyledLabel>
           <StyledInput
             $isValid={isWrong.amount}
-            type="text"
+            type="number"
             id="amount"
             name="amount"
             placeholder="0.01"
@@ -148,7 +164,11 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
             min={0.01}
             defaultValue={isEditMode ? expense.amount : ""}
             onBlur={(event) => {
-              const isValid = validateNumberInput(event.currentTarget.value);
+              const sanitizedValue = parseFloat(event.currentTarget.value)
+                .toFixed(2)
+                .replace(/\.?0+$/, "");
+              event.currentTarget.value = sanitizedValue;
+              const isValid = validateNumberInput(sanitizedValue);
               setIsWrong((elements) => ({ ...elements, amount: !isValid }));
             }}
           />
