@@ -93,7 +93,7 @@ function DoughnutGraph() {
       <ListContainer>
         {categoryTotalsArray.map((category) => (
           <ListItem key={category.name}>
-            <ColorBox style={{ backgroundColor: category.color }}></ColorBox>
+            <ColorBox style={{ $bgcolor: category.color }}></ColorBox>
             <Icon icon={category.icon} width={15} />
             <ItemName>{category.name}</ItemName>
             <Amount>{category.total.toFixed(2)} €</Amount>

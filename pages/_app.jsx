@@ -3,10 +3,14 @@ import Layout from "./_layout";
 import Head from "next/head";
 import { useState } from "react";
 import Toast from "@/components/Toast";
+import { SessionProvider } from "next-auth/react";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-export default function App({ Component, pageProps }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("");
@@ -18,20 +22,22 @@ export default function App({ Component, pageProps }) {
   };
 
   return (
-    <Layout>
-      <Head>
-        <title>SmartSaver</title>
-      </Head>
-      <SWRConfig value={{ fetcher }}>
-        <Component {...pageProps} setToast={handleToast} />
-      </SWRConfig>
+    <SessionProvider session={session}>
+      <Layout>
+        <Head>
+          <title>SmartSaver</title>
+        </Head>
+        <SWRConfig value={{ fetcher }}>
+          <Component {...pageProps} setToast={handleToast} />
+        </SWRConfig>
 
-      <Toast
-        message={toastMessage}
-        showToast={showToast}
-        setShowToast={setShowToast}
-        type={toastType}
-      />
-    </Layout>
+        <Toast
+          message={toastMessage}
+          showToast={showToast}
+          setShowToast={setShowToast}
+          type={toastType}
+        />
+      </Layout>
+    </SessionProvider>
   );
 }

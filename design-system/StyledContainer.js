@@ -35,4 +35,19 @@ export const StyledContainer = styled.div`
       padding-left: 10px;
       padding-right: 10px;
     `};
+
+  ${({ $isLogo }) =>
+    $isLogo &&
+    css`
+      flex-direction: row;
+      align-items: center;
+    `};
+
+  ${({ $isLogin }) =>
+    $isLogin &&
+    css`
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+    `};
 `;

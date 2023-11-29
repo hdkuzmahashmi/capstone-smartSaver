@@ -24,14 +24,6 @@ function BarChart() {
     return <Loading />;
   }
 
-  if (false) {
-    return (
-      <div>
-        Sorry, we couldn&apos;t load your expense data. Please check your
-        internet connection and try again
-      </div>
-    );
-  }
   // Calculate monthly expenses using utility function
   const { monthNames, totalExpenses } = calculateMonthlyExpenses(data);
 
