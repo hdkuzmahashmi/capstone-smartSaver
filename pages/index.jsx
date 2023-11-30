@@ -3,10 +3,9 @@ import useSWR from "swr";
 import Loading from "@/components/Loading";
 import DoughnutGraph from "@/components/DoughnutGraph";
 import { StyledContainer } from "@/design-system/StyledContainer";
-import { StyledIcon } from "@/design-system/StyledIcon";
-import { StyledLink } from "@/design-system/StyledLink";
 import DashboardExpenses from "@/components/DashboardExpenses";
 import BarChart from "@/components/BarChart";
+import ViewAllExpenses from "@/components/DashboardViewAllExpenses";
 
 const Dashboard = ({ setToast }) => {
   const { data, error, isLoading } = useSWR("/api/expenses");
@@ -34,13 +33,10 @@ const Dashboard = ({ setToast }) => {
     <PageContainer>
       <DoughnutGraph />
       <StyledContainer $isSpaceBetween $isDashboard>
-        <h2>Last Expenses</h2>
-        <StyledLink href="/details">
-          <StyledIcon icon="material-symbols:history" width="36" />
-        </StyledLink>
+        <ViewAllExpenses />
       </StyledContainer>
       <DashboardExpenses expenses={lastExpenses} />
-      <BarChart/>
+      <BarChart />
     </PageContainer>
   );
 };
