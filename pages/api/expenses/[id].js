@@ -1,5 +1,9 @@
 import dbConnect from "@/db/dbconnect";
 import Expense from "@/db/models/Expense";
+import {
+  validateStringInput,
+  validateAmountInput,
+} from "@/utils/formValidation";
 
 export default async function handler(request, response) {
   await dbConnect();
@@ -14,7 +18,7 @@ export default async function handler(request, response) {
       }
       response.status(200).json(expense);
     } catch (error) {
-      console.log("error from espense", error);
+      console.error("error from expense", error);
       return response
         .status(400)
         .json({ message: "Something went wrong", error: error });
@@ -24,8 +28,18 @@ export default async function handler(request, response) {
   if (request.method === "PUT") {
     try {
       const expenseData = request.body;
-      await Expense.findByIdAndUpdate(id, expenseData);
-      response.status(200).json({ message: "Expense updated." });
+      if (
+        validateStringInput(request.body.name, "title") &&
+        validateStringInput(request.body.description, "description") &&
+        validateAmountInput(request.body.amount)
+      ) {
+        await Expense.findByIdAndUpdate(id, expenseData);
+        response.status(200).json({ message: "Expense updated." });
+      } else {
+        response
+          .status(403)
+          .json({ error: "Invalid Data. Please check your Expense entry" });
+      }
     } catch (error) {
       return response
         .status(400)

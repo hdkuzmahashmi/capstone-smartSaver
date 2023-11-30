@@ -1,5 +1,9 @@
 import dbConnect from "@/db/dbconnect";
 import Expense from "@/db/models/Expense";
+import {
+  validateStringInput,
+  validateAmountInput,
+} from "@/utils/formValidation";
 
 export default async function handler(request, response) {
   await dbConnect();
@@ -36,8 +40,18 @@ export default async function handler(request, response) {
   if (request.method === "POST") {
     try {
       const expenseData = request.body;
-      await Expense.create(expenseData);
-      response.status(201).json({ message: "Expense created." });
+      if (
+        validateStringInput(request.body.name, "title") &&
+        validateStringInput(request.body.description, "description") &&
+        validateAmountInput(request.body.amount)
+      ) {
+        await Expense.create(expenseData);
+        response.status(201).json({ message: "Expense created." });
+      } else {
+        response
+          .status(403)
+          .json({ error: "Invalid Data. Please check your Expense entry" });
+      }
     } catch (error) {
       return response.json({ message: "Something went wrong", error: error });
     }

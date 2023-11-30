@@ -10,7 +10,7 @@ function DeleteButton({ expenseId, showList, expenseName, setToast }) {
     if (response.ok) {
       mutate(`/api/expenses`);
     }
-    if (showList) Router.push("/");
+    if (showList) Router.push("/details");
     setToast(true, "Expense is deleted successfully!", "success");
   }
 

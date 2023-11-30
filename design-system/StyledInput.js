@@ -2,7 +2,8 @@ import styled from "styled-components";
 import DatePicker from "react-datepicker";
 
 export const StyledInput = styled.input`
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
+  margin-bottom: 0.8rem;
   display: block;
   width: 100%;
   padding: 0.5rem 0.75rem;
@@ -12,11 +13,13 @@ export const StyledInput = styled.input`
   border-radius: 0.375rem;
   outline: none;
   font-size: 1rem;
+
+  ${({ $isValid }) => ($isValid ? `outline: 2px red solid;` : `outline: 0;`)}
 `;
 
 export const FormDateInput = styled(DatePicker)`
-  margin-top: 1rem;
-  width: 100%;
+  margin: 0.35rem 0 1.3rem 0;
+  width: 45%;
   padding: 0.4rem;
   text-align: center;
   background-color: #fff;
@@ -26,10 +29,4 @@ export const FormDateInput = styled(DatePicker)`
   outline: none;
   font-size: 1rem;
   letter-spacing: 1px;
-`;
-
-export const FormDateLabel = styled.span`
-  margin: 10px;
-  color: #777;
-  font-size: 1rem;
 `;

@@ -5,6 +5,8 @@ export const StyledContainer = styled.div`
   width: 100%;
   gap: 8px;
 
+  ${({ $isList }) => $isList && `gap:0`};
+
   ${({ $isFlexRow }) =>
     $isFlexRow
       ? `flex-direction: row; align-items: center; justify-content: center;`
