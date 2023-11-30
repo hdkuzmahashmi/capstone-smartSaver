@@ -6,6 +6,7 @@ import { StyledContainer } from "@/design-system/StyledContainer";
 import DashboardExpenses from "@/components/DashboardExpenses";
 import BarChart from "@/components/BarChart";
 import ViewAllExpenses from "@/components/DashboardViewAllExpenses";
+import { StyledHeading } from "@/design-system/StyledViewAllExpenses";
 
 const Dashboard = ({ setToast }) => {
   const { data, error, isLoading } = useSWR("/api/expenses");
@@ -32,10 +33,10 @@ const Dashboard = ({ setToast }) => {
   return (
     <PageContainer>
       <DoughnutGraph />
-      <StyledContainer $isSpaceBetween $isDashboard>
-        <ViewAllExpenses />
-      </StyledContainer>
+      <StyledContainer $isSpaceBetween $isDashboard></StyledContainer>
+      <StyledHeading>Last Expenses</StyledHeading>
       <DashboardExpenses expenses={lastExpenses} />
+      <ViewAllExpenses />
       <BarChart />
     </PageContainer>
   );

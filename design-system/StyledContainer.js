@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const StyledContainer = styled.div`
   display: flex;
   width: 100%;
-  gap: 8px;
+  gap: 20px;
 
   ${({ $isList }) => $isList && `gap:0`};
 

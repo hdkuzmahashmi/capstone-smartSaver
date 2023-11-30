@@ -7,15 +7,21 @@ export const StyledContainer = styled.div`
   display: flex;
   align-items: center;
   color: #333;
+  font-size: small;
+  margin-right: 10px;
 `;
 
-export const StyledHistoryIcon = styled(StyledIcon)`
-  margin-right: 5px;
-`;
+export const StyledHistoryIcon = styled(StyledIcon)``;
 
 export const StyledHeading = styled.h2`
   color: #333;
-  font-size: 1em;
+  font-size: 1rem;
+  margin-top: 1.9rem;
+`;
+
+export const StyledView = styled.h2`
+  color: #333;
+  font-size: 0.9rem;
 `;
 
 export const StyledViewLink = styled(Link)`
@@ -26,11 +32,14 @@ export const StyledViewLink = styled(Link)`
 
   &:hover {
     color: #1c91e3;
+    box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
+      inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
+      inset 0 -2px 1px rgba(0, 0, 0, 0.05);
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     padding: 0px 10px;
 
-    ${StyledHistoryIcon}, ${StyledHeading} {
+    ${StyledHistoryIcon}, ${StyledView} {
       color: #1c91e3;
     }
   }
@@ -42,7 +51,7 @@ export const StyledViewLink = styled(Link)`
 
 export const FlexContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
   margin-top: 1rem;
