@@ -4,7 +4,8 @@ import styled from "styled-components";
 export const StyledExpenseSquare = styled.li`
   list-style-type: none;
   height: 115px;
-  width: 115px;
+  width: auto;
+  min-width: 115px;
   border-radius: 12px;
   margin-bottom: 5px;
   display: flex;
@@ -12,7 +13,7 @@ export const StyledExpenseSquare = styled.li`
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 3px;
+  padding: 8px;
   z-index: 0;
   position: relative;
   color: #202020;
@@ -41,7 +42,7 @@ export const StyledExpenseSquare = styled.li`
     padding: 0;
     word-break: break-all;
     z-index: 5;
-    margin-top: -6px;
+    margin-top: -3px;
   }
 `;
 
