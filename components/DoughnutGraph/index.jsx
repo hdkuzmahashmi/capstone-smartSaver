@@ -96,7 +96,7 @@ function DoughnutGraph() {
             <ColorBox style={{ backgroundColor: category.color }}></ColorBox>
             <Icon icon={category.icon} width={15} />
             <ItemName>{category.name}</ItemName>
-            <Amount>{category.total} €</Amount>
+            <Amount>{category.total.toFixed(2)} €</Amount>
           </ListItem>
         ))}
       </ListContainer>

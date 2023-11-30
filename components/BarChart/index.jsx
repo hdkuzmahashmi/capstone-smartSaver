@@ -69,12 +69,8 @@ function BarChart() {
       {
         label: "Monthly Summary",
         data: totalExpenses,
-        backgroundColor: [
-          "rgba(28, 145, 227, 0.2)",
-        ],
-        borderColor: [
-          "rgba(28, 145, 227)",
-        ],
+        backgroundColor: ["rgba(28, 145, 227, 0.2)"],
+        borderColor: ["rgba(28, 145, 227)"],
         borderWidth: 1,
       },
     ],
@@ -82,7 +78,7 @@ function BarChart() {
 
   return (
     <GraphContainer>
-      <Bar style={{ height: "400px" }} options={options} data={chartData} />
+      <Bar style={{ height: "300px" }} options={options} data={chartData} />
     </GraphContainer>
   );
 }

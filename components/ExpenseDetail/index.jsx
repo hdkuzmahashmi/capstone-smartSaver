@@ -20,7 +20,7 @@ function ExpenseDetail({ expense = {}, handleDelete, setToast }) {
 
   return (
     <StyledCard $addMarginBottom $isDetail $color={expense.categoryId[0].color}>
-      <StyledIcon icon={expense.categoryId[0].icon} width={32} />
+      <StyledIcon icon={expense.categoryId[0].icon} width={40} />
       <StyledTitle>{expense.name}</StyledTitle>
       <StyledGrid>
         <StyledText $isBold>Description:</StyledText>

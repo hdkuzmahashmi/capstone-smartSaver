@@ -19,7 +19,6 @@ export const StyledInput = styled.input`
 
 export const FormDateInput = styled(DatePicker)`
   margin: 0.35rem 0 1.3rem 0;
-  width: 45%;
   padding: 0.4rem;
   text-align: center;
   background-color: #fff;
