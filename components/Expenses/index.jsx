@@ -7,7 +7,7 @@ function Expenses({ expenses }) {
   return (
     <StyledList>
       {expenses.map((expense) => (
-        <StyledCard $color={expense.categoryId[0]?.color} key={expense.name}>
+        <StyledCard $color={expense.categoryId[0]?.color} key={expense._id}>
           <StyledLink href={`expense/${expense._id}`}>
             <ListItem
               id={expense._id}
