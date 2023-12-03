@@ -59,7 +59,7 @@ function ExpenseList({ setToast }) {
   function handleAmountRangeChange(amountRange) {
     setSelectedAmountRange(amountRange);
 
-    // Update filter status based on the selected amount range and category
+    //Update filter status based on the selected amount range and category
     if (amountRange === 0 && selectedCategory === "") {
       setIsFiltered(false);
     } else {
@@ -113,12 +113,8 @@ function ExpenseList({ setToast }) {
     ? filteredExpenses.slice((page - 1) * limit, page * limit)
     : data.slice((page - 1) * limit, page * limit);
 
-  let hasNextPage = data.length >= (page + 1) * limit;
-  if (paginatedExpenses.length === 0) setPage(1);
-  //if (paginatedExpenses.length <= limit) hasNextPage = false;
-  console.log("data", data);
-  console.log("hasNextPage", hasNextPage);
-  console.log("paginatedExpenses", paginatedExpenses);
+  const hasNextPage = data.length >= (page + 1) * limit;
+
   return (
     <StyledContainer $isFlexEnd>
       <FilterExpense
@@ -159,6 +155,7 @@ function ExpenseList({ setToast }) {
         page={page}
         setPage={setPage}
         hasNextPage={hasNextPage}
+        expenses={paginatedExpenses}
       />
     </StyledContainer>
   );

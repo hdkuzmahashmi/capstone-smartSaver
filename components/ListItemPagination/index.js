@@ -51,9 +51,11 @@ const ListItemPagination = ({
   page,
   setPage,
   hasNextPage,
+  expenses,
 }) => {
-  console.log("pagepage", page);
-  console.log("Limitlimit", limit);
+  if (expenses.length === 0) setPage(1);
+  if (expenses.length < limit) hasNextPage = false;
+  else hasNextPage = true;
   return (
     <PaginationContainer>
       <div>
