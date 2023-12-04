@@ -19,17 +19,10 @@ function ExpenseList({ setToast }) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [isFiltered, setIsFiltered] = useState(false);
-  const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(5);
-  const [allExp, setAllExp] = useState([]);
+  const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    getAllExpense();
-  }, []);
-
-  const { data, error, isLoading } = useSWR(
-    `api/expenses?page=${page}&limit=${limit}`
-  );
+  const { data, error, isLoading } = useSWR("api/expenses");
 
   if (isLoading) {
     return <Loading />;
@@ -45,14 +38,6 @@ function ExpenseList({ setToast }) {
   }
   if (!data) {
     return;
-  }
-
-  const { expenses, hasNextPage } = data;
-
-  async function getAllExpense() {
-    const response = await fetch("/api/expenses");
-    const data = await response.json();
-    setAllExp(data);
   }
 
   // Function to clear all filters
@@ -74,7 +59,7 @@ function ExpenseList({ setToast }) {
   function handleAmountRangeChange(amountRange) {
     setSelectedAmountRange(amountRange);
 
-    // Update filter status based on the selected amount range and category
+    //Update filter status based on the selected amount range and category
     if (amountRange === 0 && selectedCategory === "") {
       setIsFiltered(false);
     } else {
@@ -93,21 +78,21 @@ function ExpenseList({ setToast }) {
     setEndDate(endDate);
     setIsFiltered(true);
   }
-
+  // Calculate the Max Amount to set the max limit of slider
   const maxAmount = Math.ceil(
-    allExp.reduce((max, current) => {
+    data.reduce((max, current) => {
       return current.amount > max.amount ? current : max;
-    }, allExp[0])?.amount
+    }, data[0])?.amount
   );
 
   // Extract unique category names from the expense data
-  const expenseCategoryNames = expenses.map(
+  const expenseCategoryNames = data.map(
     (expense) => expense.categoryId[0]?.name
   );
   const categoryNames = Array.from(new Set(expenseCategoryNames));
 
   // Filter expenses based on selected filters
-  const filteredExpenses = expenses.filter((expense) => {
+  const filteredExpenses = data.filter((expense) => {
     const categoryMatch =
       !selectedCategory || expense.categoryId[0]?.name === selectedCategory;
 
@@ -123,6 +108,12 @@ function ExpenseList({ setToast }) {
 
     return categoryMatch && rangeMatch && dateRange;
   });
+  // setting up pagination
+  const paginatedExpenses = isFiltered
+    ? filteredExpenses.slice((page - 1) * limit, page * limit)
+    : data.slice((page - 1) * limit, page * limit);
+
+  const hasNextPage = data.length >= (page + 1) * limit;
 
   return (
     <StyledContainer $isFlexEnd>
@@ -146,13 +137,17 @@ function ExpenseList({ setToast }) {
         <StyledText>Total</StyledText>
         <StyledText $isSummaryNumber>
           -
-          {allExp
-            .reduce((total, expense) => total + expense.amount, 0)
-            .toFixed(2)}{" "}
+          {isFiltered
+            ? filteredExpenses
+                .reduce((total, expense) => total + expense.amount, 0)
+                .toFixed(2)
+            : data
+                .reduce((total, expense) => total + expense.amount, 0)
+                .toFixed(2)}{" "}
           €
         </StyledText>
       </StyledSummaryBox>
-      <Expenses expenses={filteredExpenses} />
+      <Expenses expenses={paginatedExpenses} />
 
       <ListItemPagination
         limit={limit}
@@ -160,6 +155,7 @@ function ExpenseList({ setToast }) {
         page={page}
         setPage={setPage}
         hasNextPage={hasNextPage}
+        expenses={paginatedExpenses}
       />
     </StyledContainer>
   );

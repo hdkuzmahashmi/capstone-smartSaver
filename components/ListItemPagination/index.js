@@ -51,7 +51,11 @@ const ListItemPagination = ({
   page,
   setPage,
   hasNextPage,
+  expenses,
 }) => {
+  if (expenses.length === 0) setPage(1);
+  if (expenses.length < limit) hasNextPage = false;
+  else hasNextPage = true;
   return (
     <PaginationContainer>
       <div>
@@ -72,12 +76,12 @@ const ListItemPagination = ({
       </div>
       <SubContainer>
         <PaginationLabel>
-          Current Page <strong>{page + 1}</strong>
+          Current Page <strong>{page}</strong>
         </PaginationLabel>
         <PaginationButton
           type="button"
           onClick={() => setPage(page - 1)}
-          disabled={page === 0}
+          disabled={page === 1}
         >
           <Icon icon="typcn:arrow-back" hFlip={false} />
         </PaginationButton>
