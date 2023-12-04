@@ -1,15 +1,7 @@
 import { FileInput } from "@/design-system/StyledInput";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import ReceiptDisplay from "../ReceiptDisplay";
-import styled from "styled-components";
-
-const ReceiptContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin: 10px;
-  gap: 2px;
-`;
+import { ReceiptContainer } from "@/design-system/SryledUploadFile";
 
 function UploadFile() {
   const [files, setFiles] = useState([]);
@@ -17,16 +9,12 @@ function UploadFile() {
   const handleFileChange = (event) => {
     const selectedFiles = event.target.files;
 
-    console.log("selectedFiles:", selectedFiles);
-
     const newFiles = [...selectedFiles].filter((file) => {
-      console.log("newFiles:", file);
-
       // Only accept files less than 1mb and of type 'image/'
-      return file.size < 1024 * 1024 && file.type.startsWith("image/");
-    });
+      // return file.size < 1024 * 1024 && file.type.startsWith("image/");
 
-    console.log({ selectedFiles, newFiles });
+      return file;
+    });
 
     setFiles((prevFiles) => [...newFiles, ...prevFiles]);
   };

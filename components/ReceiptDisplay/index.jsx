@@ -1,17 +1,6 @@
 import React from "react";
 import { Icon } from "@iconify/react";
-import styled from "styled-components";
-
-const FileContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const FileName = styled.span`
-  margin-right: 10px;
-  font-size: 14px;
-`;
+import { FileContainer, FileName } from "@/design-system/SryledUploadFile";
 
 function ReceiptDisplay({ fileName, onClick }) {
   return (
