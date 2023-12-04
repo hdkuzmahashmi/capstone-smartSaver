@@ -29,7 +29,9 @@ export default async function handler(request, response) {
       }
     } else {
       try {
-        const expense = await Expense.find().populate("categoryId");
+        const expense = await Expense.find()
+          .populate("categoryId")
+          .sort({ createdAt: -1 });
         response.status(200).json(expense);
       } catch (error) {
         return response.status(400).json({ message: error });
