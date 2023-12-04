@@ -20,6 +20,7 @@ function SearchBox() {
   const { data, isLoading, error } = useSWR(`/api/expenses/`);
   const [results, setResults] = useState([]);
   const [fuse, setFuse] = useState(null);
+
   const [resultsVisible, setResultsVisible] = useState(false);
 
   useEffect(() => {
@@ -35,11 +36,6 @@ function SearchBox() {
     return;
   }
   if (error) {
-    setToast(
-      true,
-      "Something went wrong, API does not response data. Please contact to application administrator.",
-      "error"
-    );
     return;
   }
 
@@ -62,6 +58,7 @@ function SearchBox() {
         onChange={handleSearch}
         onFocus={() => setResultsVisible(true)}
         onBlur={() => setResultsVisible(false)}
+        autoComplete="off"
       />
 
       <StyledSearchIcon icon="material-symbols:search" width="24px" />

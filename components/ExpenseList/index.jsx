@@ -123,9 +123,13 @@ function ExpenseList({ setToast }) {
         <StyledText>Total</StyledText>
         <StyledText $isSummaryNumber>
           -
-          {allExp
-            .reduce((total, expense) => total + expense.amount, 0)
-            .toFixed(2)}{" "}
+          {isFiltered
+            ? filteredExpenses
+                .reduce((total, expense) => total + expense.amount, 0)
+                .toFixed(2)
+            : data
+                .reduce((total, expense) => total + expense.amount, 0)
+                .toFixed(2)}{" "}
           €
         </StyledText>
       </StyledSummaryBox>
@@ -146,21 +150,6 @@ function ExpenseList({ setToast }) {
         setStartDate={setStartDate}
         setEndDate={setEndDate}
       />
-      <HomePage></HomePage>
-      <StyledSummaryBox>
-        <StyledText>Total</StyledText>
-        <StyledText $isSummaryNumber>
-          -
-          {isFiltered
-            ? filteredExpenses
-                .reduce((total, expense) => total + expense.amount, 0)
-                .toFixed(2)
-            : data
-                .reduce((total, expense) => total + expense.amount, 0)
-                .toFixed(2)}{" "}
-          €
-        </StyledText>
-      </StyledSummaryBox>
       <Expenses expenses={paginatedExpenses} />
 
       <ListItemPagination
