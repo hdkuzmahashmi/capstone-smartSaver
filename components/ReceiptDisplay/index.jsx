@@ -1,22 +1,30 @@
-import Image from "next/image";
+import React from "react";
+import { Icon } from "@iconify/react";
 import styled from "styled-components";
 
 const FileContainer = styled.div`
-  border: 2px solid red;
-  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
-function ReceiptDisplay({ url, onClick }) {
-  return (
-    <div>
-      <FileContainer>
-        <Image src={url} alt="imge" width={100} height={60} priority />
-      </FileContainer>
+const FileName = styled.span`
+  margin-right: 10px;
+  font-size: 14px;
+`;
 
-      <button type="button" onClick={onClick}>
-        Delete
-      </button>
-    </div>
+function ReceiptDisplay({ fileName, onClick }) {
+  return (
+    <FileContainer>
+      <FileName>{fileName}</FileName>
+      <Icon
+        icon="iwwa:delete"
+        width="20"
+        height="20"
+        onClick={onClick}
+        color="red"
+      />
+    </FileContainer>
   );
 }
 

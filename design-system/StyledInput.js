@@ -59,6 +59,9 @@ export const DateAndFileWrapper = styled.div`
   margin-top: 0.3rem;
   margin-bottom: 2rem;
   justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -69,6 +72,7 @@ export const LabelAndInputContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 
   @media (max-width: 1120px) {
     margin-bottom: 1rem;

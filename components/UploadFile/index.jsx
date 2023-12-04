@@ -1,16 +1,17 @@
 import { FileInput } from "@/design-system/StyledInput";
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import ReceiptDisplay from "../ReceiptDisplay";
 import styled from "styled-components";
 
 const ReceiptContainer = styled.div`
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  gap: 10px;
   margin: 10px;
+  gap: 2px;
 `;
 
-function UploadFile({ onFileChange }) {
+function UploadFile() {
   const [files, setFiles] = useState([]);
 
   const handleFileChange = (event) => {
@@ -30,8 +31,8 @@ function UploadFile({ onFileChange }) {
     setFiles((prevFiles) => [...newFiles, ...prevFiles]);
   };
 
-  const handleDeleteFile = (index) => {
-    setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+  const handleDeleteFile = (fileName) => {
+    setFiles((prevFiles) => prevFiles.filter((file) => file.name !== fileName));
   };
 
   return (
@@ -47,8 +48,8 @@ function UploadFile({ onFileChange }) {
         {files.map((file, index) => (
           <ReceiptDisplay
             key={index}
-            url={URL.createObjectURL(file)}
-            onClick={() => handleDeleteFile(index)}
+            fileName={file.name}
+            onClick={() => handleDeleteFile(file.name)}
           />
         ))}
       </ReceiptContainer>
