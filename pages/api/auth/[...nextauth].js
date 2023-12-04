@@ -9,13 +9,13 @@ export const authOptions = {
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
+      allowDangerousEmailAccountLinking: true,
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       allowDangerousEmailAccountLinking: true,
     }),
-
     {
       id: "sendgrid",
       type: "email",
@@ -38,7 +38,6 @@ export const authOptions = {
           },
           method: "POST",
         });
-
         if (!response.ok) {
           const { errors } = await response.json();
           throw new Error(JSON.stringify(errors));
