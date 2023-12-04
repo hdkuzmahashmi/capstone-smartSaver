@@ -33,7 +33,7 @@ const Dashboard = ({ setToast }) => {
   return (
     <PageContainer>
       <DoughnutGraph />
-      <StyledContainer $isSpaceBetween $isDashboard></StyledContainer>
+
       <StyledHeading>Last Expenses</StyledHeading>
       <DashboardExpenses expenses={lastExpenses} />
       <ViewAllExpenses />
