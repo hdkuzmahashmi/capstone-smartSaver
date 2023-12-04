@@ -11,6 +11,7 @@ const expenseSchema = new Schema({
   createdAt: { type: Date, required: true },
   categoryId: { type: [Schema.Types.ObjectId], ref: Category },
   currencyId: { type: [Schema.Types.ObjectId], ref: Currency },
+  userId: { type: String, required: false },
 });
 
 const Expense =
