@@ -16,8 +16,7 @@ const fuseOptions = {
   keys: ["description", "name", "amount"],
 };
 
-function SearchBox() {
-  const { data, isLoading, error } = useSWR(`/api/expenses/`);
+function SearchBox({ data }) {
   const [results, setResults] = useState([]);
   const [fuse, setFuse] = useState(null);
 
@@ -29,13 +28,7 @@ function SearchBox() {
     }
   }, [data]);
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
   if (!data) {
-    return;
-  }
-  if (error) {
     return;
   }
 
@@ -62,11 +55,13 @@ function SearchBox() {
       />
 
       <StyledSearchIcon icon="material-symbols:search" width="24px" />
-      <StyledSearchOutput className={resultsVisible ? "show" : ""}>
+      <StyledSearchOutput $isDisplayed={resultsVisible}>
         {results.map((result) => (
-          <StyledLink href={`/expense/${result._id}`} key={result._id}>
-            <li>{result.name}</li>
-          </StyledLink>
+          <li key={result._id}>
+            <StyledLink href={`/expense/${result._id}`}>
+              {result.name}
+            </StyledLink>
+          </li>
         ))}
       </StyledSearchOutput>
     </StyledSearchBox>

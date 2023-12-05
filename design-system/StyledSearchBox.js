@@ -78,15 +78,15 @@ export const StyledSearchOutput = styled.ul`
   max-height: 0;
   transition: max-height 0.6s ease;
 
-  &.show {
-    background-color: #fff;
-    /* box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
-      inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
-      inset 0 -2px 1px rgba(0, 0, 0, 0.05); */
+  opacity: 0;
+
+  ${({ $isDisplayed }) =>
+    $isDisplayed &&
+    `background-color: #fff;
+    box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
+    inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 1px rgba(0, 0, 0, 0.05);
     border: 1px solid rgba(0, 0, 0, 0.2);
     opacity: 1;
-    max-height: 325px;
-  }
-
-  opacity: 0;
+    max-height: 325px;`};
 `;

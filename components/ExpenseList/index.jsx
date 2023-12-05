@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 import FilterExpense from "../FilterExpense";
 import ListItemPagination from "../ListItemPagination";
 import Expenses from "../Expenses";
-import HomePage from "../SearchBox";
 import SearchBox from "../SearchBox";
 
 function ExpenseList({ setToast }) {
@@ -133,7 +132,7 @@ function ExpenseList({ setToast }) {
           €
         </StyledText>
       </StyledSummaryBox>
-      <SearchBox />
+      <SearchBox data={data} />
       <FilterExpense
         selectedCategory={selectedCategory}
         categoryNames={categoryNames}
