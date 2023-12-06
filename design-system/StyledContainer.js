@@ -59,4 +59,13 @@ export const StyledContainer = styled.div`
       justify-content: center;
       align-items: center;
     `};
+
+  ${({ $isPolicyContainer }) =>
+    $isPolicyContainer &&
+    css`
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      opacity: 0.5;
+    `};
 `;
