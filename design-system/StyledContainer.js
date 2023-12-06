@@ -51,4 +51,12 @@ export const StyledContainer = styled.div`
       justify-content: flex-end;
       align-items: center;
     `};
+
+  ${({ $isUserContainer }) =>
+    $isUserContainer &&
+    css`
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    `};
 `;

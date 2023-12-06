@@ -1,7 +1,7 @@
 {
-  "name": "dont-forget-to-change-the-project-name",
+  "name": "smart-saver",
   "version": "0.0.0-unreleased",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -24,7 +24,8 @@
     "react-dom": "18.2.0",
     "styled-component": "^2.8.0",
     "styled-components": "^6.0.2",
-    "swr": "^2.2.4"
+    "swr": "^2.2.4",
+    "use-local-storage-state": "^19.1.0"
   },
   "devDependencies": {
     "@iconify/react": "^4.1.1",

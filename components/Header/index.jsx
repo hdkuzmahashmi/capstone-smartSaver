@@ -7,6 +7,7 @@ import { StyledButton } from "@/design-system/StyledButton";
 import { Icon } from "@iconify/react";
 import styled from "styled-components";
 import Loading from "../Loading";
+import CookieBanner from "../CookieBanner";
 
 function Header() {
   const { data: session, status } = useSession();
@@ -29,35 +30,27 @@ function Header() {
         </StyledLink>
       </StyledContainer>
       <StyledContainer $isCenter>
-        {status === "authenticated" ? (
-          <StyledUserContainer>
+        {status === "authenticated" && (
+          <StyledContainer $isCenter>
             <StyledAvatar src={userAvatar} alt="Avatar" />
             {userEmail}
-          </StyledUserContainer>
-        ) : (
-          ""
+            <StyledButton onClick={signOut} $isLoginButton>
+              Logout
+              <Icon icon="material-symbols:login" color="#1c91e3" width="32" />
+            </StyledButton>
+          </StyledContainer>
         )}
-        <StyledButton
-          onClick={
-            status === "authenticated" ? () => signOut() : () => signIn()
-          }
-          $isLoginButton
-        >
-          {status === "authenticated" ? "Logout" : "Login"}
-          <Icon icon="material-symbols:login" color="#1c91e3" width="32" />
-        </StyledButton>
+        {status === "unauthenticated" && (
+          <StyledButton onClick={signIn} $isLoginButton>
+            Login
+            <Icon icon="material-symbols:login" color="#1c91e3" width="32" />
+          </StyledButton>
+        )}
       </StyledContainer>
+      <CookieBanner />
     </>
   );
 }
-
-const StyledUserContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 5px;
-`;
-
 const StyledAvatar = styled.img`
   border-radius: 50%;
   width: 38px;
