@@ -18,7 +18,7 @@ export const authOptions = {
           body: JSON.stringify({
             personalizations: [{ to: [{ email }] }],
             from: { email: "werwein.dev@gmail.com" },
-            subject: "Sign in to Your page",
+            subject: "Sign in to SmartSaver",
             content: [
               {
                 type: "text/plain",
