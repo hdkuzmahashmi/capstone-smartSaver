@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledLabel = styled.label`
   margin-left: 0.75rem;
