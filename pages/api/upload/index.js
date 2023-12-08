@@ -1,45 +1,36 @@
 import formidable from "formidable";
 import cloudinary from "cloudinary";
 
+cloudinary.config({
+  cloud_name: "dcnjst4ow",
+  api_key: "877586892348186",
+  api_secret: "zAEInTMFgSpx2iALFJSnKe1e-J8",
+});
+
 export const config = {
   api: {
     bodyParser: false,
   },
 };
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_SECRET,
-});
-
-async function uploadToCloudinary(file) {
-  try {
-    const result = await cloudinary.v2.uploader.upload(file.filepath, {
-      public_id: file.newFilename,
-      folder: "SmartSaver",
-    });
-    return result;
-  } catch (error) {
-    console.error(error);
+export default async function handleCloudinaryUpload(request, response) {
+  if (request.method !== "POST") {
+    console.log("test request");
+    response.status(400).json({ message: "Method not allowed" });
+    return;
   }
-}
 
-export async function handleCloudinaryUpload(request) {
-  const form = formidable({ multiples: true });
+  const form = formidable({});
 
-  try {
-    const { file } = (await form.parse(request)).files;
+  const [fields, files] = await form.parse(request);
+  const file = files.file[0];
+  const { newFilename, filepath } = file;
+  const result = await cloudinary.v2.uploader.upload(filepath, {
+    public_id: newFilename,
+    folder: "Smartsaver",
+  });
 
-    if (!file || file.length === 0) {
-      throw new Error("No files provided");
-    }
+  console.log("result from cloudinary: ", result);
 
-    const uploadPromises = file.map(uploadToCloudinary);
-    const uploadResults = await Promise.all(uploadPromises);
-    return uploadResults;
-  } catch (error) {
-    console.error("Error handling Cloudinary upload: ", error);
-    throw error;
-  }
+  response.status(200).json(result);
 }

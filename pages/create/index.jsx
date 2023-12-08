@@ -10,7 +10,9 @@ function CreatePage({ setToast }) {
 
       const formdata = new FormData(event.target);
       const expData = Object.fromEntries(formdata);
+      console.log("expData:", expData);
 
+      // Send the expense data to your expenses API
       const response = await fetch("/api/expenses", {
         method: "POST",
         headers: {
@@ -23,20 +25,48 @@ function CreatePage({ setToast }) {
         console.error(response.status);
         setToast(
           true,
-          "Something went wrong, API does not response data. Please contact to application administrator.",
+          "Something went wrong, API does not respond with data. Please contact the application administrator.",
           "warning"
         );
         return;
       }
 
+      // Upload image to Cloudinary
+      try {
+        const cloudinaryResponse = await fetch("/api/upload", {
+          method: "POST",
+          body: formdata,
+        });
+
+        if (!cloudinaryResponse.ok) {
+          console.error(cloudinaryResponse.status);
+          setToast(
+            true,
+            "Error uploading image to Cloudinary. Please try again.",
+            "warning"
+          );
+          return;
+        }
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        setToast(
+          true,
+          "Error uploading image to Cloudinary. Please try again.",
+          "warning"
+        );
+        return;
+      }
+
+      // Reset form, trigger re-fetch, and navigate
       event.target.reset();
       mutate("/api/expenses");
       Router.push("/details");
-      setToast(true, "Expense is added successfully!", "success");
-    } catch {
+      setToast(true, "Expense added successfully!", "success");
+    } catch (error) {
+      console.error("General error:", error);
       setToast(
         true,
-        "Something went wrong. Please contact to application administrator.",
+        "Something went wrong. Please contact the application administrator.",
         "error"
       );
     }

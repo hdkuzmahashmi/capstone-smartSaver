@@ -1,7 +1,7 @@
 import { FileInput } from "@/design-system/StyledInput";
 import { useState } from "react";
 import ReceiptDisplay from "../ReceiptDisplay";
-import { ReceiptContainer } from "@/design-system/SryledUploadFile";
+import { ReceiptContainer } from "@/design-system/StyledUploadFile";
 
 function UploadFile() {
   const [files, setFiles] = useState([]);
@@ -9,14 +9,7 @@ function UploadFile() {
   const handleFileChange = (event) => {
     const selectedFiles = event.target.files;
 
-    const newFiles = [...selectedFiles].filter((file) => {
-      // Only accept files less than 1mb and of type 'image/'
-      // return file.size < 1024 * 1024 && file.type.startsWith("image/");
-
-      return file;
-    });
-
-    setFiles((prevFiles) => [...newFiles, ...prevFiles]);
+    setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
   };
 
   const handleDeleteFile = (fileName) => {
@@ -25,12 +18,7 @@ function UploadFile() {
 
   return (
     <>
-      <FileInput
-        type="file"
-        onChange={handleFileChange}
-        accept="image/*"
-        multiple
-      />
+      <FileInput type="file" onChange={handleFileChange} multiple name="file" />
 
       <ReceiptContainer>
         {files.map((file, index) => (

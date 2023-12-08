@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon } from "@iconify/react";
-import { FileContainer, FileName } from "@/design-system/SryledUploadFile";
+import { FileContainer, FileName } from "@/design-system/StyledUploadFile";
 
 function ReceiptDisplay({ fileName, onClick }) {
   return (
