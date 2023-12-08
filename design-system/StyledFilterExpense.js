@@ -29,7 +29,7 @@ export const commonFilterStyle = `
 export const Select = styled.select`
   background-color: transparent;
   ${commonFilterStyle};
-  margin-bottom: 22px;
+  margin-bottom: 10px;
 `;
 
 export const CollapseContainer = styled.div`
@@ -47,7 +47,7 @@ export const CollapsiblePanelContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10px;
+  margin: 3px;
   transition: max-height 0.3s ease;
   overflow: hidden;
   max-height: ${(props) => (props.$collapsed ? "0" : "none")};
@@ -58,20 +58,22 @@ export const FilterButton = styled.button`
   display: flex;
   align-items: center;
   padding: 5px 15px;
-  margin: 10px;
-  border: none;
+  margin-right: 10px;
+  border: 1px solid #1c91e3;
+  box-shadow: inset -0.3em -1.1em 0.4em #1c91e3, 0.05em 0.05em 0.15em #78b3e6;
   border-radius: 15px;
   background: linear-gradient(to right, #1c91e3, #78b3e6);
   color: #fff;
   font-size: 18px;
   cursor: pointer;
-  transition: background 0.3s, box-shadow 0.3s;
+  transition: background 0.3s, box-shadow 0.15s;
   text-transform: uppercase;
   letter-spacing: 1px;
   align-self: flex-end;
 
   &:hover {
-    background: linear-gradient(to right, #78b3e6, #1c91e3);
+    border: 1px solid #1c91e3;
+    box-shadow: inset -0.2em -0.1em 0.25em #1c91e3;
   }
 
   &:focus {

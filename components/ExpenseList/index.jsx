@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import FilterExpense from "../FilterExpense";
 import ListItemPagination from "../ListItemPagination";
 import Expenses from "../Expenses";
+import SearchBox from "../SearchBox";
 
 function ExpenseList({ setToast }) {
   // State variables for handling filters and UI state
@@ -117,6 +118,21 @@ function ExpenseList({ setToast }) {
 
   return (
     <StyledContainer $isFlexEnd>
+      <StyledSummaryBox>
+        <StyledText>Total</StyledText>
+        <StyledText $isSummaryNumber>
+          -
+          {isFiltered
+            ? filteredExpenses
+                .reduce((total, expense) => total + expense.amount, 0)
+                .toFixed(2)
+            : data
+                .reduce((total, expense) => total + expense.amount, 0)
+                .toFixed(2)}{" "}
+          €
+        </StyledText>
+      </StyledSummaryBox>
+      <SearchBox data={data} />
       <FilterExpense
         selectedCategory={selectedCategory}
         categoryNames={categoryNames}
@@ -133,20 +149,6 @@ function ExpenseList({ setToast }) {
         setStartDate={setStartDate}
         setEndDate={setEndDate}
       />
-      <StyledSummaryBox>
-        <StyledText>Total</StyledText>
-        <StyledText $isSummaryNumber>
-          -
-          {isFiltered
-            ? filteredExpenses
-                .reduce((total, expense) => total + expense.amount, 0)
-                .toFixed(2)
-            : data
-                .reduce((total, expense) => total + expense.amount, 0)
-                .toFixed(2)}{" "}
-          €
-        </StyledText>
-      </StyledSummaryBox>
       <Expenses expenses={paginatedExpenses} />
 
       <ListItemPagination

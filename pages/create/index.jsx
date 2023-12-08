@@ -31,7 +31,7 @@ function CreatePage({ setToast }) {
 
       event.target.reset();
       mutate("/api/expenses");
-      Router.push("/");
+      Router.push("/details");
       setToast(true, "Expense is added successfully!", "success");
     } catch {
       setToast(
