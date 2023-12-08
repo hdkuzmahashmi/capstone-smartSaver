@@ -32,7 +32,8 @@ function Header() {
       <StyledContainer $isCenter>
         {status === "authenticated" && (
           <StyledContainer $isCenter>
-            <StyledAvatar src={userAvatar} alt="Avatar" />
+            {userAvatar && <StyledAvatar src={userAvatar} alt="Avatar" />}
+
             {userEmail}
             <StyledButton onClick={signOut} $isLoginButton>
               Logout
