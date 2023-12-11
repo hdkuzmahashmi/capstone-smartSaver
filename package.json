@@ -1,7 +1,7 @@
 {
-  "name": "dont-forget-to-change-the-project-name",
+  "name": "smart-saver",
   "version": "0.0.0-unreleased",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,18 +10,27 @@
     "test": "jest --watchAll"
   },
   "dependencies": {
+    "@auth/mongodb-adapter": "^2.0.7",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.8",
+
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.1",
+
     "fuse.js": "^7.0.0",
-    "mongoose": "^7.6.2",
+
+
     "next": "^13.5.4",
+    "next-auth": "^4.24.5",
+    "nodemailer": "^6.9.7",
     "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-datepicker": "^4.21.0",
     "react-dom": "18.2.0",
     "styled-component": "^2.8.0",
     "styled-components": "^6.0.2",
-    "swr": "^2.2.4"
+    "swr": "^2.2.4",
+    "use-local-storage-state": "^19.1.0"
   },
   "devDependencies": {
     "@iconify/react": "^4.1.1",

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import useSWR from "swr";
 import Loading from "@/components/Loading";
 import DoughnutGraph from "@/components/DoughnutGraph";
-import { StyledContainer } from "@/design-system/StyledContainer";
 import DashboardExpenses from "@/components/DashboardExpenses";
 import BarChart from "@/components/BarChart";
 import ViewAllExpenses from "@/components/DashboardViewAllExpenses";
@@ -33,7 +32,7 @@ const Dashboard = ({ setToast }) => {
   return (
     <PageContainer>
       <DoughnutGraph />
-      <StyledContainer $isSpaceBetween $isDashboard></StyledContainer>
+
       <StyledHeading>Last Expenses</StyledHeading>
       <DashboardExpenses expenses={lastExpenses} />
       <ViewAllExpenses />

@@ -20,10 +20,10 @@ export const StyledExpenseSquare = styled.li`
   box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
     inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
     inset 0 -2px 1px rgba(0, 0, 0, 0.05);
-  border: 3px solid ${(props) => props.backgroundColor};
+  border: 3px solid ${(props) => props.$bgcolor};
 
   &:hover {
-    background-color: ${(props) => props.backgroundColor};
+    background-color: ${(props) => props.$bgcolor};
     box-shadow: none;
   }
 

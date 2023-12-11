@@ -4,21 +4,28 @@ import {
   validateStringInput,
   validateAmountInput,
 } from "@/utils/formValidation";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(request, response) {
   await dbConnect();
+  const session = await getServerSession(request, response, authOptions);
   const { id } = request.query;
 
   if (request.method === "GET") {
     try {
-      const expense = await Expense.findById(id).populate("categoryId");
+      if (session) {
+        const expense = await Expense.findById(id)
+          .populate("categoryId")
+          .where("userId", session.user.email);
 
-      if (!expense) {
-        return response.status(404).json({ status: "Not Found" });
+        if (!expense) {
+          return response.status(404).json({ status: "Not Found" });
+        }
+        return response.status(200).json(expense);
       }
-      response.status(200).json(expense);
     } catch (error) {
-      console.error("error from expense", error);
+      console.log("Error from Expense", error);
       return response
         .status(400)
         .json({ message: "Something went wrong", error: error });

@@ -25,4 +25,8 @@ export const StyledButton = styled.button`
   &:active {
     transform: translate(0, 0);
   }
+
+  ${({ $isLoginButton }) =>
+    $isLoginButton &&
+    "display:flex; justify-content:justify-between; align-items:center; font-weight:500;"}
 `;
