@@ -21,6 +21,7 @@ export default createGlobalStyle`
     padding-bottom: 30%;
     position: relative;
     color: #202020;
+    overflow-x: hidden;
 
     @media (min-width: 768px) {
       padding-left: 10%;

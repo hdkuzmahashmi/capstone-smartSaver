@@ -63,9 +63,11 @@ export const StyledContainer = styled.div`
   ${({ $isPolicyContainer }) =>
     $isPolicyContainer &&
     css`
-      position: absolute;
-      bottom: 2rem;
-      left: 2rem;
+      flex-direction: row;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 4rem;
       opacity: 0.5;
+      margin-bottom: -5rem;
     `};
 `;

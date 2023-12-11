@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import { StyledFooter } from "../../design-system/StyledFooter";
-import { StyledLink } from "../../design-system/StyledLink";
+import { StyledFooter } from "@/design-system/StyledFooter";
+import { StyledLink } from "@/design-system/StyledLink";
 import { StyledContainer } from "@/design-system/StyledContainer";
 import CreateButton from "../CreateButton";
 import GoBackButton from "../GoBackButton";
