@@ -20,11 +20,8 @@ function CreatePage({ setToast }) {
       const expData = transformFormData(formdata);
 
       // Call functions to add expense and upload image
-      await addExpense(expData);
-      await uploadImage(formdata);
-
-      console.log("formdata:", formdata);
-      console.log("expData:", expData);
+      const expid = await addExpense(expData);
+      await uploadImage(formdata, expid);
 
       // Reset form, trigger re-fetch, and navigate
       event.target.reset();
@@ -72,10 +69,13 @@ function CreatePage({ setToast }) {
     if (!response.ok) {
       handleApiError(response, "API does not respond with data.");
     }
+    const data = await response.json();
+
+    return data.expenseId;
   };
 
   // Function to upload an image to Cloudinary
-  const uploadImage = async (formdata) => {
+  const uploadImage = async (formdata, expid) => {
     try {
       const cloudinaryResponse = await fetch(API_UPLOAD, {
         method: "POST",
@@ -88,6 +88,12 @@ function CreatePage({ setToast }) {
           cloudinaryResponse,
           "Error uploading image to Cloudinary. Please try again."
         );
+      }
+      const data = await cloudinaryResponse.json();
+
+      for (const item of data) {
+        const imageUrl = item?.secure_url;
+        await saveuploadImageurl(imageUrl, expid);
       }
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -104,6 +110,38 @@ function CreatePage({ setToast }) {
     console.error(response.status);
     setToast(true, `Something went wrong. ${errorMessage}`, "warning");
     throw new Error(`API Error: ${response.status}`);
+  };
+
+  // Function to upload an image to Cloudinary
+  const saveuploadImageurl = async (url, expid) => {
+    const uploadobj = {};
+
+    uploadobj["url"] = url;
+    uploadobj["expenseId"] = expid;
+
+    try {
+      const respone = await fetch("api/expenseimage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(uploadobj),
+      });
+
+      if (!respone.ok) {
+        handleApiError(
+          respone,
+          "Error adding image url to db. Please try again."
+        );
+      }
+    } catch (error) {
+      console.error("Error adding urls in expenseimage collection:", error);
+      setToast(
+        true,
+        "Error uploading image to Cloudinary. Please try again.",
+        "warning"
+      );
+    }
   };
 
   // Render the form component

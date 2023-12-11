@@ -73,8 +73,13 @@ export default async function handler(request, response) {
     try {
       if (session) {
         const expenseData = { ...request.body, userId: session.user.email };
-        await Expense.create(expenseData);
-        return response.status(201).json({ message: "Expense created." });
+        const createdExpense = await Expense.create(expenseData);
+        const expenseId = createdExpense._id; // Access the ObjectId
+
+        return response
+          .status(201)
+          .json({ message: "Expense created.", expenseId });
+        //return response.status(201).json({ message: "Expense created." });
       }
       const expenseData = request.body;
       if (
@@ -82,8 +87,12 @@ export default async function handler(request, response) {
         validateStringInput(request.body.description, "description") &&
         validateAmountInput(request.body.amount)
       ) {
-        await Expense.create(expenseData);
-        return response.status(201).json({ message: "Expense created." });
+        const createdExpense = await Expense.create(expenseData);
+        const expenseId = createdExpense._id; // Access the ObjectId
+
+        return response
+          .status(201)
+          .json({ message: "Expense created.", expenseId });
       } else {
         response
           .status(403)
