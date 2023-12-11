@@ -3,6 +3,7 @@ import Layout from "./_layout";
 import Head from "next/head";
 import { useState } from "react";
 import Toast from "@/components/Toast";
+import PageNotFound from "@/components/PageNotFound";
 import { SessionProvider } from "next-auth/react";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -30,7 +31,7 @@ export default function App({
         <SWRConfig value={{ fetcher }}>
           <Component {...pageProps} setToast={handleToast} />
         </SWRConfig>
-
+        <PageNotFound />
         <Toast
           message={toastMessage}
           showToast={showToast}
