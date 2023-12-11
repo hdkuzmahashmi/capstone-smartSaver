@@ -43,12 +43,17 @@ export default async function handleCloudinaryUpload(request, response) {
         folder: "Smartsaver",
       });
 
+      console.log("Cloudinary Result:", result);
+
       return result;
     });
 
     // Wait for all uploads to complete and send the results in the response
     const results = await Promise.all(uploadPromises);
+
     response.status(200).json(results);
+
+    console.log("Cloudinary Resultssss:", results);
   } catch (error) {
     console.error("Error processing files:", error);
     response.status(500).json({ message: "Internal Server Error" });

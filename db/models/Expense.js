@@ -12,6 +12,7 @@ const expenseSchema = new Schema({
   categoryId: { type: [Schema.Types.ObjectId], ref: Category },
   currencyId: { type: [Schema.Types.ObjectId], ref: Currency },
   userId: { type: String, required: false },
+  secureUrl: { type: String },
 });
 
 const Expense =
