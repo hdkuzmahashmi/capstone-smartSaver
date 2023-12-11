@@ -1,17 +1,47 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-export const Styled404Content = styled.div`
-  height: 100%;
+export const Styled404Page = styled.div`
+  height: 100dvh;
+  width: 100dvw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  font-size: 32px;
+  font-weight: 600;
+  color: #1c91e3;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 105;
+  background-image: url(/404.jpg);
+  object-fit: contain;
+  background-size: cover;
+  background-position: 0% 59.5%;
+  @media (max-width: 768px) {
+    background-position: 65% 60%;
+  }
 `;
 
-export const StyledImage = styled(Image)`
-  padding: 0%;
-  margin: 0%;
-  height: 100%;
-  width: 100%;
+export const StyledContent = styled.div`
+  display: flex;
+  margin-top: 273px;
+  flex-direction: column;
+  gap: 10px;
+  @media (max-width: 768px) {
+    margin-top: 200px;
+    gap: 10px;
+  }
+`;
+
+export const Styled404 = styled.p`
+  position: absolute;
+  font-size: 110px;
+  font-weight: bold;
+  margin: 100px 1% 0 0;
+  color: #fff;
+  font-family: Futura;
+  @media (max-width: 768px) {
+    margin: 60px 1% 0 0;
+  }
 `;

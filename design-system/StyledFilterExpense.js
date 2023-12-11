@@ -69,7 +69,8 @@ export const FilterButton = styled.button`
   transition: background 0.3s, box-shadow 0.15s;
   text-transform: uppercase;
   letter-spacing: 1px;
-  align-self: flex-end;
+  align-self: ${(props) => (props.$isCenter ? "center" : "flex-end")};
+  position: ${(props) => (props.$isOnImage ? "sticky" : "")};
 
   &:hover {
     border: 1px solid #1c91e3;
