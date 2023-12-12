@@ -10,6 +10,8 @@ import { StyledIconGroup } from "@/design-system/StyledIconGroup";
 import { StyledTitle } from "@/design-system/StyledTitle";
 import { StyledText } from "@/design-system/StyledText";
 import { formatDate } from "@/assets/utils/DateUtils";
+import { StyledCardImage } from "@/design-system/StyledCardImage";
+import { StyledImage } from "@/design-system/StyledImage";
 
 import useSWR from "swr";
 import Loading from "@/components/Loading";
@@ -77,10 +79,10 @@ function ExpenseDetail({ expense = {}, handleDelete, setToast, expid }) {
           ></DeleteButton>
         </StyledIconGroup>
       </StyledCard>
-      <StyledCard>
+      <StyledCardImage $color={expense.categoryId[0].color}>
         {data.map((item, index) => (
           <a href={item.url} key={index} target="_blank" rel="noreferrer">
-            <Image
+            <StyledImage
               src={item.url}
               alt={`Expense Receipt ${index + 1}`}
               width={140}
@@ -88,7 +90,7 @@ function ExpenseDetail({ expense = {}, handleDelete, setToast, expid }) {
             />
           </a>
         ))}
-      </StyledCard>
+      </StyledCardImage>
     </>
   );
 }
