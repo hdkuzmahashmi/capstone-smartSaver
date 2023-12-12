@@ -23,9 +23,6 @@ function CreatePage({ setToast }) {
       await addExpense(expData);
       await uploadImage(formdata);
 
-      console.log("formdata:", formdata);
-      console.log("expData:", expData);
-
       // Reset form, trigger re-fetch, and navigate
       event.target.reset();
       mutate(API_EXPENSES);

@@ -21,9 +21,9 @@ function UploadFile() {
       <FileInput type="file" onChange={handleFileChange} multiple name="file" />
 
       <ReceiptContainer>
-        {files.map((file, index) => (
+        {files.map((file) => (
           <ReceiptDisplay
-            key={index}
+            key={file.name}
             fileName={file.name}
             onClick={() => handleDeleteFile(file.name)}
           />

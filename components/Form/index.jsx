@@ -143,10 +143,8 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
             defaultValue={isEditMode ? expense.description : ""}
             onBlur={(event) => {
               const trimedInput = trimStringInput(event);
-              console.log("Trimmed Input:", trimedInput);
               event.currentTarget.value = trimedInput;
               const isValid = validateStringInput(trimedInput, 5);
-              console.log("Is Valid:", isValid);
               setIsWrong((elements) => ({
                 ...elements,
                 description: !isValid,
