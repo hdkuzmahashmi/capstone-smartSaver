@@ -38,7 +38,7 @@ function ExpenseDetail({ expense = {}, handleDelete, setToast, expid }) {
     );
     return;
   }
-  console.log("dataaa", data);
+
   if (!expense._id || typeof expense._id !== "string") {
     return <h2>Something went wrong</h2>;
   }
