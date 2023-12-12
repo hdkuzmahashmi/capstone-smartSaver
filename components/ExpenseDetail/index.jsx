@@ -79,18 +79,20 @@ function ExpenseDetail({ expense = {}, handleDelete, setToast, expid }) {
           ></DeleteButton>
         </StyledIconGroup>
       </StyledCard>
-      <StyledCardImage $color={expense.categoryId[0].color}>
-        {data.map((item, index) => (
-          <a href={item.url} key={index} target="_blank" rel="noreferrer">
-            <StyledImage
-              src={item.url}
-              alt={`Expense Receipt ${index + 1}`}
-              width={140}
-              height={230}
-            />
-          </a>
-        ))}
-      </StyledCardImage>
+      {data && data.length > 0 && (
+        <StyledCardImage $color={expense.categoryId[0].color}>
+          {data.map((item, index) => (
+            <a href={item.url} key={index} target="_blank" rel="noreferrer">
+              <StyledImage
+                src={item.url}
+                alt={`Expense Receipt ${index + 1}`}
+                width={140}
+                height={230}
+              />
+            </a>
+          ))}
+        </StyledCardImage>
+      )}
     </>
   );
 }

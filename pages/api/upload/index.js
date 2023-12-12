@@ -2,16 +2,10 @@ import formidable from "formidable";
 import cloudinary from "cloudinary";
 
 // Configure Cloudinary with API credentials
-// cloudinary.config({
-//   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-//   api_key: process.env.CLOUDINARY_API_KEY,
-//   api_secret: process.env.CLOUDINARY_SECRET,
-// });
-// please ignore this hardcode keys i will fix it seperately
 cloudinary.config({
-  cloud_name: "dxulqv5xf",
-  api_key: "977549227443151",
-  api_secret: "K6Eqtyn6YUaXXOefcC5IobBvfOs",
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
 });
 
 // Configuration for Next.js API route to disable default bodyParser
