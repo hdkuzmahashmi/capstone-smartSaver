@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
+
 import ExpenseDetail from "@/components/ExpenseDetail";
 import Loading from "@/components/Loading";
 
@@ -30,7 +31,7 @@ function DetailPage({ setToast }) {
     return;
   }
 
-  return <ExpenseDetail expense={data} setToast={setToast} />;
+  return <ExpenseDetail expense={data} setToast={setToast} expid={id} />;
 }
 
 export default DetailPage;

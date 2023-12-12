@@ -1,9 +1,5 @@
 import dbConnect from "@/db/dbconnect";
-import Expense from "@/db/models/Expense";
-import {
-  validateStringInput,
-  validateAmountInput,
-} from "@/utils/formValidation";
+import ExpenseImage from "@/db/models/ExpenseImage";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 
@@ -11,17 +7,22 @@ export default async function handler(request, response) {
   await dbConnect();
   const session = await getServerSession(request, response, authOptions);
   const { id } = request.query;
+  console.log("Apiid", id);
 
   if (request.method === "GET") {
     try {
       if (session) {
-        const expense = await ExpenseImage.findById(id)
-          .populate("expenseId")
+        const expense = await ExpenseImage.find({ expenseId: id })
+          .exec()
           .where("userId", session.user.email);
 
         if (!expense) {
           return response.status(404).json({ status: "Not Found" });
         }
+        return response.status(200).json(expense);
+      } else {
+        const expense = await ExpenseImage.find({ expenseId: id }).exec();
+
         return response.status(200).json(expense);
       }
     } catch (error) {
