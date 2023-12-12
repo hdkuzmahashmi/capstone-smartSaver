@@ -45,3 +45,13 @@ export const Styled404 = styled.p`
     margin: 60px 1% 0 0;
   }
 `;
+
+export const StyledLoadingDiv = styled.div`
+  height: 100dvh;
+  width: 100dvw;
+  background-color: #fff;
+  z-index: 105;
+  position: fixed;
+  left: 0;
+  top: 0;
+`;
