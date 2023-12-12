@@ -1,18 +1,21 @@
 import styled, { css, keyframes } from "styled-components";
 import DatePicker from "react-datepicker";
 
-export const StyledInput = styled.input`
-  margin-top: 0.35rem;
-  margin-bottom: 0.8rem;
-  display: block;
-  width: 100%;
-  padding: 0.5rem 0.75rem;
+const inputBaseStyles = `
+  padding:  0.75rem;
   background-color: #fff;
   border: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 0.375rem;
   outline: none;
   font-size: 1rem;
+`;
+
+export const StyledInput = styled.input`
+  ${inputBaseStyles}
+  margin-top: 0.35rem;
+  margin-bottom: 0.8rem;
+  width: 100%;
 
   ${({ $isValid }) => ($isValid ? `outline: 2px red solid;` : `outline: 0;`)}
 `;
@@ -38,16 +41,45 @@ export const SearchInput = styled.input`
 `;
 
 export const FormDateInput = styled(DatePicker)`
-  margin: 0.35rem 0 1.3rem 0;
-  padding: 0.4rem;
-  text-align: center;
-  background-color: #fff;
-  border: none;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  border-radius: 0.375rem;
-  outline: none;
-  font-size: 1rem;
+  ${inputBaseStyles}
   letter-spacing: 1px;
+  text-align: center;
+`;
+
+export const FileInput = styled.input`
+  ${inputBaseStyles}
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+export const DateAndFileWrapper = styled.div`
+  display: flex;
+  margin-top: 0.3rem;
+  margin-bottom: 2rem;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+export const LabelAndInputContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  @media (max-width: 1120px) {
+    margin-bottom: 1rem;
+    gap: 0.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const fadeIn = keyframes`

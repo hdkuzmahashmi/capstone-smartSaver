@@ -17,7 +17,6 @@ function ExpenseDetail({ expense = {}, handleDelete, setToast }) {
   }
 
   const formattedDate = formatDate(expense.createdAt);
-
   return (
     <StyledCard $addMarginBottom $isDetail $color={expense.categoryId[0].color}>
       <StyledIcon icon={expense.categoryId[0].icon} width={40} />
