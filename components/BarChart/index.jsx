@@ -46,7 +46,7 @@ function BarChart() {
           },
           label: function (context) {
             // Display the total expense for the corresponding month with the euro sign
-            return `Total Expense: ${context.parsed.y} €`;
+            return `Total Expense: ${context.parsed.y.toFixed(2)} €`;
           },
         },
       },
