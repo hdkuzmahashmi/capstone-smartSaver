@@ -73,7 +73,7 @@ function DoughnutGraph() {
             },
             label: function (context) {
               const value = context.parsed;
-              return `Amount: ${value} €`;
+              return `Amount: ${value.toFixed(2)} €`;
             },
           },
         },
@@ -91,14 +91,16 @@ function DoughnutGraph() {
         </Link>
       </ExpenseOverviewContainer>
       <ListContainer>
-        {categoryTotalsArray.map((category) => (
-          <ListItem key={category.name}>
-            <ColorBox style={{ backgroundColor: category.color }}></ColorBox>
-            <Icon icon={category.icon} width={15} />
-            <ItemName>{category.name}</ItemName>
-            <Amount>{category.total.toFixed(2)} €</Amount>
-          </ListItem>
-        ))}
+        {categoryTotalsArray
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((category) => (
+            <ListItem key={category.name}>
+              <ColorBox style={{ backgroundColor: category.color }}></ColorBox>
+              <Icon icon={category.icon} width={15} />
+              <ItemName>{category.name}</ItemName>
+              <Amount>{category.total.toFixed(2)} €</Amount>
+            </ListItem>
+          ))}
       </ListContainer>
     </GraphContainer>
   );
