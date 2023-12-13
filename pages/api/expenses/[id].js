@@ -23,6 +23,9 @@ export default async function handler(request, response) {
           return response.status(404).json({ status: "Not Found" });
         }
         return response.status(200).json(expense);
+      } else {
+        const expense = await Expense.findById(id).populate("categoryId");
+        return response.status(200).json(expense);
       }
     } catch (error) {
       console.log("Error from Expense", error);
