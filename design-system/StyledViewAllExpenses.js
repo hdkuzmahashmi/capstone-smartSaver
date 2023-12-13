@@ -14,7 +14,6 @@ export const StyledHeading = styled.h2`
   color: #333;
   font-size: 1rem;
   margin-top: 2rem;
-  margin-bottom: -7px;
 `;
 
 export const StyledView = styled.h2`
@@ -55,5 +54,5 @@ export const FlexContainer = styled.div`
   align-items: center;
   width: 100%;
   margin-top: 1rem;
-  margin-bottom: -7px;
+  margin-bottom: 15px;
 `;

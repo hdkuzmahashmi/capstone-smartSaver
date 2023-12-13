@@ -44,17 +44,25 @@ function DoughnutGraph() {
     }, 0)
     .toFixed(2);
 
+  const categoryTransparentColor = categoryColor.map((color) =>
+    color.replace("rgb", "rgba").replace(")", ", 0.4)")
+  );
+
   // Create chart data and configuration
   const chartData = {
     datasets: [
       {
         data: categoryValues,
-        backgroundColor: categoryColor,
-        hoverOffset: 4,
-        borderRadius: 8,
+        backgroundColor: categoryTransparentColor,
+        hoverBackgroundColor: categoryColor,
+        borderColor: categoryColor,
+        hoverOffset: 5,
+        borderRadius: 6,
+        borderWidth: 1,
       },
     ],
   };
+  
 
   const config = {
     type: "doughnut",
