@@ -29,15 +29,17 @@ const PageNotFound = () => {
 
   return (
     <>
-      <Styled404Page>
-        <Styled404>404 </Styled404>
-        <StyledContent>
-          Lost your Money?
-          <FilterButton $isCenter $isOnImage onClick={handleButtonClick}>
-            Its here
-          </FilterButton>
-        </StyledContent>
-      </Styled404Page>
+      <StyledLoadingDiv>
+        <Styled404Page>
+          <Styled404>404</Styled404>
+          <StyledContent>
+            Lost your Money?
+            <FilterButton $isCenter $isOnImage onClick={handleButtonClick}>
+              Its here
+            </FilterButton>
+          </StyledContent>
+        </Styled404Page>
+      </StyledLoadingDiv>
     </>
   );
 };

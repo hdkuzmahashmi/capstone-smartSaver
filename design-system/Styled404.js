@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Image from "next/image";
 
 export const Styled404Page = styled.div`
   height: 100dvh;
