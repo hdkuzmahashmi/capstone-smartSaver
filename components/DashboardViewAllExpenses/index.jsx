@@ -1,6 +1,4 @@
-import styled from "styled-components";
 import {
-  StyledHeading,
   StyledHistoryIcon,
   StyledViewLink,
   StyledContainer,
@@ -13,7 +11,11 @@ function ViewAllExpenses() {
     <FlexContainer>
       <StyledViewLink href="/details">
         <StyledContainer>
-          <StyledHistoryIcon icon="material-symbols:history" width="32" />
+          <StyledHistoryIcon
+            icon="icon-park-outline:history-query"
+            color="white"
+            width="32"
+          />
           <StyledView>View All Expenses</StyledView>
         </StyledContainer>
       </StyledViewLink>
