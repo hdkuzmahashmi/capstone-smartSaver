@@ -64,6 +64,7 @@ function BarChart() {
         backgroundColor: ["rgba(28, 145, 227, 0.2)"],
         borderColor: ["rgba(28, 145, 227)"],
         borderWidth: 1,
+        hoverBackgroundColor: ["rgba(28, 145, 227, 0.7)"],
       },
     ],
   };
