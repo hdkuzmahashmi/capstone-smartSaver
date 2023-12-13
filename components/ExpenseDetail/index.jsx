@@ -15,10 +15,13 @@ import { StyledImage } from "@/design-system/StyledImage";
 
 import useSWR from "swr";
 import Loading from "@/components/Loading";
-import Image from "next/image";
 
-function ExpenseDetail({ expense = {}, handleDelete, setToast, expid }) {
-  const { data, isLoading, error } = useSWR(`/api/expenseimage/${expid}`);
+function ExpenseDetail({ expense = {}, handleDelete, setToast }) {
+  const {
+    data: expenseImage,
+    isLoading,
+    error,
+  } = useSWR(`/api/expenseimage/${expense._id}`);
 
   if (isLoading) {
     return <Loading />;
@@ -32,7 +35,7 @@ function ExpenseDetail({ expense = {}, handleDelete, setToast, expid }) {
     return;
   }
 
-  if (!data) {
+  if (!expenseImage) {
     setToast(
       true,
       "Something went wrong, API does not response data. Please contact to application administrator.",
@@ -79,9 +82,9 @@ function ExpenseDetail({ expense = {}, handleDelete, setToast, expid }) {
           ></DeleteButton>
         </StyledIconGroup>
       </StyledCard>
-      {data && data.length > 0 && (
+      {expenseImage && expenseImage.length > 0 && (
         <StyledCardImage $color={expense.categoryId[0].color}>
-          {data.map((item, index) => (
+          {expenseImage.map((item, index) => (
             <a href={item.url} key={index} target="_blank" rel="noreferrer">
               <StyledImage
                 src={item.url}

@@ -7,14 +7,13 @@ export default async function handler(request, response) {
   await dbConnect();
   const session = await getServerSession(request, response, authOptions);
   const { id } = request.query;
-  console.log("Apiid", id);
 
   if (request.method === "GET") {
     try {
       if (session) {
         const expense = await ExpenseImage.find({ expenseId: id })
-          .exec()
-          .where("userId", session.user.email);
+          .where("userId", session.user.email)
+          .exec();
 
         if (!expense) {
           return response.status(404).json({ status: "Not Found" });
