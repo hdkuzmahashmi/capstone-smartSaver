@@ -28,8 +28,8 @@ export const ExpenseOverviewContainer = styled.div`
 
 export const TotalContainer = styled.div`
   position: absolute;
-  top: 58%;
-  left: 50%;
+  top: 51.5%;
+  left: 51.5%;
   transform: translate(-50%, -50%);
   text-align: center;
   font-size: 18px;

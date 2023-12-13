@@ -62,7 +62,7 @@ function DoughnutGraph() {
     options: {
       plugins: {
         title: {
-          display: true,
+          display: false,
           text: "Category Expense Summary",
         },
 

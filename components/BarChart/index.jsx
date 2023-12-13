@@ -35,7 +35,7 @@ function BarChart() {
         display: false,
       },
       title: {
-        display: true,
+        display: false,
         text: "Monthly Expense Summary",
       },
       tooltip: {

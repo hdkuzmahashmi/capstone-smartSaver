@@ -31,11 +31,12 @@ const Dashboard = ({ setToast }) => {
 
   return (
     <PageContainer>
+      <StyledHeading>Category Expense Summary</StyledHeading>
       <DoughnutGraph />
-
       <StyledHeading>Last Expenses</StyledHeading>
       <DashboardExpenses expenses={lastExpenses} />
       <ViewAllExpenses />
+      <StyledHeading>Monthly Expense Summary</StyledHeading>
       <BarChart />
     </PageContainer>
   );
