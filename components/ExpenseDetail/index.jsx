@@ -82,17 +82,29 @@ function ExpenseDetail({ expense = {}, handleDelete, setToast }) {
           ></DeleteButton>
         </StyledIconGroup>
       </StyledCard>
+
       {expenseImage && expenseImage.length > 0 && (
         <StyledCardImage $color={expense.categoryId[0].color}>
           {expenseImage.map((item, index) => (
-            <a href={item.url} key={index} target="_blank" rel="noreferrer">
-              <StyledImage
-                src={item.url}
-                alt={`Expense Receipt ${index + 1}`}
-                width={140}
-                height={230}
-              />
-            </a>
+            <div key={index}>
+              {item.url.toLowerCase().endsWith(".pdf") ? (
+                <iframe
+                  src={item.url}
+                  title={`Expense Receipt ${index + 1}`}
+                  width="100%"
+                  height="600px"
+                ></iframe>
+              ) : (
+                <a href={item.url} target="_blank" rel="noreferrer">
+                  <StyledImage
+                    src={item.url}
+                    alt={`Expense Receipt ${index + 1}`}
+                    width={140}
+                    height={230}
+                  />
+                </a>
+              )}
+            </div>
           ))}
         </StyledCardImage>
       )}
