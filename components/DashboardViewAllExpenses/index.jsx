@@ -14,7 +14,7 @@ function ViewAllExpenses() {
           <StyledHistoryIcon
             icon="icon-park-outline:history-query"
             color="white"
-            width="32"
+            width="28"
           />
           <StyledView>View All Expenses</StyledView>
         </StyledContainer>
