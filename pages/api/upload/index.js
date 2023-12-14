@@ -31,7 +31,6 @@ export default async function handleCloudinaryUpload(request, response) {
 
     // Extract the uploaded files from the form data
     const uploadedFiles = files.file;
-    //console.log("uploadedFiles:", uploadedFiles);
 
     // Use Promise.all to upload each file to Cloudinary concurrently
     const uploadPromises = uploadedFiles.map(async (file) => {
@@ -43,8 +42,6 @@ export default async function handleCloudinaryUpload(request, response) {
         folder: "Smartsaver",
       });
 
-      //console.log("Cloudinary Result:", result);
-
       return result;
     });
 
@@ -52,8 +49,6 @@ export default async function handleCloudinaryUpload(request, response) {
     const results = await Promise.all(uploadPromises);
 
     response.status(200).json(results);
-
-    //console.log("Cloudinary Resultssss:", results);
   } catch (error) {
     console.error("Error processing files:", error);
     response.status(500).json({ message: "Internal Server Error" });
