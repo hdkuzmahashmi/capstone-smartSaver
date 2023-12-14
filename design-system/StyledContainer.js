@@ -41,7 +41,8 @@ export const StyledContainer = styled.div`
     css`
       flex-direction: row;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
     `};
 
   ${({ $isLogin }) =>
@@ -70,4 +71,8 @@ export const StyledContainer = styled.div`
       opacity: 0.5;
       margin-bottom: -5rem;
     `};
+`;
+
+export const LoginCantainer = styled.div`
+  margin-bottom: 1.5rem;
 `;

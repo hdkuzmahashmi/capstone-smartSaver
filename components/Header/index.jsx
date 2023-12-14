@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { StyledHeadline } from "@/design-system/StyledHeadline";
-import { StyledContainer } from "@/design-system/StyledContainer";
+import { LoginCantainer, StyledContainer } from "@/design-system/StyledContainer";
 import { StyledLink } from "@/design-system/StyledLink";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { StyledButton } from "@/design-system/StyledButton";
@@ -21,32 +21,36 @@ function Header() {
 
   return (
     <>
-      <StyledContainer $isCenter>
+      <StyledContainer $isLogo>
         <StyledLink href="/">
           <StyledContainer $isLogo>
             <Image src="/smartsaver.svg" width="75" height="75" alt="Logo" />
             <StyledHeadline>SmartSaver</StyledHeadline>
           </StyledContainer>
         </StyledLink>
-      </StyledContainer>
-      <StyledContainer $isCenter>
-        {status === "authenticated" && (
-          <StyledContainer $isCenter>
-            {userAvatar && <StyledAvatar src={userAvatar} alt="Avatar" />}
+        <LoginCantainer >
+          {status === "authenticated" && (
+            <StyledContainer $isCenter>
+              {userAvatar && <StyledAvatar src={userAvatar} alt="Avatar" />}
 
-            {userEmail}
-            <StyledButton onClick={signOut} $isLoginButton>
-              Logout
+              {userEmail}
+              <StyledButton onClick={signOut} $isLoginButton>
+                Logout
+                <Icon
+                  icon="material-symbols:login"
+                  color="#1c91e3"
+                  width="32"
+                />
+              </StyledButton>
+            </StyledContainer>
+          )}
+          {status === "unauthenticated" && (
+            <StyledButton onClick={signIn} $isLoginButton>
+              Login
               <Icon icon="material-symbols:login" color="#1c91e3" width="32" />
             </StyledButton>
-          </StyledContainer>
-        )}
-        {status === "unauthenticated" && (
-          <StyledButton onClick={signIn} $isLoginButton>
-            Login
-            <Icon icon="material-symbols:login" color="#1c91e3" width="32" />
-          </StyledButton>
-        )}
+          )}
+        </LoginCantainer>
       </StyledContainer>
       <CookieBanner />
     </>
