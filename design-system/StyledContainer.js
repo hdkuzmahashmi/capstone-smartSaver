@@ -64,11 +64,16 @@ export const StyledContainer = styled.div`
   ${({ $isPolicyContainer }) =>
     $isPolicyContainer &&
     css`
+      font-size: 0.85rem;
+      position: absolute;
+      bottom: 3px;
+      overflow: hidden;
+      opacity: 0.3333;
+      display: flex;
       flex-direction: row;
+      gap: 0.5rem;
+      align-items: center;
+      left: 0;
       justify-content: center;
-      gap: 2rem;
-      margin-top: 4rem;
-      opacity: 0.5;
-      margin-bottom: -5rem;
     `};
 `;
