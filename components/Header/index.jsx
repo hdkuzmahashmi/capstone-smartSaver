@@ -2,6 +2,7 @@ import Image from "next/image";
 import { StyledHeadline } from "@/design-system/StyledHeadline";
 import {
   LoginCantainer,
+  LoginText,
   StyledContainer,
 } from "@/design-system/StyledContainer";
 import { StyledLink } from "@/design-system/StyledLink";
@@ -15,7 +16,9 @@ import CookieBanner from "../CookieBanner";
 function Header() {
   const { data: session, status } = useSession();
 
-  const userEmail = session?.user?.email;
+  const userName = session?.user?.name
+    ? session?.user?.name
+    : session?.user?.email?.split("@")[0];
   const userAvatar = session?.user?.image;
 
   if (status === "loading") {
@@ -24,7 +27,7 @@ function Header() {
 
   return (
     <>
-      <StyledContainer $isLogo>
+      <StyledContainer $isHeader>
         <StyledLink href="/">
           <StyledContainer $isLogo>
             <Image src="/smartsaver.svg" width="75" height="75" alt="Logo" />
@@ -32,14 +35,9 @@ function Header() {
           </StyledContainer>
         </StyledLink>
         {status === "authenticated" && (
-          <StyledContainer $isCenter>
-            {userAvatar && <StyledAvatar src={userAvatar} alt="Avatar" />}
-
-            {userEmail}
-            <StyledButton onClick={signOut} $isLoginButton>
-              <Icon icon="material-symbols:login" color="#1c91e3" width="32" />
-            </StyledButton>
-          </StyledContainer>
+          <StyledButton onClick={signOut} $isLoginButton>
+            <Icon icon="material-symbols:login" color="#1c91e3" width="32" />
+          </StyledButton>
         )}
         {status === "unauthenticated" && (
           <StyledButton onClick={signIn} $isLoginButton>
@@ -47,14 +45,24 @@ function Header() {
           </StyledButton>
         )}
       </StyledContainer>
+      {userName && (
+        <LoginText>
+          {userAvatar ? (
+            <StyledAvatar src={userAvatar} alt="User Avatar" />
+          ) : (
+            <StyledAvatar src="/defaultAvatar.png" alt="User Avatar" />
+          )}
+          {userName}
+        </LoginText>
+      )}
       <CookieBanner />
     </>
   );
 }
 const StyledAvatar = styled.img`
   border-radius: 50%;
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
 `;
 
 export default Header;

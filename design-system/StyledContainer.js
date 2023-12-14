@@ -42,14 +42,12 @@ export const StyledContainer = styled.div`
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      margin-right: 0.3333rem;
     `};
 
   ${({ $isLogin }) =>
     $isLogin &&
     css`
       flex-direction: row;
-      justify-content: flex-end;
       align-items: center;
     `};
 
@@ -76,4 +74,24 @@ export const StyledContainer = styled.div`
       left: 0;
       justify-content: center;
     `};
+
+  ${({ $isHeader }) =>
+    $isHeader &&
+    css`
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    `};
+`;
+
+export const LoginText = styled.p`
+  font-size: 0.85rem;
+  margin-top: -1rem;
+  text-align: center;
+  margin-bottom: -0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 3.33px;
+  align-items: center;
 `;
