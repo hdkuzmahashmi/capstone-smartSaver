@@ -18,8 +18,8 @@ function DashboardExpenses({ expenses }) {
                 width="30"
                 $bgcolor={expense.categoryId[0]?.color}
               />
-              <h3>{expense.amount}€</h3>
-              <p>{expense.name.split(" ")[0]}</p>
+              <p>{expense.amount}€</p>
+              <span>{expense.name.split(" ")[0]}</span>
             </StyledExpenseSquare>
           </StyledLink>
         ))}

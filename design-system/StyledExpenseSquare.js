@@ -3,23 +3,22 @@ import styled from "styled-components";
 
 export const StyledExpenseSquare = styled.li`
   list-style-type: none;
-  height: 115px;
+  height: 80px;
   width: auto;
   min-width: 115px;
-  border-radius: 12px;
-  margin-bottom: 5px;
+  border-radius: 15px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 8px;
-  z-index: 0;
   position: relative;
   color: #202020;
-  box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
-    inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
-    inset 0 -2px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.05),
+    inset 0 2px 1px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -2px 1px rgba(0, 0, 0, 0);
+
   border: 3px solid ${(props) => props.$bgcolor};
 
   &:hover {
@@ -27,16 +26,17 @@ export const StyledExpenseSquare = styled.li`
     box-shadow: none;
   }
 
-  h3 {
+  p {
     margin: 0;
     margin-top: -7px;
     padding: 0;
     z-index: 5;
-    font-size: clamp(1rem, 5vw, 1.4rem);
+    font-size: 18px;
+    font-weight: bold;
   }
 
-  p {
-    font-size: 0.9rem;
+  span {
+    font-size: 12px;
     text-align: center;
     margin: 0;
     padding: 0;
@@ -48,8 +48,8 @@ export const StyledExpenseSquare = styled.li`
 
 export const StyledBackgroundIcon = styled(Icon)`
   position: absolute;
-  color: black;
+  color: #202020;
   padding: 5px;
-  bottom: 5px;
-  right: 5px;
+  top: 44px;
+  right: 0px;
 `;
