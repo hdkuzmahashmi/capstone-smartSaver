@@ -40,5 +40,10 @@ export const authOptions = {
     },
   ],
   adapter: MongoDBAdapter(clientPromise),
+  theme: {
+    colorScheme: "light",
+    logo: "/smartsaver.svg",
+    brandColor: "#1c91e3",
+  },
 };
 export default NextAuth(authOptions);

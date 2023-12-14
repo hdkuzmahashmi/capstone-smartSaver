@@ -14,6 +14,10 @@ export default createGlobalStyle`
     font-family: ${poppins.style.fontFamily}; 
   }
 
+  :root {
+    color-scheme: only light;
+  }
+
   body {
     margin: 0;
     padding-top: 5%;
