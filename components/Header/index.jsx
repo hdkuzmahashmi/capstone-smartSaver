@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { StyledHeadline } from "@/design-system/StyledHeadline";
-import { LoginCantainer, StyledContainer } from "@/design-system/StyledContainer";
+import {
+  LoginCantainer,
+  StyledContainer,
+} from "@/design-system/StyledContainer";
 import { StyledLink } from "@/design-system/StyledLink";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { StyledButton } from "@/design-system/StyledButton";
@@ -28,29 +31,21 @@ function Header() {
             <StyledHeadline>SmartSaver</StyledHeadline>
           </StyledContainer>
         </StyledLink>
-        <LoginCantainer >
-          {status === "authenticated" && (
-            <StyledContainer $isCenter>
-              {userAvatar && <StyledAvatar src={userAvatar} alt="Avatar" />}
+        {status === "authenticated" && (
+          <StyledContainer $isCenter>
+            {userAvatar && <StyledAvatar src={userAvatar} alt="Avatar" />}
 
-              {userEmail}
-              <StyledButton onClick={signOut} $isLoginButton>
-                Logout
-                <Icon
-                  icon="material-symbols:login"
-                  color="#1c91e3"
-                  width="32"
-                />
-              </StyledButton>
-            </StyledContainer>
-          )}
-          {status === "unauthenticated" && (
-            <StyledButton onClick={signIn} $isLoginButton>
-              Login
+            {userEmail}
+            <StyledButton onClick={signOut} $isLoginButton>
               <Icon icon="material-symbols:login" color="#1c91e3" width="32" />
             </StyledButton>
-          )}
-        </LoginCantainer>
+          </StyledContainer>
+        )}
+        {status === "unauthenticated" && (
+          <StyledButton onClick={signIn} $isLoginButton>
+            <Icon icon="material-symbols:login" color="#1c91e3" width="32" />
+          </StyledButton>
+        )}
       </StyledContainer>
       <CookieBanner />
     </>
