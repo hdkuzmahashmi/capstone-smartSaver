@@ -114,7 +114,10 @@ function Form({ onSubmit, expense = [], isEditMode, setToast }) {
             defaultValue={isEditMode ? expense.categoryId[0]?._id : ""}
             onBlur={(event) => {
               const isValid = categoryValidation(event);
-              setIsWrong((elements) => ({ ...elements, categoryId: !isValid }));
+              setIsWrong((elements) => ({
+                ...elements,
+                categoryId: !isValid,
+              }));
             }}
           >
             <option disabled value="">

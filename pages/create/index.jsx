@@ -20,8 +20,8 @@ function CreatePage({ setToast }) {
       const expData = transformFormData(formdata);
 
       // Call functions to add expense and upload image
-      await addExpense(expData);
-      await uploadImage(formdata);
+      const expid = await addExpense(expData);
+      await uploadImage(formdata, expid);
 
       // Reset form, trigger re-fetch, and navigate
       event.target.reset();
@@ -40,39 +40,42 @@ function CreatePage({ setToast }) {
 
   // Function to transform FormData to a structured object
   const transformFormData = (formdata) => {
-    const expData = {};
+    const expenseData = {};
     for (const [key, value] of formdata.entries()) {
-      if (expData[key]) {
+      if (expenseData[key]) {
         // Check if the existing value is iterable
-        expData[key] = Array.isArray(expData[key])
-          ? [...expData[key], value]
-          : [expData[key], value];
+        expenseData[key] = Array.isArray(expenseData[key])
+          ? [...expenseData[key], value]
+          : [expenseData[key], value];
       } else {
         // If the key does not exist, set the value
-        expData[key] = value;
+        expenseData[key] = value;
       }
     }
-    return expData;
+    return expenseData;
   };
 
   // Function to add an expense via API
-  const addExpense = async (expData) => {
+  const addExpense = async (expenseData) => {
     const response = await fetch(API_EXPENSES, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(expData),
+      body: JSON.stringify(expenseData),
     });
 
     // Handle API response errors
     if (!response.ok) {
       handleApiError(response, "API does not respond with data.");
     }
+    const data = await response.json();
+
+    return data.expenseId;
   };
 
   // Function to upload an image to Cloudinary
-  const uploadImage = async (formdata) => {
+  const uploadImage = async (formdata, expenseId) => {
     try {
       const cloudinaryResponse = await fetch(API_UPLOAD, {
         method: "POST",
@@ -85,6 +88,12 @@ function CreatePage({ setToast }) {
           cloudinaryResponse,
           "Error uploading image to Cloudinary. Please try again."
         );
+      }
+      const data = await cloudinaryResponse.json();
+
+      for (const item of data) {
+        const imageUrl = item?.secure_url;
+        await saveUploadImageurl(imageUrl, expenseId);
       }
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -101,6 +110,38 @@ function CreatePage({ setToast }) {
     console.error(response.status);
     setToast(true, `Something went wrong. ${errorMessage}`, "warning");
     throw new Error(`API Error: ${response.status}`);
+  };
+
+  // Function to upload an image to Cloudinary
+  const saveUploadImageurl = async (url, expid) => {
+    const uploadobj = {};
+
+    uploadobj["url"] = url;
+    uploadobj["expenseId"] = expid;
+
+    try {
+      const respone = await fetch("api/expenseimage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(uploadobj),
+      });
+
+      if (!respone.ok) {
+        handleApiError(
+          respone,
+          "Error adding image url to db. Please try again."
+        );
+      }
+    } catch (error) {
+      console.error("Error adding urls in expenseimage collection:", error);
+      setToast(
+        true,
+        "Error uploading image to Cloudinary. Please try again.",
+        "warning"
+      );
+    }
   };
 
   // Render the form component

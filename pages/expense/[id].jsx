@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
+
 import ExpenseDetail from "@/components/ExpenseDetail";
 import Loading from "@/components/Loading";
 
@@ -7,7 +8,7 @@ function DetailPage({ setToast }) {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data, isLoading, error } = useSWR(`/api/expenses/${id}`);
+  const { data: expense, isLoading, error } = useSWR(`/api/expenses/${id}`);
 
   if (isLoading) {
     return <Loading />;
@@ -21,7 +22,7 @@ function DetailPage({ setToast }) {
     return;
   }
 
-  if (!data) {
+  if (!expense) {
     setToast(
       true,
       "Something went wrong, API does not response data. Please contact to application administrator.",
@@ -30,7 +31,7 @@ function DetailPage({ setToast }) {
     return;
   }
 
-  return <ExpenseDetail expense={data} setToast={setToast} />;
+  return <ExpenseDetail expense={expense} setToast={setToast} />;
 }
 
 export default DetailPage;
