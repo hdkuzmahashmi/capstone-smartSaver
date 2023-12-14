@@ -30,7 +30,6 @@ export default function App({
         <SWRConfig value={{ fetcher }}>
           <Component {...pageProps} setToast={handleToast} />
         </SWRConfig>
-
         <Toast
           message={toastMessage}
           showToast={showToast}
