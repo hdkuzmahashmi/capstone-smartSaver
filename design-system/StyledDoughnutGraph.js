@@ -1,12 +1,13 @@
 import styled from "styled-components";
+import { Icon } from "@iconify/react";
 
 export const GraphContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3rem;
+  padding: 2rem;
   margin-top: 1rem;
-  gap: 5vh;
+  gap: 4vh;
   width: 100%;
   box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
     inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
@@ -17,13 +18,19 @@ export const GraphContainer = styled.div`
 
   @media (max-width: 768px) {
     padding: 1rem;
-    gap: 2vh;
-    flex-direction: column;
+    gap: 0.5vh;
+    width: 100%;
+    justify-content: space-between;
   }
 `;
 
 export const ExpenseOverviewContainer = styled.div`
   position: relative;
+
+  @media (max-width: 768px) {
+    width: 200px;
+    height: 200px;
+  }
 `;
 
 export const TotalContainer = styled.div`
@@ -39,6 +46,12 @@ export const TotalContainer = styled.div`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   transition: font-size 0.3s ease;
 
+  @media (max-width: 768px) {
+    top: 51.5%;
+    left: 51.5%;
+    font-size: 13px;
+    font-weight: bold;
+  }
   &:hover {
     font-size: 20px;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
@@ -57,6 +70,15 @@ export const ListItem = styled.div`
   width: 100%;
   gap: 0.3rem;
   font-size: 13px;
+
+  @media (max-width: 768px) {
+    font-size: 9px;
+    margin: 0.04rem;
+    gap: 0.1rem;
+    & > ${Icon} {
+      width: 10px;
+    }
+  }
 `;
 
 export const ColorBox = styled.div`
@@ -64,6 +86,11 @@ export const ColorBox = styled.div`
   height: 10px;
   border-radius: 50%;
   margin-right: 0.3rem;
+
+  @media (max-width: 768px) {
+    width: 6px;
+    height: 6px;
+  }
 `;
 
 export const ItemName = styled.div`
@@ -75,4 +102,10 @@ export const ItemName = styled.div`
 export const Amount = styled.div`
   white-space: nowrap;
   margin-right: 5px;
+`;
+
+export const IconWrapper = styled.div`
+  & > ${Icon} {
+    width: 10px;
+  }
 `;

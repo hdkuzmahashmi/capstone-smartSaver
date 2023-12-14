@@ -13,6 +13,7 @@ import {
   ColorBox,
   ItemName,
   Amount,
+  IconWrapper,
 } from "@/design-system/StyledDoughnutGraph";
 import { calculateCategoryTotals } from "@/assets/utils/categoryTotalsCalculator";
 
@@ -45,7 +46,7 @@ function DoughnutGraph() {
     .toFixed(2);
 
   const categoryTransparentColor = categoryColor.map((color) =>
-    color.replace("rgb", "rgba").replace(")", ", 0.4)")
+    color.replace("rgb", "rgba").replace(")", ", 0.5)")
   );
 
   // Create chart data and configuration
@@ -55,14 +56,13 @@ function DoughnutGraph() {
         data: categoryValues,
         backgroundColor: categoryTransparentColor,
         hoverBackgroundColor: categoryColor,
-        borderColor: categoryColor,
+        // borderColor: categoryColor,
         hoverOffset: 5,
         borderRadius: 6,
-        borderWidth: 1,
+        // borderWidth: 1,
       },
     ],
   };
-  
 
   const config = {
     type: "doughnut",
@@ -104,7 +104,9 @@ function DoughnutGraph() {
           .map((category) => (
             <ListItem key={category.name}>
               <ColorBox style={{ backgroundColor: category.color }}></ColorBox>
-              <Icon icon={category.icon} width={15} />
+              <IconWrapper>
+                <Icon icon={category.icon} />
+              </IconWrapper>{" "}
               <ItemName>{category.name}</ItemName>
               <Amount>{category.total.toFixed(2)} €</Amount>
             </ListItem>
