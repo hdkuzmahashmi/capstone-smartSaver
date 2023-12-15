@@ -37,7 +37,7 @@ function FilterExpense({
   return (
     <CollapseContainer>
       <FilterButton onClick={toggleCollapse}>
-        {isFiltered ? "Clear Filter" : "Filter"}
+        {isFiltered ? "Reset " : "Filter"}
 
         <Icon icon="mi:filter" color="white" width="24" height="24" />
       </FilterButton>

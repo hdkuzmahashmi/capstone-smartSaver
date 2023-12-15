@@ -10,7 +10,7 @@ export const StyledSearchBox = styled.div`
 
 export const StyledSearchIcon = styled(Icon)`
   position: absolute;
-  bottom: -3.2rem;
+  bottom: -2.6rem;
   right: 0.8rem;
   color: #fafafa;
   pointer-events: none;
@@ -21,7 +21,7 @@ export const StyledSearchInput = styled.input`
   width: 8.15rem;
   height: 2.4rem;
   padding: 5px 15px;
-  margin: 10px 0px -70px 10px;
+  margin: 10px 0px -48px 10px;
   border: 2px solid #78b3e6;
   border-radius: 15px;
   background: linear-gradient(to right, #1c91e3, #78b3e6);
