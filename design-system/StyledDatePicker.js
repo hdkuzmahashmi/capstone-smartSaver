@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 export const DatePickerWrapper = styled.div`
   display: flex;
   align-items: center;
+  z-index: 15;
 `;
 
 export const CustomDatePicker = styled(DatePicker)`

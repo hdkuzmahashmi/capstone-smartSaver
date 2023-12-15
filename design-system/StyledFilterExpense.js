@@ -21,17 +21,16 @@ transition: background 0.3s, box-shadow 0.15s;
     border: 1px solid #eee;
     border-right: 10px solid ${({ $color }) => $color};
   }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Select = styled.select`
   ${commonFilterStyle}
   margin-bottom: 10px;
   margin-top: 20px;
-
-  /* wo style ich die ul? gibt es überhaupt eine???: */
-  &:focus {
-    /* border: solid 3px red; */
-  }
 `;
 
 export const CollapseContainer = styled.div`
