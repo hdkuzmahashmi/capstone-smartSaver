@@ -26,6 +26,7 @@ export default function App({
       <Layout>
         <Head>
           <title>SmartSaver</title>
+          <link rel="icon" href="/smartsaver.svg" />
         </Head>
         <SWRConfig value={{ fetcher }}>
           <Component {...pageProps} setToast={handleToast} />
