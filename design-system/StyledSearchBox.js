@@ -39,7 +39,7 @@ export const StyledSearchInput = styled.input`
   }
 
   &:hover {
-    width: 60.5vw;
+    width: 30.5vw;
     border: 2px solid #78b3e6;
     box-shadow: inset 0 0 0.6em #78b3e6, inset -0.05em 0 0.1em #1c91e3;
     border-radius: 15px;
@@ -51,7 +51,7 @@ export const StyledSearchInput = styled.input`
   }
 
   &:focus {
-    width: 60.5vw;
+    width: 30.5vw;
     border: 2px solid #1c91e3;
     outline: none;
     box-shadow: none;
