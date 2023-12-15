@@ -18,8 +18,7 @@ export const StyledExpenseSquare = styled.li`
   box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.05),
     inset 0 2px 1px 1px rgba(255, 255, 255, 0.7),
     inset 0 -2px 1px rgba(0, 0, 0, 0);
-
-  border: 3px solid ${(props) => props.$bgcolor};
+  border: 2.5px solid ${(props) => props.$bgcolor};
 
   &:hover {
     background-color: ${(props) => props.$bgcolor};
@@ -44,12 +43,32 @@ export const StyledExpenseSquare = styled.li`
     z-index: 5;
     margin-top: -3px;
   }
+
+  @media (max-width: 768px) {
+    height: 60px;
+    min-width: 80px;
+
+    p {
+      font-size: 13px;
+    }
+
+    span {
+      font-size: 9px;
+    }
+  }
 `;
 
 export const StyledBackgroundIcon = styled(Icon)`
   position: absolute;
   color: #202020;
   padding: 5px;
-  top: 44px;
+  top: 47px;
   right: 0px;
+
+  @media (max-width: 768px) {
+    width: 30px;
+    top: 30px;
+    right: -2px;
+    width: 33%;
+  }
 `;

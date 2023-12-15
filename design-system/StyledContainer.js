@@ -2,9 +2,9 @@ import styled, { css } from "styled-components";
 
 export const StyledContainer = styled.div`
   display: flex;
-  width: 100%;
+  max-width: 800px;
+  margin: auto;
   gap: 8px;
-
   ${({ $isList }) => $isList && `gap:0`};
 
   ${({ $isFlexRow }) =>

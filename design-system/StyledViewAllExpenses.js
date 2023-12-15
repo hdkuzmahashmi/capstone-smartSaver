@@ -13,19 +13,29 @@ export const StyledHistoryIcon = styled(StyledIcon)``;
 export const StyledHeading = styled.h2`
   color: #333;
   font-size: 1rem;
-  margin-top: 2rem;
+  margin-bottom: -6px;
+
+  @media (max-width: 768px) {
+    font-size: 0.75rem;
+  }
 `;
 
-export const StyledView = styled.h2`
+export const StyledView = styled.span`
   color: #fff;
   font-size: 12px;
+  
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
 `;
 
 export const StyledViewLink = styled(Link)`
+  border: 2px solid orange;
   display: flex;
   align-items: center;
   padding: 0px 8px;
   margin-right: 10px;
+  margin-bottom: -10px;
   border: 1px solid #1c91e3;
   box-shadow: inset -0.3em -1.1em 0.4em #1c91e3, 0.05em 0.05em 0.15em #78b3e6;
   border-radius: 15px;
@@ -34,8 +44,6 @@ export const StyledViewLink = styled(Link)`
   cursor: pointer;
   transition: 0.3s, box-shadow 0.15s;
   text-transform: uppercase;
-  align-self: flex-end;
-  cursor: pointer;
   text-decoration: none;
 
   &:hover {
