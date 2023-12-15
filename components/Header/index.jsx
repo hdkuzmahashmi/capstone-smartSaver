@@ -1,10 +1,6 @@
 import Image from "next/image";
 import { StyledHeadline } from "@/design-system/StyledHeadline";
-import {
-  LoginCantainer,
-  LoginText,
-  StyledContainer,
-} from "@/design-system/StyledContainer";
+import { LoginText, StyledContainer } from "@/design-system/StyledContainer";
 import { StyledLink } from "@/design-system/StyledLink";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { StyledButton } from "@/design-system/StyledButton";
