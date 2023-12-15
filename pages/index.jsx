@@ -31,11 +31,12 @@ const Dashboard = ({ setToast }) => {
 
   return (
     <PageContainer>
+      <StyledHeading>Category Expense Summary</StyledHeading>
       <DoughnutGraph />
-
       <StyledHeading>Last Expenses</StyledHeading>
-      <DashboardExpenses expenses={lastExpenses} />
       <ViewAllExpenses />
+      <DashboardExpenses expenses={lastExpenses} />
+      <StyledHeading>Monthly Expense Summary</StyledHeading>
       <BarChart />
     </PageContainer>
   );
@@ -48,4 +49,8 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 1rem;
+  max-width: 800px;
+  margin: auto;
+  padding: 1rem;
 `;

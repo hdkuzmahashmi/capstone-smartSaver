@@ -2,9 +2,9 @@ import styled, { css } from "styled-components";
 
 export const StyledContainer = styled.div`
   display: flex;
-  width: 100%;
+  max-width: 800px;
+  margin: auto;
   gap: 8px;
-
   ${({ $isList }) => $isList && `gap:0`};
 
   ${({ $isFlexRow }) =>
@@ -41,15 +41,13 @@ export const StyledContainer = styled.div`
     css`
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.5rem;
+      justify-content: center;
     `};
 
   ${({ $isLogin }) =>
     $isLogin &&
     css`
       flex-direction: row;
-      justify-content: flex-end;
       align-items: center;
     `};
 
@@ -64,15 +62,36 @@ export const StyledContainer = styled.div`
   ${({ $isPolicyContainer }) =>
     $isPolicyContainer &&
     css`
+      font-size: 0.85rem;
+      position: absolute;
+      bottom: 3px;
+      overflow: hidden;
+      opacity: 0.3333;
+      display: flex;
       flex-direction: row;
+      gap: 0.5rem;
+      align-items: center;
+      left: 0;
       justify-content: center;
-      gap: 2rem;
-      margin-top: 4rem;
-      opacity: 0.5;
-      margin-bottom: -5rem;
+    `};
+
+  ${({ $isHeader }) =>
+    $isHeader &&
+    css`
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
     `};
 `;
 
-export const LoginCantainer = styled.div`
-  margin-bottom: 1.5rem;
+export const LoginText = styled.p`
+  font-size: 0.85rem;
+  margin-top: -1rem;
+  text-align: center;
+  margin-bottom: -0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 3.33px;
+  align-items: center;
 `;

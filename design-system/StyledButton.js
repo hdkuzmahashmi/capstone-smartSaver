@@ -27,6 +27,5 @@ export const StyledButton = styled.button`
   }
 
   ${({ $isLoginButton }) =>
-    $isLoginButton &&
-    "display:flex; justify-content:justify-between; align-items:center; font-weight:500;"}
+    $isLoginButton && "display:flex; align-items:center; font-weight:500;"}
 `;

@@ -1,6 +1,5 @@
-import styled from "styled-components";
+import { useState } from "react";
 import {
-  StyledHeading,
   StyledHistoryIcon,
   StyledViewLink,
   StyledContainer,
@@ -9,15 +8,40 @@ import {
 } from "@/design-system/StyledViewAllExpenses";
 
 function ViewAllExpenses() {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const handleClick = () => {
+    window.location.href = "/details";
+  };
+
   return (
-    <FlexContainer>
-      <StyledViewLink href="/details">
-        <StyledContainer>
-          <StyledHistoryIcon icon="material-symbols:history" width="32" />
-          <StyledView>View All Expenses</StyledView>
-        </StyledContainer>
-      </StyledViewLink>
-    </FlexContainer>
+    <>
+      <FlexContainer>
+        <StyledViewLink
+          href="#"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
+        >
+          <StyledContainer>
+            <StyledHistoryIcon
+              icon="icon-park-outline:history-query"
+              color="white"
+              width="28"
+            />
+            {isHovered && <StyledView>View All Expenses</StyledView>}
+          </StyledContainer>
+        </StyledViewLink>
+      </FlexContainer>
+    </>
   );
 }
 

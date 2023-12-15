@@ -15,11 +15,12 @@ function DashboardExpenses({ expenses }) {
             <StyledExpenseSquare $bgcolor={expense.categoryId[0]?.color}>
               <StyledBackgroundIcon
                 icon={expense.categoryId[0]?.icon}
-                width="30"
                 $bgcolor={expense.categoryId[0]?.color}
+                width={28}
               />
-              <h3>{expense.amount}€</h3>
-              <p>{expense.name.split(" ")[0]}</p>
+
+              <p>{expense.amount}€</p>
+              <span>{expense.name.split(" ")[0]}</span>
             </StyledExpenseSquare>
           </StyledLink>
         ))}

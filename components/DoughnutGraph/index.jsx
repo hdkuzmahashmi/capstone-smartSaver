@@ -13,6 +13,7 @@ import {
   ColorBox,
   ItemName,
   Amount,
+  IconWrapper,
 } from "@/design-system/StyledDoughnutGraph";
 import { calculateCategoryTotals } from "@/assets/utils/categoryTotalsCalculator";
 
@@ -44,14 +45,21 @@ function DoughnutGraph() {
     }, 0)
     .toFixed(2);
 
+  const categoryTransparentColor = categoryColor.map((color) =>
+    color.replace("rgb", "rgba").replace(")", ", 0.5)")
+  );
+
   // Create chart data and configuration
   const chartData = {
     datasets: [
       {
         data: categoryValues,
-        backgroundColor: categoryColor,
-        hoverOffset: 4,
-        borderRadius: 8,
+        backgroundColor: categoryTransparentColor,
+        hoverBackgroundColor: categoryColor,
+        // borderColor: categoryColor,
+        hoverOffset: 5,
+        borderRadius: 6,
+        // borderWidth: 1,
       },
     ],
   };
@@ -62,7 +70,7 @@ function DoughnutGraph() {
     options: {
       plugins: {
         title: {
-          display: true,
+          display: false,
           text: "Category Expense Summary",
         },
 
@@ -73,7 +81,7 @@ function DoughnutGraph() {
             },
             label: function (context) {
               const value = context.parsed;
-              return `Amount: ${value} €`;
+              return `Amount: ${value.toFixed(2)} €`;
             },
           },
         },
@@ -91,14 +99,18 @@ function DoughnutGraph() {
         </Link>
       </ExpenseOverviewContainer>
       <ListContainer>
-        {categoryTotalsArray.map((category) => (
-          <ListItem key={category.name}>
-            <ColorBox style={{ $bgcolor: category.color }}></ColorBox>
-            <Icon icon={category.icon} width={15} />
-            <ItemName>{category.name}</ItemName>
-            <Amount>{category.total.toFixed(2)} €</Amount>
-          </ListItem>
-        ))}
+        {categoryTotalsArray
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((category) => (
+            <ListItem key={category.name}>
+              <ColorBox style={{ backgroundColor: category.color }}></ColorBox>
+              <IconWrapper>
+                <Icon icon={category.icon} />
+              </IconWrapper>{" "}
+              <ItemName>{category.name}</ItemName>
+              <Amount>{category.total.toFixed(2)} €</Amount>
+            </ListItem>
+          ))}
       </ListContainer>
     </GraphContainer>
   );
