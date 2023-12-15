@@ -41,7 +41,6 @@ export const StyledContainer = styled.div`
     css`
       flex-direction: row;
       align-items: center;
-      justify-content: center;
     `};
 
   ${({ $isLogin }) =>
@@ -81,7 +80,7 @@ export const StyledContainer = styled.div`
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
+      gap: 5rem;
     `};
 `;
 

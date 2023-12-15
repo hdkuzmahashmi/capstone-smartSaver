@@ -26,7 +26,7 @@ function Header() {
       <StyledContainer $isHeader>
         <StyledLink href="/">
           <StyledContainer $isLogo>
-            <Image src="/smartsaver.svg" width="75" height="75" alt="Logo" />
+            <Image src="/smartsaver.svg" width="65" height="65" alt="Logo" />
             <StyledHeadline>SmartSaver</StyledHeadline>
           </StyledContainer>
         </StyledLink>
