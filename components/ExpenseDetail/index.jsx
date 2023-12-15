@@ -92,7 +92,7 @@ function ExpenseDetail({ expense = {}, handleDelete, setToast }) {
                   src={item.url}
                   title={`Expense Receipt ${index + 1}`}
                   width="100%"
-                  height="600px"
+                  height="auto"
                 ></iframe>
               ) : (
                 <a href={item.url} target="_blank" rel="noreferrer">
@@ -101,6 +101,7 @@ function ExpenseDetail({ expense = {}, handleDelete, setToast }) {
                     alt={`Expense Receipt ${index + 1}`}
                     width={140}
                     height={230}
+                    $isReceipt
                   />
                 </a>
               )}

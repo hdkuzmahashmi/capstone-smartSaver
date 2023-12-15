@@ -13,4 +13,5 @@ export const StyledBackdrop = styled.div`
   align-items: center;
   box-shadow: 40px 80px 150px 100px rgba(0, 0, 0, 0.1) inset;
   cursor: auto;
+  z-index: 900;
 `;
