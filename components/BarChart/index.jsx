@@ -18,7 +18,7 @@ import { calculateMonthlyExpenses } from "@/assets/utils/monthlyExpenseCalculato
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 function BarChart() {
-  const { data, error } = useSWR("/api/expenses");
+  const { data } = useSWR("/api/expenses");
 
   if (!data) {
     return <Loading />;

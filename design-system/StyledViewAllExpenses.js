@@ -23,7 +23,7 @@ export const StyledHeading = styled.h2`
 export const StyledView = styled.span`
   color: #fff;
   font-size: 12px;
-  
+
   @media (max-width: 768px) {
     font-size: 10px;
   }
