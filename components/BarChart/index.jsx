@@ -68,10 +68,15 @@ function BarChart() {
       },
     ],
   };
+  const isMobile = window.innerWidth <= 768;
 
   return (
     <GraphContainer>
-      <Bar style={{ height: "300px" }} options={options} data={chartData} />
+      <Bar
+        style={{ height: isMobile ? "200px" : "300px" }}
+        options={options}
+        data={chartData}
+      />
     </GraphContainer>
   );
 }

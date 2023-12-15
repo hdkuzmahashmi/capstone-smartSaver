@@ -26,10 +26,10 @@ export const GraphContainer = styled.div`
 
 export const ExpenseOverviewContainer = styled.div`
   position: relative;
-
   @media (max-width: 768px) {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
+    margin-left: -15px;
   }
 `;
 
@@ -39,22 +39,17 @@ export const TotalContainer = styled.div`
   left: 51.5%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 18px;
+  font-size: 1.3rem;
   font-weight: bold;
   letter-spacing: 1px;
-  color: #202020;
+  color: #333;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   transition: font-size 0.3s ease;
 
   @media (max-width: 768px) {
-    top: 51.5%;
+    top: 52.5%;
     left: 51.5%;
-    font-size: 13px;
-    font-weight: bold;
-  }
-  &:hover {
-    font-size: 20px;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    font-size: 0.75rem;
   }
 `;
 
