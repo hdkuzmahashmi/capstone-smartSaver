@@ -14,6 +14,7 @@ export const StyledHeading = styled.h2`
   color: #333;
   font-size: 1rem;
   margin-bottom: -6px;
+  margin-top: 3rem;
 
   @media (max-width: 768px) {
     font-size: 0.75rem;
@@ -61,6 +62,5 @@ export const FlexContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-  margin-top: 1rem;
   margin-bottom: 15px;
 `;

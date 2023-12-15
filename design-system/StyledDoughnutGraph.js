@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Icon } from "@iconify/react";
 
 export const GraphContainer = styled.div`
   display: flex;
@@ -70,9 +69,6 @@ export const ListItem = styled.div`
     font-size: 9px;
     margin: 0.04rem;
     gap: 0.1rem;
-    & > ${Icon} {
-      width: 10px;
-    }
   }
 `;
 
@@ -99,8 +95,4 @@ export const Amount = styled.div`
   margin-right: 5px;
 `;
 
-export const IconWrapper = styled.div`
-  & > ${Icon} {
-    width: 10px;
-  }
-`;
+export const IconWrapper = styled.div``;
