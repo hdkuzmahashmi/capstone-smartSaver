@@ -40,6 +40,7 @@ export const StyledViewLink = styled(Link)`
   padding: 0px 8px;
   margin-right: 10px;
   margin-bottom: -10px;
+  margin-top: 8px;
   border: 1px solid #1c91e3;
   box-shadow: inset -0.3em -1.1em 0.4em #1c91e3, 0.05em 0.05em 0.15em #78b3e6;
   border-radius: 15px;
