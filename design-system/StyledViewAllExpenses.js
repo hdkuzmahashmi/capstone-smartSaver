@@ -14,7 +14,10 @@ export const StyledHeading = styled.h2`
   color: #333;
   font-size: 1rem;
   margin-bottom: -6px;
-  margin-top: 3rem;
+  margin-top: 2rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 0.03rem;
 
   @media (max-width: 768px) {
     font-size: 0.75rem;

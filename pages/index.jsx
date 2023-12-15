@@ -49,8 +49,7 @@ const PageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 0 1rem 0 1rem;
   max-width: 800px;
   margin: auto;
-  padding: 1rem;
 `;
