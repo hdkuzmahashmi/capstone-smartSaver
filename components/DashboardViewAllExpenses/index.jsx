@@ -23,25 +23,23 @@ function ViewAllExpenses() {
   };
 
   return (
-    <>
-      <FlexContainer>
-        <StyledViewLink
-          href="#"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onClick={handleClick}
-        >
-          <StyledContainer>
-            <StyledHistoryIcon
-              icon="icon-park-outline:history-query"
-              color="white"
-              width="28"
-            />
-            {isHovered && <StyledView>View All Expenses</StyledView>}
-          </StyledContainer>
-        </StyledViewLink>
-      </FlexContainer>
-    </>
+    <FlexContainer>
+      <StyledViewLink
+        href="#"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
+      >
+        <StyledContainer>
+          <StyledHistoryIcon
+            icon="icon-park-outline:history-query"
+            color="white"
+            width="28"
+          />
+          {isHovered && <StyledView>View All Expenses</StyledView>}
+        </StyledContainer>
+      </StyledViewLink>
+    </FlexContainer>
   );
 }
 

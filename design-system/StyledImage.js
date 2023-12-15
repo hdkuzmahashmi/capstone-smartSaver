@@ -5,11 +5,11 @@ import { css } from "styled-components";
 export const StyledImage = styled(Image)`
   margin-bottom: 10px;
   margin-left: 10px;
+  margin-top: 1rem;
 
   ${({ $isReceipt }) =>
     $isReceipt &&
     css`
       height: auto;
-      width: 95%;
     `};
 `;
