@@ -29,7 +29,6 @@ export const StyledExpenseSquare = styled.li`
     margin: 0;
     margin-top: -7px;
     padding: 0;
-    z-index: 5;
     font-size: 18px;
     font-weight: bold;
   }
@@ -40,7 +39,6 @@ export const StyledExpenseSquare = styled.li`
     margin: 0;
     padding: 0;
     word-break: break-all;
-    z-index: 5;
     margin-top: -3px;
   }
 
