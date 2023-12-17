@@ -32,12 +32,12 @@ function Header() {
         </StyledLink>
         {status === "authenticated" && (
           <StyledButton onClick={signOut} $isLoginButton>
-            <Icon icon="material-symbols:login" color="#1c91e3" width="32" />
+            <Icon icon="material-symbols:login" color="#fff" width="32" />
           </StyledButton>
         )}
         {status === "unauthenticated" && (
           <StyledButton onClick={signIn} $isLoginButton>
-            <Icon icon="material-symbols:login" color="#1c91e3" width="32" />
+            <Icon icon="material-symbols:login" color="#fff" width="32" />
           </StyledButton>
         )}
       </StyledContainer>
