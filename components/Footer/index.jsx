@@ -12,7 +12,6 @@ function Footer() {
     <>
       <StyledContainer $isPolicyContainer>
         <StyledLink href="/policy#privacy-policy">Privacy Policy</StyledLink>
-        {" | "}
         <StyledLink href="/policy#terms-and-conditions">
           Terms of Service
         </StyledLink>
