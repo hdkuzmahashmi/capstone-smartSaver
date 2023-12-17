@@ -9,24 +9,38 @@ const PaginationContainer = styled.div`
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const SubContainer = styled.div`
   display: flex;
   justify-content: right;
   align-items: center;
-
   width: 100%;
 `;
 
 const PaginationLabel = styled.label`
   margin-right: 10px;
   margin-left: 15px;
+  font-size: 0.8rem;
+  color: #666;
 `;
 
 const PaginationSelect = styled.select`
   margin-right: 10px;
-  width: 20%;
+  width: 30%;
+  padding: 8px;
+  font-size: 0.8rem;
+  color: #666;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const PaginationButton = styled.button`
@@ -37,6 +51,8 @@ const PaginationButton = styled.button`
   cursor: pointer;
   margin: 10px 5px 10px 2px;
   border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
   &:disabled {
     background-color: #ccc;
     cursor: not-allowed;
