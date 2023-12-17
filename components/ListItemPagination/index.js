@@ -13,8 +13,10 @@ const PaginationContainer = styled.div`
 
 const SubContainer = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: right;
   align-items: center;
+
+  width: 100%;
 `;
 
 const PaginationLabel = styled.label`
@@ -59,9 +61,7 @@ const ListItemPagination = ({
   return (
     <PaginationContainer>
       <div>
-        <PaginationLabel htmlFor="limit-select">
-          Results per page:
-        </PaginationLabel>
+        <PaginationLabel htmlFor="limit-select">Records:</PaginationLabel>
         <PaginationSelect
           name="limit"
           id="limit-select"
@@ -76,7 +76,7 @@ const ListItemPagination = ({
       </div>
       <SubContainer>
         <PaginationLabel>
-          Current Page <strong>{page}</strong>
+          Page <strong>{page}</strong>
         </PaginationLabel>
         <PaginationButton
           type="button"
