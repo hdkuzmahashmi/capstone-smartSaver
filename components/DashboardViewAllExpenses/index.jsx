@@ -5,6 +5,7 @@ import {
   StyledContainer,
   FlexContainer,
   StyledView,
+  StyledViewLinkNew,
 } from "@/design-system/StyledViewAllExpenses";
 
 function ViewAllExpenses() {
@@ -24,7 +25,7 @@ function ViewAllExpenses() {
 
   return (
     <FlexContainer>
-      <StyledViewLink
+      {/* <StyledViewLinkNew
         href="#"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -38,7 +39,7 @@ function ViewAllExpenses() {
           />
           {isHovered && <StyledView>View All Expenses</StyledView>}
         </StyledContainer>
-      </StyledViewLink>
+      </StyledViewLinkNew> */}
     </FlexContainer>
   );
 }

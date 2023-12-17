@@ -5,6 +5,23 @@ import {
 import { StyledList } from "@/design-system/StyledList";
 import { StyledContainer } from "@/design-system/StyledContainer";
 import { StyledLink } from "@/design-system/StyledLink";
+import {
+  StyledHistoryIcon,
+  StyledViewLink,
+  StyledViewLinkNew,
+} from "@/design-system/StyledViewAllExpenses";
+
+// const handleMouseEnter = () => {
+//   setIsHovered(true);
+// };
+
+// const handleMouseLeave = () => {
+//   setIsHovered(false);
+// };
+
+const handleClick = () => {
+  window.location.href = "/details";
+};
 
 function DashboardExpenses({ expenses }) {
   return (
@@ -24,6 +41,14 @@ function DashboardExpenses({ expenses }) {
             </StyledExpenseSquare>
           </StyledLink>
         ))}
+        <StyledViewLinkNew href="#" onClick={handleClick}>
+          <StyledHistoryIcon
+            icon="icon-park-outline:history-query"
+            color="black"
+            width="28"
+          />
+          <span>All Expenses</span>
+        </StyledViewLinkNew>
       </StyledContainer>
     </StyledList>
   );

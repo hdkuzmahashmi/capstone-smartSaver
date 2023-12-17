@@ -22,8 +22,14 @@ export const StyledExpenseSquare = styled.li`
 
   &:hover {
     background-color: ${(props) => props.$bgcolor};
-    box-shadow: none;
+    box-shadow: inset -0.3em -0.6em 0.4em rgba(0, 0, 0, 0.07),
+      0.05em 0.05em 0.15em rgba(0, 0, 0, 0);
   }
+
+  /* &:hover {
+    background: linear-gradient(to right, #1c91e3, #78b3e6);
+    box-shadow: inset -0.3em -0.6em 0.4em #1c91e3, 0.05em 0.05em 0.15em #78b3e6;
+  } */
 
   p {
     margin: 0;

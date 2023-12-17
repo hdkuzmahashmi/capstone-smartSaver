@@ -31,14 +31,16 @@ export const StyledButton = styled.button`
       font-weight: 500;
       color: #fff;
       background: linear-gradient(to right, #1c91e3, #78b3e6);
-      border: 1px solid #1c91e3;
+      /* border: 1px solid #1c91e3; */
+
       box-shadow: inset -0.4em -0.3em 0.4em #1c91e3,
-        0.05em 0.05em 0.15em #78b3e6, 0.02em 0.02em 0.5em rgba(0, 0, 0, 0.04);
+        0.02em 0.08em 0.15em #78b3e6, 0 0.04em rgba(0, 0, 0, 0.6);
 
       &:hover {
-        border: 1px solid #1c91e3;
+        /* border: 1px solid #1c91e3; */
+        border: none;
         box-shadow: inset -0.2em -0.1em 0.35em #1c91e3,
-          inset 0 0.04em 0 rgba(0, 0, 0, 0.8);
+          inset 0.03em 0.04em 0 rgba(0, 0, 0, 0.4);
       }
     `};
 `;
