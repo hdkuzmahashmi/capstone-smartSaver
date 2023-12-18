@@ -1,13 +1,9 @@
 import useSWR from "swr";
 import Loading from "../Loading";
-import { StyledList } from "@/design-system/StyledList";
-import { StyledCard } from "@/design-system/StyledCard";
 import { StyledContainer } from "@/design-system/StyledContainer";
 import { StyledSummaryBox } from "@/design-system/StyledSummaryBox";
-import ListItem from "../ListItem";
 import { StyledText } from "@/design-system/StyledText";
-import { StyledLink } from "@/design-system/StyledLink";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FilterExpense from "../FilterExpense";
 import ListItemPagination from "../ListItemPagination";
 import Expenses from "../Expenses";
@@ -20,7 +16,6 @@ function ExpenseList({ setToast }) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [isFiltered, setIsFiltered] = useState(false);
-  const [limit, setLimit] = useState(5);
   const [page, setPage] = useState(1);
 
   const { data, error, isLoading } = useSWR("api/expenses");
@@ -111,10 +106,9 @@ function ExpenseList({ setToast }) {
   });
   // setting up pagination
   const paginatedExpenses = isFiltered
-    ? filteredExpenses.slice((page - 1) * limit, page * limit)
-    : data.slice((page - 1) * limit, page * limit);
-
-  const hasNextPage = data.length >= (page + 1) * limit;
+    ? filteredExpenses.slice((page - 1) * 10, page * 10)
+    : data.slice((page - 1) * 10, page * 10);
+  const numberOfPages = Math.ceil(data.length / 10);
 
   return (
     <StyledContainer $isFlexEnd>
@@ -128,7 +122,7 @@ function ExpenseList({ setToast }) {
                 .toFixed(2)
             : data
                 .reduce((total, expense) => total + expense.amount, 0)
-                .toFixed(2)}{" "}
+                .toFixed(2)}
           €
         </StyledText>
       </StyledSummaryBox>
@@ -150,14 +144,11 @@ function ExpenseList({ setToast }) {
         setEndDate={setEndDate}
       />
       <Expenses expenses={paginatedExpenses} />
-
       <ListItemPagination
-        limit={limit}
-        setLimit={setLimit}
         page={page}
         setPage={setPage}
-        hasNextPage={hasNextPage}
         expenses={paginatedExpenses}
+        numberOfPages={numberOfPages}
       />
     </StyledContainer>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import { ToastContainer, CloseButton } from "@/design-system/StyledToast";
 
@@ -7,7 +7,7 @@ function Toast({ message, showToast, setShowToast, type }) {
     if (showToast) {
       const timer = setTimeout(() => {
         setShowToast(false);
-      }, 3000); // i will adjust the duration as needed later
+      }, 3000);
 
       return () => clearTimeout(timer);
     }

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { css } from "styled-components";
 
 export const StyledButton = styled.button`
   margin: ${(props) => (props.$isSubmitButton ? "1rem 0" : "0")};
@@ -11,16 +12,12 @@ export const StyledButton = styled.button`
   letter-spacing: 0.1rem;
   color: ${(props) => (props.$isDeleteButton ? "white" : "#202020")};
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.26s ease;
   text-decoration: ${(props) => (props.$link ? "none" : null)};
   outline: ${(props) => (props.$isDeleteButton ? "#ca0b00" : "rgba(0,0,0,0.2)")}
     1px solid;
   background-color: ${(props) => (props.$isDeleteButton ? "#f32013" : "")};
   width: ${(props) => (props.$isSubmitButton ? "30%" : "")};
-
-  &:hover {
-    transform: translate(0, 2px);
-  }
 
   &:active {
     transform: translate(0, 0);
@@ -28,5 +25,20 @@ export const StyledButton = styled.button`
 
   ${({ $isLoginButton }) =>
     $isLoginButton &&
-    "display:flex; justify-content:justify-between; align-items:center; font-weight:500;"}
+    css`
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+      color: #fff;
+      background: linear-gradient(to right, #1c91e3, #78b3e6);
+
+      box-shadow: inset -0.4em -0.3em 0.4em #1c91e3,
+        0.02em 0.08em 0.15em #78b3e6, 0 0.04em rgba(0, 0, 0, 0.6);
+
+      &:hover {
+        border: none;
+        box-shadow: inset -0.2em -0.1em 0.35em #1c91e3,
+          inset 0.03em 0.04em 0 rgba(0, 0, 0, 0.4);
+      }
+    `};
 `;

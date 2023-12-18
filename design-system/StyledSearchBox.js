@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Icon } from "@iconify/react";
 
 export const StyledSearchBox = styled.div`
@@ -10,7 +10,7 @@ export const StyledSearchBox = styled.div`
 
 export const StyledSearchIcon = styled(Icon)`
   position: absolute;
-  bottom: -3.2rem;
+  bottom: -2.6rem;
   right: 0.8rem;
   color: #fafafa;
   pointer-events: none;
@@ -21,7 +21,7 @@ export const StyledSearchInput = styled.input`
   width: 8.15rem;
   height: 2.4rem;
   padding: 5px 15px;
-  margin: 10px 0px -70px 10px;
+  margin: 10px 0px -48px 10px;
   border: 2px solid #78b3e6;
   border-radius: 15px;
   background: linear-gradient(to right, #1c91e3, #78b3e6);
@@ -39,7 +39,7 @@ export const StyledSearchInput = styled.input`
   }
 
   &:hover {
-    width: 60.5vw;
+    width: 30.5vw;
     border: 2px solid #78b3e6;
     box-shadow: inset 0 0 0.6em #78b3e6, inset -0.05em 0 0.1em #1c91e3;
     border-radius: 15px;
@@ -51,15 +51,15 @@ export const StyledSearchInput = styled.input`
   }
 
   &:focus {
-    width: 60.5vw;
+    width: 30.5vw;
     border: 2px solid #1c91e3;
     outline: none;
     box-shadow: none;
     border-radius: 15px;
     color: #1c91e3;
+    background: #fafafa;
     padding-left: 1rem;
     padding-right: 2.5rem;
-    background: #fafafa;
     @media (max-width: 768px) {
       width: 57vw;
     }
@@ -70,7 +70,7 @@ export const StyledSearchOutput = styled.ul`
   position: absolute;
   z-index: 5;
   line-height: 200%;
-  top: 41px;
+  top: 28px;
   left: 9%;
   width: 85%;
   overflow: hidden;
@@ -83,10 +83,13 @@ export const StyledSearchOutput = styled.ul`
   ${({ $isDisplayed }) =>
     $isDisplayed &&
     `background-color: #fff;
-    box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
-    inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
-    inset 0 -2px 1px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    // box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
+    // inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
+    // inset 0 -2px 1px rgba(0, 0, 0, 0.05);
+    // border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 2px solid #1c91e3;
+    color: #1c91e3;
+    background: #fafafa;
     opacity: 1;
     max-height: 325px;`};
 `;

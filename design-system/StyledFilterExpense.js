@@ -4,32 +4,33 @@ export const commonFilterStyle = `
   padding: 0.2rem;
   margin: 0.3rem;
   text-align: center;
-  border: 1px solid rgba(120, 179, 230, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.1),
+  inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
+  inset 0 -2px 1px rgba(0, 0, 0, 0.05);
+transition: background 0.3s, box-shadow 0.15s;
   color: #777;
   width: 100%;
   cursor: pointer;
   font-size: 14px;
-  font-style: italic;
   background-color: transparent;
 
  
   &:hover {
-    box-shadow: 0 2px 10px rgba(120, 179, 230, 0.3),
-      0 0 5px rgba(120, 179, 230, 0.2);
+    border: 1px solid #eee;
+    border-right: 10px solid ${({ $color }) => $color};
   }
 
   &:focus {
     outline: none;
-    border-color: #1c91e3;
-    box-shadow: 0 0 5px rgba(120, 179, 230, 0.3);
   }
 `;
 
 export const Select = styled.select`
-  background-color: transparent;
-  ${commonFilterStyle};
+  ${commonFilterStyle}
   margin-bottom: 10px;
+  margin-top: 20px;
 `;
 
 export const CollapseContainer = styled.div`
@@ -47,8 +48,7 @@ export const CollapsiblePanelContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 3px;
-  transition: max-height 0.3s ease;
+  margin: 2px 2px;
   overflow: hidden;
   max-height: ${(props) => (props.$collapsed ? "0" : "none")};
   padding: ${(props) => (props.$collapsed ? "0" : "10px")};

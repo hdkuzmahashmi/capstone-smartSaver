@@ -18,7 +18,7 @@ import { calculateMonthlyExpenses } from "@/assets/utils/monthlyExpenseCalculato
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 function BarChart() {
-  const { data, error } = useSWR("/api/expenses");
+  const { data } = useSWR("/api/expenses");
 
   if (!data) {
     return <Loading />;
@@ -35,7 +35,7 @@ function BarChart() {
         display: false,
       },
       title: {
-        display: true,
+        display: false,
         text: "Monthly Expense Summary",
       },
       tooltip: {
@@ -46,7 +46,7 @@ function BarChart() {
           },
           label: function (context) {
             // Display the total expense for the corresponding month with the euro sign
-            return `Total Expense: ${context.parsed.y} €`;
+            return `Total Expense: ${context.parsed.y.toFixed(2)} €`;
           },
         },
       },
@@ -64,13 +64,19 @@ function BarChart() {
         backgroundColor: ["rgba(28, 145, 227, 0.2)"],
         borderColor: ["rgba(28, 145, 227)"],
         borderWidth: 1,
+        hoverBackgroundColor: ["rgba(28, 145, 227, 0.7)"],
       },
     ],
   };
+  const isMobile = window.innerWidth <= 768;
 
   return (
     <GraphContainer>
-      <Bar style={{ height: "300px" }} options={options} data={chartData} />
+      <Bar
+        style={{ height: isMobile ? "200px" : "300px" }}
+        options={options}
+        data={chartData}
+      />
     </GraphContainer>
   );
 }

@@ -91,11 +91,3 @@ const fadeIn = keyframes`
     opacity: 1;
   }
 `;
-
-const IconCommonCss = css`
-  height: 1.25rem;
-  width: 1.25rem;
-  fill: #00adb5;
-  z-index: 10;
-  animation: ${fadeIn} 1s linear;
-`;

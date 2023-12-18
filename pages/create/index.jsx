@@ -1,6 +1,5 @@
 import Form from "@/components/Form";
 import Router from "next/router";
-import React from "react";
 import { mutate } from "swr";
 
 // Constants for API endpoints

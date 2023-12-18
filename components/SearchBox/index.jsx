@@ -1,6 +1,5 @@
 import Fuse from "fuse.js";
 import { useEffect, useState } from "react";
-import useSWR from "swr";
 import { StyledLink } from "@/design-system/StyledLink";
 import {
   StyledSearchBox,

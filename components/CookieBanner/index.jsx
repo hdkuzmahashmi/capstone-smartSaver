@@ -3,7 +3,7 @@ import { StyledCookieButton } from "@/design-system/StyledCookieButton";
 import useLocalStorageState from "use-local-storage-state";
 
 function CookieBanner() {
-  const [isCookieBannerVisible, setIsCookieBannerVisible, { removeItem }] =
+  const [isCookieBannerVisible, setIsCookieBannerVisible] =
     useLocalStorageState("isCookieBannerVisible", { defaultValue: true });
 
   if (!isCookieBannerVisible) {

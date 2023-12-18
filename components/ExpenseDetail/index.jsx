@@ -84,7 +84,7 @@ function ExpenseDetail({ expense = {}, handleDelete, setToast }) {
       </StyledCard>
 
       {expenseImage && expenseImage.length > 0 && (
-        <StyledCardImage $color={expense.categoryId[0].color}>
+        <div>
           {expenseImage.map((item, index) => (
             <div key={index}>
               {item.url.toLowerCase().endsWith(".pdf") ? (
@@ -92,21 +92,22 @@ function ExpenseDetail({ expense = {}, handleDelete, setToast }) {
                   src={item.url}
                   title={`Expense Receipt ${index + 1}`}
                   width="100%"
-                  height="600px"
+                  height="auto"
                 ></iframe>
               ) : (
                 <a href={item.url} target="_blank" rel="noreferrer">
                   <StyledImage
                     src={item.url}
                     alt={`Expense Receipt ${index + 1}`}
-                    width={140}
+                    width={180}
                     height={230}
+                    $isReceipt
                   />
                 </a>
               )}
             </div>
           ))}
-        </StyledCardImage>
+        </div>
       )}
     </>
   );

@@ -13,6 +13,7 @@ import {
   ColorBox,
   ItemName,
   Amount,
+  IconWrapper,
 } from "@/design-system/StyledDoughnutGraph";
 import { calculateCategoryTotals } from "@/assets/utils/categoryTotalsCalculator";
 
@@ -29,29 +30,30 @@ function DoughnutGraph() {
     return <div>Error: {error.message}</div>;
   }
 
-  // Use utility function to extract and calculate totals for each expense category
   const categoryTotalsArray = calculateCategoryTotals(data);
 
-  // Extract category names, total expenses, and colors for the chart
   const categoryNames = categoryTotalsArray.map((category) => category.name);
   const categoryValues = categoryTotalsArray.map((category) => category.total);
   const categoryColor = categoryTotalsArray.map((category) => category.color);
 
-  // Calculate the total amount of all expenses
   const totalAmountOfExpenses = categoryValues
     .reduce((acc, cur) => {
       return acc + cur;
     }, 0)
     .toFixed(2);
 
-  // Create chart data and configuration
+  const categoryTransparentColor = categoryColor.map((color) =>
+    color.replace("rgb", "rgba").replace(")", ", 0.5)")
+  );
+
   const chartData = {
     datasets: [
       {
         data: categoryValues,
-        backgroundColor: categoryColor,
-        hoverOffset: 4,
-        borderRadius: 8,
+        backgroundColor: categoryTransparentColor,
+        hoverBackgroundColor: categoryColor,
+        hoverOffset: 5,
+        borderRadius: 6,
       },
     ],
   };
@@ -62,7 +64,7 @@ function DoughnutGraph() {
     options: {
       plugins: {
         title: {
-          display: true,
+          display: false,
           text: "Category Expense Summary",
         },
 
@@ -73,7 +75,7 @@ function DoughnutGraph() {
             },
             label: function (context) {
               const value = context.parsed;
-              return `Amount: ${value} €`;
+              return `Amount: ${value.toFixed(2)} €`;
             },
           },
         },
@@ -81,7 +83,6 @@ function DoughnutGraph() {
     },
   };
 
-  // Render the Doughnut chart with total expenses and the category list
   return (
     <GraphContainer>
       <ExpenseOverviewContainer>
@@ -91,14 +92,18 @@ function DoughnutGraph() {
         </Link>
       </ExpenseOverviewContainer>
       <ListContainer>
-        {categoryTotalsArray.map((category) => (
-          <ListItem key={category.name}>
-            <ColorBox style={{ $bgcolor: category.color }}></ColorBox>
-            <Icon icon={category.icon} width={15} />
-            <ItemName>{category.name}</ItemName>
-            <Amount>{category.total.toFixed(2)} €</Amount>
-          </ListItem>
-        ))}
+        {categoryTotalsArray
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((category) => (
+            <ListItem key={category.name}>
+              <ColorBox style={{ backgroundColor: category.color }}></ColorBox>
+              <IconWrapper>
+                <Icon icon={category.icon} />
+              </IconWrapper>{" "}
+              <ItemName>{category.name}</ItemName>
+              <Amount>{category.total.toFixed(2)} €</Amount>
+            </ListItem>
+          ))}
       </ListContainer>
     </GraphContainer>
   );
