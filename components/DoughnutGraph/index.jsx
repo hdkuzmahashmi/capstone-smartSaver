@@ -30,15 +30,12 @@ function DoughnutGraph() {
     return <div>Error: {error.message}</div>;
   }
 
-  // Use utility function to extract and calculate totals for each expense category
   const categoryTotalsArray = calculateCategoryTotals(data);
 
-  // Extract category names, total expenses, and colors for the chart
   const categoryNames = categoryTotalsArray.map((category) => category.name);
   const categoryValues = categoryTotalsArray.map((category) => category.total);
   const categoryColor = categoryTotalsArray.map((category) => category.color);
 
-  // Calculate the total amount of all expenses
   const totalAmountOfExpenses = categoryValues
     .reduce((acc, cur) => {
       return acc + cur;
@@ -49,17 +46,14 @@ function DoughnutGraph() {
     color.replace("rgb", "rgba").replace(")", ", 0.5)")
   );
 
-  // Create chart data and configuration
   const chartData = {
     datasets: [
       {
         data: categoryValues,
         backgroundColor: categoryTransparentColor,
         hoverBackgroundColor: categoryColor,
-        // borderColor: categoryColor,
         hoverOffset: 5,
         borderRadius: 6,
-        // borderWidth: 1,
       },
     ],
   };
@@ -89,7 +83,6 @@ function DoughnutGraph() {
     },
   };
 
-  // Render the Doughnut chart with total expenses and the category list
   return (
     <GraphContainer>
       <ExpenseOverviewContainer>

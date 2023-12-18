@@ -11,14 +11,6 @@ import {
   StyledViewLinkNew,
 } from "@/design-system/StyledViewAllExpenses";
 
-// const handleMouseEnter = () => {
-//   setIsHovered(true);
-// };
-
-// const handleMouseLeave = () => {
-//   setIsHovered(false);
-// };
-
 const handleClick = () => {
   window.location.href = "/details";
 };
